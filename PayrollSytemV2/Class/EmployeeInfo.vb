@@ -3,13 +3,13 @@ Imports MySql.Data.MySqlClient
 Public Class EmployeeInfo
 #Region "Properties"
     '--------------EMPLOYEE TABLE---------------'
-    Private _id As Int32 = 0
+    Private _id As String = ""
 
-    Friend Property id() As Int32
+    Friend Property id() As String
         Get
             Return _id
         End Get
-        Set(ByVal Value As Int32)
+        Set(ByVal Value As String)
             _id = Value
         End Set
     End Property
@@ -345,14 +345,14 @@ Public Class EmployeeInfo
         End Set
     End Property
 
-    Private _emp_deleted As String = ""
+    Private _is_deleted As String = ""
 
-    Friend Property emp_deleted() As String
+    Friend Property is_deleted() As String
         Get
-            Return _emp_deleted
+            Return _is_deleted
         End Get
         Set(ByVal Value As String)
-            _emp_deleted = Value
+            _is_deleted = Value
         End Set
     End Property
 
@@ -723,7 +723,6 @@ Public Class EmployeeInfo
 End Class
 Public Class EmploymentInfoDB
 
-   
     Friend Function fillTaxable() As DataTable
         Dim dt As DataTable = Nothing
         Try
@@ -853,7 +852,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("basic_salary,")
                 xSQL.AppendLine("daily_rate,")
                 xSQL.AppendLine("hour_rate,")
-                xSQL.AppendLine("def_shift_id,")
+                'xSQL.AppendLine("shift_id,")
                 xSQL.AppendLine("def_time_in,")
                 xSQL.AppendLine("def_time_out,")
                 xSQL.AppendLine("w_13monthpay,")
@@ -888,10 +887,10 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("@basic_salary,")
                 xSQL.AppendLine("@daily_rate,")
                 xSQL.AppendLine("@hour_rate,")
-                xSQL.AppendLine("@def_shift_id,")
+                'xSQL.AppendLine("@shift_id,")
                 xSQL.AppendLine("@def_time_in,")
                 xSQL.AppendLine("@def_time_out,")
-                xSQL.AppendLine("@w_13monthpay,")
+                xSQL.AppendLine("@w_13thmonthpay,")
                 xSQL.AppendLine("@tin_no,")
                 xSQL.AppendLine("@sss_no,")
                 xSQL.AppendLine("@pagibig_no,")
@@ -899,42 +898,37 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("@w_sss,")
                 xSQL.AppendLine("@w_hdmf,")
                 xSQL.AppendLine("@w_philhealth,")
-                xSQL.AppendLine("@emp_deleted")
+                xSQL.AppendLine("@is_deleted")
 
                 xSQL.AppendLine(");")
-                xSQL.AppendLine("SET @e_id = LAST_INSERT_ID();")
+                'xSQL.AppendLine("SET @e_id = LAST_INSERT_ID();")
 
-                'deletion of previous working days
-                xSQL.AppendLine("DELETE FROM employee_working_days")
-                xSQL.AppendLine("WHERE emp_id = e_id")
+                ''may update ng is_deleted here I think.
+                'xSQL.AppendLine("INSERT INTO employee_working_days(")
+                'xSQL.AppendLine("e_id,")
+                'xSQL.AppendLine("monday,")
+                'xSQL.AppendLine("tuesday,")
+                'xSQL.AppendLine("wednesday,")
+                'xSQL.AppendLine("thursday,")
+                'xSQL.AppendLine("friday,")
+                'xSQL.AppendLine("saturday,")
+                'xSQL.AppendLine("sunday,")
+                'xSQL.AppendLine("date_stamp")
+                'xSQL.AppendLine("is_deleted")
+                'xSQL.AppendLine(") ")
+                'xSQL.AppendLine("VALUES( ")
+                'xSQL.AppendLine("e_id,")
+                'xSQL.AppendLine("@monday,")
+                'xSQL.AppendLine("@tuesday,")
+                'xSQL.AppendLine("@wednesday,")
+                'xSQL.AppendLine("@thursday,")
+                'xSQL.AppendLine("@friday,")
+                'xSQL.AppendLine("@saturday,")
+                'xSQL.AppendLine("@sunday,")
+                'xSQL.AppendLine("@date_stamp")
+                'xSQL.AppendLine("@emp_wkng_days_deleted")
 
-                'may update ng is_deleted here I think.
-                'sa taas na ang ginawa ko "DELETE"
-                xSQL.AppendLine("INSERT INTO employee_working_days(")
-                xSQL.AppendLine("e_id,")
-                xSQL.AppendLine("monday,")
-                xSQL.AppendLine("tuesday,")
-                xSQL.AppendLine("wednesday,")
-                xSQL.AppendLine("thursday,")
-                xSQL.AppendLine("friday,")
-                xSQL.AppendLine("saturday,")
-                xSQL.AppendLine("sunday,")
-                xSQL.AppendLine("date_stamp")
-                xSQL.AppendLine("is_deleted")
-                xSQL.AppendLine(") ")
-                xSQL.AppendLine("VALUES( ")
-                xSQL.AppendLine("e_id,")
-                xSQL.AppendLine("@monday,")
-                xSQL.AppendLine("@tuesday,")
-                xSQL.AppendLine("@wednesday,")
-                xSQL.AppendLine("@thursday,")
-                xSQL.AppendLine("@friday,")
-                xSQL.AppendLine("@saturday,")
-                xSQL.AppendLine("@sunday,")
-                xSQL.AppendLine("@date_stamp")
-                xSQL.AppendLine("@emp_wkng_days_deleted")
-
-                xSQL.AppendLine(");")
+                'xSQL.AppendLine(");")
 
                 ''may update ng is_deleted and looping here I think.
                 'xSQL.AppendLine("INSERT INTO employee_receivable_and_taxable_allowances(")
@@ -997,9 +991,6 @@ Public Class EmploymentInfoDB
 
                 xSQL.AppendLine("COMMIT;")
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
-
-                '-----EMPLOYEE-----
-
                 commandDB1.Parameters.AddWithValue("@code", cItem.code)
                 commandDB1.Parameters.AddWithValue("@first_name", cItem.first_name)
                 commandDB1.Parameters.AddWithValue("@last_name", cItem.last_name)
@@ -1020,7 +1011,7 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@basic_salary", cItem.basic_salary)
                 commandDB1.Parameters.AddWithValue("@daily_rate", cItem.daily_rate)
                 commandDB1.Parameters.AddWithValue("@hour_rate", cItem.hour_rate)
-                commandDB1.Parameters.AddWithValue("@def_shift_id", cItem.def_shift_id)
+                'commandDB1.Parameters.AddWithValue("@def_shift_id", cItem.def_shift_id)
                 commandDB1.Parameters.AddWithValue("@def_time_in", cItem.def_time_in)
                 commandDB1.Parameters.AddWithValue("@def_time_out", cItem.def_time_out)
                 commandDB1.Parameters.AddWithValue("@w_13monthpay", cItem.w_13monthpay)
@@ -1031,18 +1022,7 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@w_sss", cItem.w_sss)
                 commandDB1.Parameters.AddWithValue("@w_hdmf", cItem.w_hdmf)
                 commandDB1.Parameters.AddWithValue("@w_philhealth", cItem.w_philhealth)
-                commandDB1.Parameters.AddWithValue("@emp_deleted", cItem.emp_deleted)
-
-
-                '----WORKING DAYS-----
-                commandDB1.Parameters.AddWithValue("@monday", cItem.monday)
-                commandDB1.Parameters.AddWithValue("@tuesday", cItem.tuesday)
-                commandDB1.Parameters.AddWithValue("@wednesday", cItem.wednesday)
-                commandDB1.Parameters.AddWithValue("@thursday", cItem.thursday)
-                commandDB1.Parameters.AddWithValue("@friday", cItem.friday)
-                commandDB1.Parameters.AddWithValue("@saturday", cItem.saturday)
-                commandDB1.Parameters.AddWithValue("@sunday", cItem.sunday)
-
+                commandDB1.Parameters.AddWithValue("@is_deleted", cItem.is_deleted)
                 commandDB1.ExecuteNonQuery()
             End Using
         Catch ex As Exception
@@ -1058,66 +1038,66 @@ Public Class EmploymentInfoDB
                 SQLConnect.Open()
 
                 Dim xSQL As New StringBuilder
-                xSQL.AppendLine("START TRANSACTION;")
+                'xSQL.AppendLine("START TRANSACTION;")
                 xSQL.AppendLine("UPDATE employee ")
                 xSQL.AppendLine("SET ")
-                xSQL.AppendLine("    code =  @code, ")
-                xSQL.AppendLine("first_name = @first_name,")
-                xSQL.AppendLine("last_name = @last_name,")
-                xSQL.AppendLine("middle_name = @middle_name,")
-                xSQL.AppendLine("birthday = @birthday,")
-                xSQL.AppendLine("address =@address ,")
-                xSQL.AppendLine("mobile = @mobile,")
-                xSQL.AppendLine("telephone = @telephone,")
-                xSQL.AppendLine("nationality = @nationality,")
-                xSQL.AppendLine("email = @email,")
-                xSQL.AppendLine("department_id = @department_id ,")
-                xSQL.AppendLine("job_title_id = @job_title_id,")
-                xSQL.AppendLine("employment_status = @employment_status ,")
-                xSQL.AppendLine("date_hired =@date_hired ,")
-                xSQL.AppendLine("job_status = @job_status,")
-                xSQL.AppendLine("tax_comp =@tax_comp ,")
-                xSQL.AppendLine("emp_last_employer =@emp_last_employe ,")
-                xSQL.AppendLine("basic_salary = @basic_salary,")
-                xSQL.AppendLine("daily_rate = @daily_rate,")
-                xSQL.AppendLine("hour_rate = @hour_rate,")
-                xSQL.AppendLine("shift_id = @shift_id,")
-                xSQL.AppendLine("def_time_in = @def_time_in,")
-                xSQL.AppendLine("def_time_out = @def_time_out,")
-                xSQL.AppendLine("w_13monthpay = @w_13thmonthpay,")
-                xSQL.AppendLine("tin_no =@tin_no ,")
-                xSQL.AppendLine("sss_no = @sss_no,")
-                xSQL.AppendLine("pagibig_no = @pagibig_no,")
-                xSQL.AppendLine("philhealth_no = @philhealth_no, ")
-                xSQL.AppendLine("w_sss = @w_sss,")
-                xSQL.AppendLine("w_hdmf = ,")
-                xSQL.AppendLine("w_philhealth =@w_philhealth ,")
-                xSQL.AppendLine("is_deleted =@emp_deleted ")
+                xSQL.AppendLine("    last_name = @last_name, ")
+                xSQL.AppendLine("    first_name = @first_name, ")
+                xSQL.AppendLine("    middle_name = @middle_name, ")
+                xSQL.AppendLine("    birthday = @birthday, ")
+                xSQL.AppendLine("    mobile = @mobile, ")
+                xSQL.AppendLine("    telephone = @telephone, ")
+                xSQL.AppendLine("    email = @email, ")
+                xSQL.AppendLine("    nationality= @nationality, ")
+                xSQL.AppendLine("    department_id = @department_id, ")
+                xSQL.AppendLine("    job_title_id = @job_title_id, ")
+                xSQL.AppendLine("    employment_status = @employment_status, ")
+                xSQL.AppendLine("    date_hired = @date_hired, ")
+                xSQL.AppendLine("    address = @address, ")
+                xSQL.AppendLine("    job_status = @job_status, ")
+                xSQL.AppendLine("    date_resigned = @date_resigned, ")
+                xSQL.AppendLine("    basic_salary = @basic_salary, ")
+                xSQL.AppendLine("    daily_rate = @daily_rate, ")
+                xSQL.AppendLine("    hour_rate = @hour_rate, ")
+                xSQL.AppendLine("    def_time_in = @def_time_in, ")
+                xSQL.AppendLine("    def_time_out = @def_time_out, ")
+                xSQL.AppendLine("    w_13monthpay = @w_13monthpay, ")
+                xSQL.AppendLine("    tin_no = @tin_no, ")
+                xSQL.AppendLine("    sss_no = @sss_no, ")
+                xSQL.AppendLine("    pagibig_no = @pagibig_no, ")
+                xSQL.AppendLine("    philhealth_no = @philhealth_no, ")
+                xSQL.AppendLine("    tax_comp = @tax_comp, ")
+                xSQL.AppendLine("    is_deleted = @is_deleted, ")
+                xSQL.AppendLine("    def_shift_id = @def_shift_id, ")
+                xSQL.AppendLine("    emp_last_employer = @emp_last_employer, ")
+                xSQL.AppendLine("    prev_employer_date_resigned = @prev_employer_date_resigned, ")
+                xSQL.AppendLine("    acu_id = @acu_id, ")
+                'xSQL.AppendLine("    shift_id, ")
+                xSQL.AppendLine("    w_sss = @w_sss, ")
+                xSQL.AppendLine("    w_hdmf = @w_hdmf, ")
+                xSQL.AppendLine("    w_philhealth = @w_philhealth ")
+                xSQL.AppendLine("WHERE code = @code")
+                'xSQL.AppendLine("COMMIT;")
 
-                xSQL.AppendLine("WHERE id = @id;")
-                xSQL.AppendLine("COMMIT;")
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
-                commandDB1.Parameters.AddWithValue("@code", cItem.code)
-                commandDB1.Parameters.AddWithValue("@first_name", cItem.first_name)
                 commandDB1.Parameters.AddWithValue("@last_name", cItem.last_name)
+                commandDB1.Parameters.AddWithValue("@first_name", cItem.first_name)
                 commandDB1.Parameters.AddWithValue("@middle_name", cItem.middle_name)
                 commandDB1.Parameters.AddWithValue("@birthday", cItem.birthday)
-                commandDB1.Parameters.AddWithValue("@address", cItem.address)
                 commandDB1.Parameters.AddWithValue("@mobile", cItem.mobile)
                 commandDB1.Parameters.AddWithValue("@telephone", cItem.telephone)
-                commandDB1.Parameters.AddWithValue("@nationality", cItem.nationality)
                 commandDB1.Parameters.AddWithValue("@email", cItem.email)
+                commandDB1.Parameters.AddWithValue("@nationality", cItem.nationality)
                 commandDB1.Parameters.AddWithValue("@department_id", cItem.department_id)
                 commandDB1.Parameters.AddWithValue("@job_title_id", cItem.job_title_id)
                 commandDB1.Parameters.AddWithValue("@employment_status", cItem.employment_status)
                 commandDB1.Parameters.AddWithValue("@date_hired", cItem.date_hired)
+                commandDB1.Parameters.AddWithValue("@address", cItem.address)
                 commandDB1.Parameters.AddWithValue("@job_status", cItem.job_status)
-                commandDB1.Parameters.AddWithValue("@tax_comp", cItem.tax_comp)
-                commandDB1.Parameters.AddWithValue("@emp_last_employer", cItem.emp_last_employer)
+                commandDB1.Parameters.AddWithValue("@date_resigned", cItem.date_resigned)
                 commandDB1.Parameters.AddWithValue("@basic_salary", cItem.basic_salary)
                 commandDB1.Parameters.AddWithValue("@daily_rate", cItem.daily_rate)
                 commandDB1.Parameters.AddWithValue("@hour_rate", cItem.hour_rate)
-                commandDB1.Parameters.AddWithValue("@shift_id", cItem.shift_id)
                 commandDB1.Parameters.AddWithValue("@def_time_in", cItem.def_time_in)
                 commandDB1.Parameters.AddWithValue("@def_time_out", cItem.def_time_out)
                 commandDB1.Parameters.AddWithValue("@w_13monthpay", cItem.w_13monthpay)
@@ -1125,10 +1105,16 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@sss_no", cItem.sss_no)
                 commandDB1.Parameters.AddWithValue("@pagibig_no", cItem.pagibig_no)
                 commandDB1.Parameters.AddWithValue("@philhealth_no", cItem.philhealth_no)
+                commandDB1.Parameters.AddWithValue("@tax_comp", cItem.tax_comp)
+                commandDB1.Parameters.AddWithValue("@is_deleted", cItem.is_deleted)
+                commandDB1.Parameters.AddWithValue("@def_shift_id", cItem.def_shift_id)
+                commandDB1.Parameters.AddWithValue("@emp_last_employer", cItem.emp_last_employer)
+                commandDB1.Parameters.AddWithValue("@prev_employer_date_resigned", cItem.prev_employer_date_resigned)
+                commandDB1.Parameters.AddWithValue("@acu_id", cItem.acu_id)
                 commandDB1.Parameters.AddWithValue("@w_sss", cItem.w_sss)
                 commandDB1.Parameters.AddWithValue("@w_hdmf", cItem.w_hdmf)
                 commandDB1.Parameters.AddWithValue("@w_philhealth", cItem.w_philhealth)
-                commandDB1.Parameters.AddWithValue("@emp_deleted", cItem.emp_deleted)
+                commandDB1.Parameters.AddWithValue("@code", cItem.code)
                 commandDB1.ExecuteNonQuery()
             End Using
 
@@ -1138,6 +1124,136 @@ Public Class EmploymentInfoDB
         End Try
         cReturn = cItem
         Return cReturn
+    End Function
+    Friend Function EmpListDDL() As DataTable
+        Dim dt As DataTable = Nothing
+        Try
+            Dim xSQL As New StringBuilder
+            xSQL.AppendLine("SELECT ")
+            xSQL.AppendLine("    `code` as 'emp_id', ")
+            xSQL.AppendLine("   concat(first_name, ' ' ,middle_name, ' ' ,last_name) as 'fullname'")
+            xSQL.AppendLine("FROM employee")
+
+
+            Try
+                Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
+                    SQLConnect.Open()
+                    Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
+                    Dim da As New MySqlDataAdapter(SQLCommand)
+                    Dim ds As New DataSet
+                    da.Fill(ds)
+                    If ds.Tables.Count <> 0 Then
+                        dt = ds.Tables(0)
+                    End If
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dt
+    End Function
+    Friend Function EmployeeGetFile(ByVal pEmployee_id As String) As EmployeeInfo
+        Dim dt As New EmployeeInfo
+        Try
+            Dim xSQL As New StringBuilder
+            xSQL.AppendLine("SELECT ")
+            xSQL.AppendLine("    `code`, ")
+            xSQL.AppendLine("    last_name, ")
+            xSQL.AppendLine("    first_name, ")
+            xSQL.AppendLine("    middle_name, ")
+            xSQL.AppendLine("    birthday, ")
+            xSQL.AppendLine("    mobile, ")
+            xSQL.AppendLine("    telephone, ")
+            xSQL.AppendLine("    email, ")
+            xSQL.AppendLine("    nationality, ")
+            xSQL.AppendLine("    department_id, ")
+            xSQL.AppendLine("    job_title_id, ")
+            xSQL.AppendLine("    employment_status, ")
+            xSQL.AppendLine("    date_hired, ")
+            xSQL.AppendLine("    address, ")
+            xSQL.AppendLine("    job_status, ")
+            xSQL.AppendLine("    date_resigned, ")
+            xSQL.AppendLine("    basic_salary, ")
+            xSQL.AppendLine("    daily_rate, ")
+            xSQL.AppendLine("    hour_rate, ")
+            xSQL.AppendLine("    def_time_in, ")
+            xSQL.AppendLine("    def_time_out, ")
+            xSQL.AppendLine("    w_13monthpay, ")
+            xSQL.AppendLine("    tin_no, ")
+            xSQL.AppendLine("    sss_no, ")
+            xSQL.AppendLine("    pagibig_no, ")
+            xSQL.AppendLine("    philhealth_no, ")
+            xSQL.AppendLine("    tax_comp, ")
+            xSQL.AppendLine("    is_deleted, ")
+            xSQL.AppendLine("    def_shift_id, ")
+            xSQL.AppendLine("    emp_last_employer, ")
+            xSQL.AppendLine("    prev_employer_date_resigned, ")
+            xSQL.AppendLine("    acu_id, ")
+            'xSQL.AppendLine("    shift_id, ")
+            xSQL.AppendLine("    w_sss, ")
+            xSQL.AppendLine("    w_hdmf, ")
+            xSQL.AppendLine("    w_philhealth ")
+            xSQL.AppendLine("FROM employee ")
+            xSQL.AppendLine("WHERE code = @code")
+
+            Try
+                Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
+                    SQLConnect.Open()
+                    Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
+                    SQLCommand.Parameters.AddWithValue("@code", pEmployee_id)
+                    Dim da As New MySqlDataAdapter(SQLCommand)
+                    Dim ds As New DataSet
+                    da.Fill(ds)
+                    If ds.Tables.Count <> 0 Then
+                        For Each dr In ds.Tables(0).Rows
+                            'dt.Found = True
+                            If Not IsDBNull(dr("code")) Then dt.code = dr("code")
+                            If Not IsDBNull(dr("last_name")) Then dt.last_name = dr("last_name")
+                            If Not IsDBNull(dr("first_name")) Then dt.first_name = dr("first_name")
+                            If Not IsDBNull(dr("middle_name")) Then dt.middle_name = dr("middle_name")
+                            If Not IsDBNull(dr("birthday")) Then dt.birthday = dr("birthday")
+                            If Not IsDBNull(dr("mobile")) Then dt.mobile = dr("mobile")
+                            If Not IsDBNull(dr("telephone")) Then dt.telephone = dr("telephone")
+                            If Not IsDBNull(dr("email")) Then dt.email = dr("email")
+                            If Not IsDBNull(dr("nationality")) Then dt.nationality = dr("nationality")
+                            If Not IsDBNull(dr("department_id")) Then dt.department_id = dr("department_id")
+                            If Not IsDBNull(dr("job_title_id")) Then dt.job_title_id = dr("job_title_id")
+                            If Not IsDBNull(dr("employment_status")) Then dt.employment_status = dr("employment_status")
+                            If Not IsDBNull(dr("date_hired")) Then dt.date_hired = dr("date_hired")
+                            If Not IsDBNull(dr("address")) Then dt.address = dr("address")
+                            If Not IsDBNull(dr("job_status")) Then dt.job_status = dr("job_status")
+                            If Not IsDBNull(dr("date_resigned")) Then dt.date_resigned = dr("date_resigned")
+                            If Not IsDBNull(dr("basic_salary")) Then dt.basic_salary = dr("basic_salary")
+                            If Not IsDBNull(dr("daily_rate")) Then dt.daily_rate = dr("daily_rate")
+                            If Not IsDBNull(dr("hour_rate")) Then dt.hour_rate = dr("hour_rate")
+                            If Not IsDBNull(dr("def_time_in")) Then dt.def_time_in = dr("def_time_in")
+                            If Not IsDBNull(dr("def_time_out")) Then dt.def_time_out = dr("def_time_out")
+                            If Not IsDBNull(dr("w_13monthpay")) Then dt.w_13monthpay = dr("w_13monthpay")
+                            If Not IsDBNull(dr("tin_no")) Then dt.tin_no = dr("tin_no")
+                            If Not IsDBNull(dr("sss_no")) Then dt.sss_no = dr("sss_no")
+                            If Not IsDBNull(dr("pagibig_no")) Then dt.pagibig_no = dr("pagibig_no")
+                            If Not IsDBNull(dr("philhealth_no")) Then dt.philhealth_no = dr("philhealth_no")
+                            If Not IsDBNull(dr("tax_comp")) Then dt.tax_comp = dr("tax_comp")
+                            'If Not IsDBNull(dr("def_shift_id")) Then dt.def_shift_id = dr("def_shift_id")
+                            If Not IsDBNull(dr("emp_last_employer")) Then dt.emp_last_employer = dr("emp_last_employer")
+                            If Not IsDBNull(dr("prev_employer_date_resigned")) Then dt.prev_employer_date_resigned = dr("prev_employer_date_resigned")
+                            If Not IsDBNull(dr("acu_id")) Then dt.acu_id = dr("acu_id")
+                            If Not IsDBNull(dr("w_sss")) Then dt.w_sss = dr("w_sss")
+                            If Not IsDBNull(dr("w_hdmf")) Then dt.w_hdmf = dr("w_hdmf")
+                            If Not IsDBNull(dr("w_philhealth")) Then dt.w_philhealth = dr("w_philhealth")
+                            'If Not IsDBNull(dr("telephone")) Then dt.telephone = dr("telephone")
+                        Next
+                    End If
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dt
     End Function
 
 End Class
