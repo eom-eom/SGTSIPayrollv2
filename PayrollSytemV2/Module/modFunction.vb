@@ -1,5 +1,9 @@
 ﻿Module modFunction
-
+    Public company_name As String
+    Public company_address As String
+    Public company_telephone As String
+    Public default_shift As String
+    Public grace_period As String
     Enum MessageType
         Success
         Info
