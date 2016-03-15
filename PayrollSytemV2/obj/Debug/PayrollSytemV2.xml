@@ -1,0 +1,1308 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+PayrollSytemV2
+</name>
+</assembly>
+<members>
+<member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.ddlType">
+	<summary>
+ddlType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.txtDesc">
+	<summary>
+txtDesc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.cbTaxable">
+	<summary>
+cbTaxable control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.txtAmount">
+	<summary>
+txtAmount control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ShiftingSchedule.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ShiftingSchedule.ddlSelectEmp">
+	<summary>
+ddlSelectEmp control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ShiftingSchedule.txtFromDate">
+	<summary>
+txtFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ShiftingSchedule.txtToDate">
+	<summary>
+txtToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ShiftingSchedule.btnNew">
+	<summary>
+btnNew  control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ShiftingSchedule.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ShiftingSchedule.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ShiftingSchedule.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.txtEmpShare">
+	<summary>
+txtEmpShare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.txtFromRange">
+	<summary>
+txtFromRange control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.txtEmpComp">
+	<summary>
+txtEmpComp control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.txtRangeTo">
+	<summary>
+txtRangeTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.txtEmployerShare">
+	<summary>
+txtEmployerShare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.SSSTable.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2._default.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2._default.txtFromDate">
+	<summary>
+txtFromDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2._default.txtToDate">
+	<summary>
+txtToDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2._default.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.UploadDTR">
+	<summary>
+UploadDTR control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.txtShiftName">
+	<summary>
+txtShiftName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.txtTimeIn">
+	<summary>
+txtTimeIn control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.txtTimeOut">
+	<summary>
+txtTimeOut control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.gvShifts">
+	<summary>
+gvShifts control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Shifts.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:PayrollSytemV2.ShiftsClass.id">
+	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
+</member><member name="P:PayrollSytemV2.ShiftsClass.shift_name">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.ShiftsClass.time_in">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.ShiftsClass.time_out">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.ShiftsClass.is_deleted">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="F:PayrollSytemV2.LeaveType.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LeaveType.txtDesc">
+	<summary>
+txtDesc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LeaveType.txtNoDays">
+	<summary>
+txtNoDays control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LeaveType.cbDuration">
+	<summary>
+cbDuration control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LeaveType.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LeaveType.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LeaveType.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LeaveType.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.CompanyDeductions.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.CompanyDeductions.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.CompanyDeductions.txtDesc">
+	<summary>
+txtDesc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.CompanyDeductions.cbDuration">
+	<summary>
+cbDuration control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.CompanyDeductions.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.CompanyDeductions.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.CompanyDeductions.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.CompanyDeductions.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.rbLate">
+	<summary>
+rbLate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.rbUndertime">
+	<summary>
+rbUndertime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.ddlShift">
+	<summary>
+ddlShift control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.txtFrom">
+	<summary>
+txtFrom control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.txtPercentage">
+	<summary>
+txtPercentage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.txtTo">
+	<summary>
+txtTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.gvLateUndertime">
+	<summary>
+gvLateUndertime control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.LateAndUndertimeTable.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Login.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Login.email">
+	<summary>
+email control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Login.password">
+	<summary>
+password control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.txtCeiling">
+	<summary>
+txtCeiling control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.ddlStatus">
+	<summary>
+ddlStatus control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.txtAddTax">
+	<summary>
+txtAddTax control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.ddlOperand">
+	<summary>
+ddlOperand control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.txtTaxRatePercent">
+	<summary>
+txtTaxRatePercent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.txtAmountComp">
+	<summary>
+txtAmountComp control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.TaxTable.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:PayrollSytemV2.Departments.id">
+	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
+</member><member name="P:PayrollSytemV2.Departments.name">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Departments.description">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Departments.is_deleted">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Departments.parent_id">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.JobTitle.id">
+	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
+</member><member name="P:PayrollSytemV2.JobTitle.name">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.JobTitle.description">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.JobTitle.is_deleted">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="F:PayrollSytemV2.index.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.index.ScriptManager1">
+	<summary>
+ScriptManager1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.index.contentHeader">
+	<summary>
+contentHeader control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.index.contentSmall">
+	<summary>
+contentSmall control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.index.contentBC">
+	<summary>
+contentBC control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.index.contentBody">
+	<summary>
+contentBody control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:PayrollSytemV2.My.MyWebExtension.Computer">
+	<summary>
+ Returns information about the host computer.
+ </summary>
+</member><member name="P:PayrollSytemV2.My.MyWebExtension.User">
+	<summary>
+ Returns information for the current Web user.
+ </summary>
+</member><member name="P:PayrollSytemV2.My.MyWebExtension.Request">
+	<summary>
+ Returns Request object.
+ </summary>
+</member><member name="P:PayrollSytemV2.My.MyWebExtension.Response">
+	<summary>
+ Returns Response object.
+ </summary>
+</member><member name="P:PayrollSytemV2.My.MyWebExtension.Log">
+	<summary>
+ Returns the Asp log object.
+ </summary>
+</member><member name="T:PayrollSytemV2.My.MyWebExtension">
+	<summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+	<remarks></remarks>
+</member><member name="P:PayrollSytemV2.HoliTable.id">
+	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_name">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_date">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_day">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_category">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_percentage">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.is_deleted">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.txtAmount">
+	<summary>
+txtAmount control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.txtDescription">
+	<summary>
+txtDescription control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.ddlType">
+	<summary>
+ddlType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Department.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Department.txtDeptName">
+	<summary>
+txtDeptName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Department.txtDeptDesc">
+	<summary>
+txtDeptDesc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Department.gvDepartment">
+	<summary>
+gvDepartment control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Department.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Department.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Department.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Department.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:PayrollSytemV2.LateUndertime.id">
+	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
+</member><member name="P:PayrollSytemV2.LateUndertime.lu_from">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.LateUndertime.lu_to">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.LateUndertime.lu_percentage">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.LateUndertime.shift_id">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.LateUndertime.lu_type">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.LateUndertime.is_deleted">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="F:PayrollSytemV2.HolidayTables.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.txtHolName">
+	<summary>
+txtHolName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.txtDay">
+	<summary>
+txtDay control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.txtHolDate">
+	<summary>
+txtHolDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.ddlHolType">
+	<summary>
+ddlHolType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.txtPercentge">
+	<summary>
+txtPercentge control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.gvHolTable">
+	<summary>
+gvHolTable control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.LinkButton1">
+	<summary>
+LinkButton1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HolidayTables.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.txtEmpShare">
+	<summary>
+txtEmpShare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.txtFromRange">
+	<summary>
+txtFromRange control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.rbPercantage">
+	<summary>
+rbPercantage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.rbAmount">
+	<summary>
+rbAmount control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.txtRangeTo">
+	<summary>
+txtRangeTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.txtEmployerShare">
+	<summary>
+txtEmployerShare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.HDMFTable.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Position.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Position.txtPosName">
+	<summary>
+txtPosName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Position.txtPosDesc">
+	<summary>
+txtPosDesc control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Position.gvJobTitles">
+	<summary>
+gvJobTitles control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Position.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Position.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Position.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Position.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.txtCode">
+	<summary>
+txtCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.txtEmpShare">
+	<summary>
+txtEmpShare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.txtFromRange">
+	<summary>
+txtFromRange control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.txtEmployerShare">
+	<summary>
+txtEmployerShare control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.txtRangeTo">
+	<summary>
+txtRangeTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.btnNew">
+	<summary>
+btnNew control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.btnSave">
+	<summary>
+btnSave control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.PhilhealthTable.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>

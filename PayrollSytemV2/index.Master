@@ -1,0 +1,251 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="index.master.vb" Inherits="PayrollSytemV2.index" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Payroll System</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <link href="Content/AdminLTE.min.css" rel="stylesheet" />
+    <link href="Content/_all-skins.min.css" rel="stylesheet" />
+    <link href="Content/_all.css" rel="stylesheet" />
+    <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-jvectormap-1.2.2.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../Scripts/app.min.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <link href="Content/select2.css" rel="stylesheet" />
+    <script src="../Scripts/select2.js"></script>
+    <style type="text/css">
+        .messagealert {
+            /*width: 100%;*/
+            /*position: fixed;*/
+             top:0px;
+            /*z-index: 100000;*/
+            padding: 0;
+            font-size: 15px;
+        }
+    </style>
+    <script type="text/javascript">
+        function ShowMessage(message, messagetype) {
+            var cssclass;
+            switch (messagetype) {
+                case 'Success':
+                    cssclass = 'alert-success alert-dismissible fade out'
+                    break;
+                case 'Errors':
+                    cssclass = 'alert-danger alert-dismissible fade out'
+                    break;
+                case 'Warning':
+                    cssclass = 'alert-warning alert-dismissible fade out'
+                    break;
+                default:
+                    cssclass = 'alert-info alert-dismissible fade out'
+            }
+            $('#alert_container').append('<div id="alert_div" style="margin: 0 0.5%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
+            setTimeout(function () {
+                $("#alert_div").fadeTo(2000, 500).slideUp(500, function () {
+                    $("#alert_div").remove();
+                });
+            }, 1500);
+        }
+    </script>
+   
+</head>
+<body class="hold-transition skin-yellow sidebar-mini">
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="DTRUpload.aspx" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>P</b>S</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Payroll</b> System</span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                      <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          <img src="../image/user.png" class="user-image" alt="User Image"/>
+                          <span class="hidden-xs">Alexander Pierce</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <!-- User image -->
+                          <li class="user-header">
+                            <img src="../image/user.png" class="img-circle" alt="User Image"/>
+                            <p>
+                              Alexander Pierce - Web Developer
+                              <small>Member since Nov. 2012</small>
+                            </p>
+                          </li>
+                          <!-- Menu Body -->
+                          <%--<li class="user-body">
+                            <div class="col-xs-4 text-center">
+                              <a href="#">Followers</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                              <a href="#">Sales</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                              <a href="#">Friends</a>
+                            </div>
+                          </li>--%>
+                          <!-- Menu Footer-->
+                          <li class="user-footer">
+                            <div class="pull-left">
+                              <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                              <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                </ul>
+            </div>
+            </nav>
+            
+        </header>
+         <aside class="main-sidebar">
+            <div class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="../image/user.png" class="img-circle" alt="User Image"/>
+                    </div>
+                    <div class="pull-left info">
+                        <p>Alexander Pierce</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div> 
+                <!-- sidebar menu: : stydiste found in sidebar.less -->
+                <ul class="sidebar-menu">    
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-calendar"></i> <span>Attendance</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="DTRUpload.aspx"><i class="fa fa-circle-o"></i> DTR Upload</a></li>
+                        <li><a href="DTRHistory.aspx"><i class="fa fa-circle-o"></i> DTR History</a></li>
+                        <li><a href="ShiftingSchedule.aspx"><i class="fa fa-circle-o"></i> Shifting Schedule</a></li>
+                    </ul>
+                    </li>
+                    <li>
+                      <a href="#" >
+                        <i class="fa fa-user"></i> <span>Employee</span>
+                      </a>
+                    </li>   
+                    <li class="treeview">
+                      <a href="#">
+                        <i class="fa fa-gg-circle"></i> <span>Payroll</span> <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Generation</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Adjustment</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Report</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Maintenance</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Master File</a></li>
+                      </ul>
+                    </li>
+                    <li class="treeview">
+                      <a href="#">
+                        <i class="fa fa-cog"></i> <span>Settings</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                        
+                        <li>
+                          <a href="#"><i class="fa fa-circle-o"></i> General Settings <i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                            <li><a href="OvertimeSettings.aspx"><i class="fa fa-circle-o"></i> Overtime Settings</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Settings</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Employee Settings</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> System Settings</a></li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#"><i class="fa fa-circle-o"></i> Government Tables <i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                            <li><a href="SSSTable.aspx"><i class="fa fa-circle-o"></i> SSS Table</a></li>
+                            <li><a href="PhilhealthTable.aspx"><i class="fa fa-circle-o"></i> Philhealth Table</a></li>
+                            <li><a href="HDMFTable.aspx"><i class="fa fa-circle-o"></i> HDMF Table</a></li>
+                            <li><a href="TaxTable.aspx"><i class="fa fa-circle-o"></i> Tax Table</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="CompanyDeductions.aspx"><i class="fa fa-circle-o"></i> Company Deductions</a></li>
+                        <li><a href="DeMinimisBenefits.aspx"><i class="fa fa-circle-o"></i> De Minimis Benefits</a></li>
+                        <li><a href="LeaveType.aspx"><i class="fa fa-circle-o"></i> Leave Type</a></li>
+                        <li><a href="ReceivablesAndTaxableAllowance.aspx"><i class="fa fa-circle-o"></i> Receivable / Allowance</a></li>
+                        <li><a href="LateAndUndertimeTable.aspx"><i class="fa fa-circle-o"></i> Late / Undertime</a></li>
+                        <li><a href="HolidayTable.aspx"><i class="fa fa-circle-o"></i> Holiday Table</a></li>
+                        <li>
+                          <a href="#"><i class="fa fa-circle-o"></i> Department and Job Title <i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                            <li><a href="Department.aspx"><i class="fa fa-circle-o"></i> Department</a></li>
+                            <li><a href="Position.aspx"><i class="fa fa-circle-o"></i> Job Title</a></li>                 
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                     
+                </ul>       
+            </div>
+        </aside>
+        <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <asp:ContentPlaceHolder ID="contentHeader" runat="server">
+            
+            </asp:ContentPlaceHolder>
+            <small>
+                <asp:ContentPlaceHolder ID="contentSmall" runat="server">
+            
+                </asp:ContentPlaceHolder>
+            </small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-calendar"></i> Home</a></li>
+            <li class="active">
+                <asp:ContentPlaceHolder ID="contentBC" runat="server">
+            
+                </asp:ContentPlaceHolder>
+            </li>
+          </ol>
+        </section>
+        <section class="content">
+            <div id="content">
+                <asp:ContentPlaceHolder ID="contentBody" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </section>
+         
+        </div>       
+               
+       
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version 1.0</b>
+            </div>
+            <strong>
+                Copyright © 2015-2016
+                <a href="#">Payroll System.</a>
+                Alright reserved.  
+            </strong>
+        </footer>
+    </div>
+    
+    </form>
+</body>
+</html>
