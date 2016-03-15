@@ -109,6 +109,8 @@
     <Content Include="page\Department.aspx" />
     <Content Include="page\DTRHistory.aspx" />
     <Content Include="page\DTRUpload.aspx" />
+    <Content Include="page\Employee.aspx" />
+    <Content Include="page\frmEmployee.aspx" />
     <Content Include="page\HDMFTable.aspx" />
     <Content Include="page\HolidayTable.aspx" />
     <Content Include="page\LateAndUndertimeTable.aspx" />
@@ -134,11 +136,22 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\CompanyDeduction.vb" />
+    <Compile Include="Class\DeMinimisBenefit.vb" />
     <Compile Include="Class\Departments.vb" />
+    <Compile Include="Class\EmployeeInfo.vb" />
+    <Compile Include="Class\HDMFTables.vb" />
     <Compile Include="Class\HoliTable.vb" />
     <Compile Include="Class\JobTitle.vb" />
     <Compile Include="Class\LateUndertime.vb" />
+    <Compile Include="Class\LeaveTypes.vb" />
+    <Compile Include="Class\Overtime.vb" />
+    <Compile Include="Class\PhilhealthTables.vb" />
+    <Compile Include="Class\ReceivablesAndTaxable.vb" />
     <Compile Include="Class\ShiftsClass.vb" />
+    <Compile Include="Class\SSSTables.vb" />
+    <Compile Include="Class\SystemSettings.vb" />
+    <Compile Include="Class\TaxTables.vb" />
     <Compile Include="index.Master.designer.vb">
       <DependentUpon>index.Master</DependentUpon>
     </Compile>
@@ -200,6 +213,20 @@
     <Compile Include="page\DTRUpload.aspx.vb">
       <DependentUpon>DTRUpload.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="page\Employee.aspx.designer.vb">
+      <DependentUpon>Employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\Employee.aspx.vb">
+      <DependentUpon>Employee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="page\frmEmployee.aspx.designer.vb">
+      <DependentUpon>frmEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\frmEmployee.aspx.vb">
+      <DependentUpon>frmEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\HDMFTable.aspx.designer.vb">
       <DependentUpon>HDMFTable.aspx</DependentUpon>

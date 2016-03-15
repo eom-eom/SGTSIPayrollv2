@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 Imports MySql.Data.MySqlClient
-Public Class LateUndertime
+Public Class PhilhealthTables
 #Region "Properties"
     Private _id As Int32 = 0
     ''' <summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
@@ -12,56 +12,57 @@ Public Class LateUndertime
             _id = Value
         End Set
     End Property
-    Private _lu_from As String = ""
+    Private _ph_code As String = ""
     ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-    Friend Property lu_from() As String
+    Friend Property ph_code() As String
         Get
-            Return _lu_from
+            Return _ph_code
         End Get
         Set(ByVal Value As String)
-            _lu_from = Value
+            _ph_code = Value
         End Set
     End Property
-    Private _lu_to As String = ""
+    Private _ph_from_comp As String = ""
     ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-    Friend Property lu_to() As String
+    Friend Property ph_from_comp() As String
         Get
-            Return _lu_to
+            Return _ph_from_comp
         End Get
         Set(ByVal Value As String)
-            _lu_to = Value
+            _ph_from_comp = Value
         End Set
     End Property
-    Private _lu_percentage As String = ""
+    Private _ph_to_comp As String = ""
     ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-    Friend Property lu_percentage() As String
+    Friend Property ph_to_comp() As String
         Get
-            Return _lu_percentage
+            Return _ph_to_comp
         End Get
         Set(ByVal Value As String)
-            _lu_percentage = Value
+            _ph_to_comp = Value
         End Set
     End Property
-    Private _shift_id As String = ""
+    Private _ph_ee As String = ""
     ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-    Friend Property shift_id() As String
+    Friend Property ph_ee() As String
         Get
-            Return _shift_id
+            Return _ph_ee
         End Get
         Set(ByVal Value As String)
-            _shift_id = Value
+            _ph_ee = Value
         End Set
     End Property
-    Private _lu_type As String = ""
+    Private _ph_er As String = ""
     ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-    Friend Property lu_type() As String
+    Friend Property ph_er() As String
         Get
-            Return _lu_type
+            Return _ph_er
         End Get
         Set(ByVal Value As String)
-            _lu_type = Value
+            _ph_er = Value
         End Set
     End Property
+    
     Private _is_deleted As String = ""
     ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
     Friend Property is_deleted() As String
@@ -75,21 +76,20 @@ Public Class LateUndertime
 
 #End Region
 End Class
-Public Class LateUndertimeDB
-    Friend Function LateUndertimeGetList() As DataTable
+Public Class PhilhealthTablesDB
+    Friend Function PHTableGetList() As DataTable
         Dim dt As DataTable = Nothing
         Try
             Dim xSQL As New StringBuilder
             xSQL.AppendLine("SELECT ")
-            xSQL.AppendLine("    late_undertime.id, ")
-            xSQL.AppendLine("    lu_from, ")
-            xSQL.AppendLine("    lu_to, ")
-            xSQL.AppendLine("    lu_percentage, ")
-            xSQL.AppendLine("    concat(shifts.shift_name, ' : ', time_in, ' - ', time_out) as 'shift_name' , ")
-            xSQL.AppendLine("    lu_type ")
-            xSQL.AppendLine("FROM late_undertime")
-            xSQL.AppendLine("INNER JOIN shifts ON late_undertime.shift_id = shifts.id")
-            xSQL.AppendLine("WHERE late_undertime.is_deleted = '1' ")
+            xSQL.AppendLine("    id, ")
+            xSQL.AppendLine("    ph_code, ")
+            xSQL.AppendLine("    ph_from_comp, ")
+            xSQL.AppendLine("    ph_to_comp, ")
+            xSQL.AppendLine("    ph_ee, ")
+            xSQL.AppendLine("    ph_er ")
+            xSQL.AppendLine("FROM gd_philhealth")
+            xSQL.AppendLine("WHERE is_deleted = '1' ")
 
             Try
                 Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
@@ -110,37 +110,37 @@ Public Class LateUndertimeDB
         End Try
         Return dt
     End Function
-    Friend Function LateUndertimeInsertFile(ByVal cItem As LateUndertime) As LateUndertime
-        Dim cReturn As New LateUndertime
+    Friend Function PHTableInsertFile(ByVal cItem As PhilhealthTables) As PhilhealthTables
+        Dim cReturn As New PhilhealthTables
         Try
             Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
                 SQLConnect.Open()
 
                 Dim xSQL As New StringBuilder
 
-                xSQL.AppendLine("INSERT INTO late_undertime(")
-                xSQL.AppendLine("    lu_from, ")
-                xSQL.AppendLine("    lu_to, ")
-                xSQL.AppendLine("    lu_percentage, ")
-                xSQL.AppendLine("    shift_id, ")
-                xSQL.AppendLine("    lu_type, ")
+                xSQL.AppendLine("INSERT INTO gd_philhealth(")
+                xSQL.AppendLine("    ph_code, ")
+                xSQL.AppendLine("    ph_from_comp, ")
+                xSQL.AppendLine("    ph_to_comp, ")
+                xSQL.AppendLine("    ph_ee, ")
+                xSQL.AppendLine("    ph_er, ")
                 xSQL.AppendLine("    is_deleted ")
                 xSQL.AppendLine(") ")
                 xSQL.AppendLine("VALUES( ")
-                xSQL.AppendLine("    @lu_from, ")
-                xSQL.AppendLine("    @lu_to, ")
-                xSQL.AppendLine("    @lu_percentage, ")
-                xSQL.AppendLine("    @shift_id, ")
-                xSQL.AppendLine("    @lu_type, ")
+                xSQL.AppendLine("    @ph_code, ")
+                xSQL.AppendLine("    @ph_from_comp, ")
+                xSQL.AppendLine("    @ph_to_comp, ")
+                xSQL.AppendLine("    @ph_ee, ")
+                xSQL.AppendLine("    @ph_er, ")
                 xSQL.AppendLine("    @is_deleted ")
                 xSQL.AppendLine(")")
 
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
-                commandDB1.Parameters.AddWithValue("@lu_from", cItem.lu_from)
-                commandDB1.Parameters.AddWithValue("@lu_to", cItem.lu_to)
-                commandDB1.Parameters.AddWithValue("@lu_percentage", cItem.lu_percentage)
-                commandDB1.Parameters.AddWithValue("@shift_id", cItem.shift_id)
-                commandDB1.Parameters.AddWithValue("@lu_type", cItem.lu_type)
+                commandDB1.Parameters.AddWithValue("@ph_code", cItem.ph_code)
+                commandDB1.Parameters.AddWithValue("@ph_from_comp", cItem.ph_from_comp)
+                commandDB1.Parameters.AddWithValue("@ph_to_comp", cItem.ph_to_comp)
+                commandDB1.Parameters.AddWithValue("@ph_ee", cItem.ph_ee)
+                commandDB1.Parameters.AddWithValue("@ph_er", cItem.ph_er)
                 commandDB1.Parameters.AddWithValue("@is_deleted", cItem.is_deleted)
                 commandDB1.ExecuteNonQuery()
 
@@ -151,32 +151,32 @@ Public Class LateUndertimeDB
         End Try
         Return cReturn
     End Function
-    Friend Function LateUndertimeUpdateFile(ByVal pLU As LateUndertime) As LateUndertime
-        Dim cReturn As New LateUndertime
+    Friend Function PHTableUpdateFile(ByVal pPH As PhilhealthTables) As PhilhealthTables
+        Dim cReturn As New PhilhealthTables
         Try
 
             Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
                 SQLConnect.Open()
 
                 Dim xSQL As New StringBuilder
-                xSQL.AppendLine("UPDATE late_undertime ")
+                xSQL.AppendLine("UPDATE gd_philhealth ")
                 xSQL.AppendLine("SET ")
-                xSQL.AppendLine("    lu_from = @lu_from, ")
-                xSQL.AppendLine("    lu_to = @lu_to, ")
-                xSQL.AppendLine("    lu_percentage = @lu_percentage, ")
-                xSQL.AppendLine("    shift_id = @shift_id, ")
-                xSQL.AppendLine("    lu_type = @lu_type, ")
+                xSQL.AppendLine("    ph_code = @ph_code, ")
+                xSQL.AppendLine("    ph_from_comp = @ph_from_comp, ")
+                xSQL.AppendLine("    ph_to_comp = @ph_to_comp, ")
+                xSQL.AppendLine("    ph_ee = @ph_ee, ")
+                xSQL.AppendLine("    ph_er = @ph_er, ")
                 xSQL.AppendLine("    is_deleted =  @is_deleted ")
                 xSQL.AppendLine("WHERE id = @id")
 
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
-                commandDB1.Parameters.AddWithValue("@lu_from", pLU.lu_from)
-                commandDB1.Parameters.AddWithValue("@lu_to", pLU.lu_to)
-                commandDB1.Parameters.AddWithValue("@lu_percentage", pLU.lu_percentage)
-                commandDB1.Parameters.AddWithValue("@shift_id", pLU.shift_id)
-                commandDB1.Parameters.AddWithValue("@lu_type", pLU.lu_type)
-                commandDB1.Parameters.AddWithValue("@is_deleted", pLU.is_deleted)
-                commandDB1.Parameters.AddWithValue("@id", pLU.id)
+                commandDB1.Parameters.AddWithValue("@ph_code", pPH.ph_code)
+                commandDB1.Parameters.AddWithValue("@ph_from_comp", pPH.ph_from_comp)
+                commandDB1.Parameters.AddWithValue("@ph_to_comp", pPH.ph_to_comp)
+                commandDB1.Parameters.AddWithValue("@ph_ee", pPH.ph_ee)
+                commandDB1.Parameters.AddWithValue("@ph_er", pPH.ph_er)
+                commandDB1.Parameters.AddWithValue("@is_deleted", pPH.is_deleted)
+                commandDB1.Parameters.AddWithValue("@id", pPH.id)
                 commandDB1.ExecuteNonQuery()
 
 
@@ -184,7 +184,7 @@ Public Class LateUndertimeDB
         Catch ex As Exception
             Throw (ex)
         End Try
-        cReturn = pLU
+        cReturn = pPH
         Return cReturn
     End Function
 End Class
