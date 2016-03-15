@@ -7,11 +7,11 @@
     New/Update <%--condition kung ano pinindodfgfdghdhfkjt--%>  
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contentBC" runat="server">
-    Employee forms
+    Employee form
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
-    
+
 
     
       

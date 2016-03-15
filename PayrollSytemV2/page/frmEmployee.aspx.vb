@@ -46,6 +46,17 @@
         ddDept.DataBind()
         Label2.Text = ddDept.SelectedValue
         Label3.Text = ddDept.SelectedItem.Text
+
+        Dim cdb1 As New JobTitleDB
+
+
+        Dim dt As DataTable = cdb1.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
+        ddPos.Items.Clear()
+
+        ddPos.DataValueField = "job_title_id"
+        ddPos.DataTextField = "job_title_name"
+        ddPos.DataSource = dt
+        ddPos.DataBind()
     End Sub
     Private Sub fillShift()
         Dim cdb As New ShiftsDB
