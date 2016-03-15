@@ -1251,6 +1251,7 @@ Public Class EmploymentInfoDB
                 MsgBox(ex.Message)
             End Try
         Catch ex As Exception
+            'sadsdasdas
             Throw ex
         End Try
         Return dt
