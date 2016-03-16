@@ -32,6 +32,15 @@ Partial Public Class ShiftingSchedule
     Protected WithEvents ddlSelectEmp As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''ddlShift control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlShift As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''txtFromDate control.
     '''</summary>
     '''<remarks>
@@ -50,7 +59,16 @@ Partial Public Class ShiftingSchedule
     Protected WithEvents txtToDate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnNew  control.
+    '''gvShifting control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvShifting As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''btnNew control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
