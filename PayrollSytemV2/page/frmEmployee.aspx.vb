@@ -1,4 +1,5 @@
-﻿Public Class frmEmployee
+﻿Imports System.Drawing
+Public Class frmEmployee
     Inherits System.Web.UI.Page
     Dim dsGrid As DataTable
     Private cEmployee As New EmployeeInfo
@@ -22,20 +23,21 @@
     Private Sub fillRec()
         Dim cdb As New ReceivablesAndTaxableDB
         dsGrid = cdb.fillReceivables()
-        ddRecList.DataValueField = "rta_code"
-        ddRecList.DataTextField = "rta_desc"
-        ddRecList.DataSource = dsGrid
-        ddRecList.DataBind()
-       
+        gvEmpRec.DataSource = dsGrid
+        gvEmpRec.DataBind()
+        'ddRecList.DataValueField = "rta_code"
+        'ddRecList.DataTextField = "rta_desc"
+        'ddRecList.DataSource = dsGrid
+        'ddRecList.DataBind()
+        'ddRecList.Text = Nothing
     End Sub
 
     Private Sub fillTaxableAllowance()
         Dim cdb As New ReceivablesAndTaxableDB
         dsGrid = cdb.fillTaxable()
-        ddTaxlist.DataValueField = "rta_code"
-        ddTaxlist.DataTextField = "rta_desc"
-        ddTaxlist.DataSource = dsGrid
-        ddTaxlist.DataBind()
+        gvEmpTaxAllow.DataSource = dsGrid
+        gvEmpTaxAllow.DataBind()
+
     End Sub
     Private Sub fillDept()
         Dim cdb As New DepartmentDB
@@ -63,8 +65,15 @@
         dsGrid = cdb.ShiftsList()
         ddShift.DataValueField = "id"
         ddShift.DataTextField = "shift_name"
+
         ddShift.DataSource = dsGrid
         ddShift.DataBind()
+        Dim cdb1 As New ShiftsDB
+
+
+        Dim dt As DataTable = cdb.ShiftGetListWhereClause("is_deleted = '1' AND id = '" & ddShift.SelectedValue & "' ")
+        txtTimeIn.Text = dt.Rows(0).Item(2).ToString
+        txtTimeOut.Text = dt.Rows(0).Item(3).ToString
         
     End Sub
     'Protected Sub Unnamed1_Click(sender As Object, e As EventArgs)
@@ -103,11 +112,7 @@
     Protected Sub btnLD_Click(sender As Object, e As EventArgs) Handles btnLD.Click
         multiviews.SetActiveView(viewLvDmns)
     End Sub
-    Private Sub setActive(btnName As String)
-        If btnName = "Details" Then
 
-        End If
-    End Sub
 
    
 
@@ -117,20 +122,33 @@
             Label3.Text = ddDept.SelectedItem.Text
         End If
         
+        Dim cdb As New JobTitleDB
 
-    End Sub
-    Protected Sub txtBasicSalary_TextChanged(sender As Object, e As EventArgs) Handles txtBasicSalary.TextChanged
-        Try
-            txtDailyRate.Text = Format(CDbl(CDbl(txtBasicSalary.Text) / 21.75), "0.00")
-            txtHrRate.Text = Format(CDbl(CDbl(txtDailyRate.Text) / 8), "0.00")
-        Catch ex As Exception
-            'MsgBox(ex.Message)
-        End Try
 
+        Dim dt As DataTable = cdb.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
+        ddPos.Items.Clear()
+
+        ddPos.DataValueField = "job_title_id"
+        ddPos.DataTextField = "job_title_name"
+        ddPos.DataSource = dt
+        ddPos.DataBind()
     End Sub
+    Protected Sub ddJobstats_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddJobstats.SelectedIndexChanged
+        If ddJobstats.SelectedItem.Text = "Resigned" Or ddJobstats.SelectedItem.Text = "Terminated" Then
+            txtDateResigned.Enabled = True
+        Else
+            txtDateResigned.Enabled = False
+            txtDateResigned.Text = ""
+        End If
+    End Sub
+ 
 
     Protected Sub LSaveEmployee_Click(sender As Object, e As EventArgs) Handles LSaveEmployee.Click
+        Dim rec_Val As New ArrayList()
+
+        Dim taxAllow() As String = Nothing
         If Not txtEmpcode.Text = "" Then
+
             cEmployee.code = Trim(txtEmpcode.Text)
             cEmployee.first_name = Trim(txtFirstname.Text)
             cEmployee.last_name = Trim(txtLastname.Text)
@@ -146,12 +164,12 @@
             cEmployee.employment_status = ddEmpType.Text
             cEmployee.date_hired = Trim(txtDateHired.Text)
             cEmployee.job_status = ddJobstats.Text
-            cEmployee.tax_comp = ddTaxlist.Text
+            cEmployee.tax_comp = ddTax.Text
             cEmployee.emp_last_employer = Trim(txtLastEmployer.Text)
             cEmployee.basic_salary = Trim(txtBasicSalary.Text)
             cEmployee.daily_rate = Trim(txtDailyRate.Text)
             cEmployee.hour_rate = Trim(txtHrRate.Text)
-            cEmployee.shift_id = ddShift.SelectedValue
+            cEmployee.def_shift_id = ddShift.SelectedValue
             cEmployee.def_time_in = Trim(txtTimeIn.Text)
             cEmployee.def_time_out = Trim(txtTimeOut.Text)
             If chk13month.Checked = True Then
@@ -228,11 +246,34 @@
                 cEmployee.w_13monthpay = "0"
             End If
 
+            For Each row As GridViewRow In gvEmpRec.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If chkRow.Checked Then
+                        'values here pano?
 
+                        rec_Val.Add(row.Cells(1).Text)
+                        'cEmployee.rta_id = row.Cells(1).Text
+
+                        cEmployee.emp_rta_deleted = "1"
+                    End If
+                End If
+            Next
+
+            For Each row As GridViewRow In gvEmpTaxAllow.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If chkRow.Checked Then
+                        'values here pano?
+                       
+                    End If
+                End If
+            Next
 
             Dim cdb As New EmploymentInfoDB
             If Not Session("intEmp") = "0" Then
-                cEmployee = cdb.EmployeeInsertFile(cEmployee)
+                cEmployee = cdb.EmployeeInsertFile(cEmployee, rec_Val)
+
                 ShowMessage("Employee Sucessfully Added.", MessageType.Success, Me)
             Else
                 cEmployee.id = Trim(txtEmpcode.Text)
@@ -242,7 +283,7 @@
 
 
             clearMe()
-            Server.Transfer("Employee.aspx")
+            Response.Redirect("Employee.aspx")
 
 
         Else
@@ -344,5 +385,43 @@
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+     Protected Sub gvEmpRec_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvEmpRec.SelectedIndexChanged
+         For Each row As GridViewRow In gvEmpRec.Rows
+            If row.RowIndex = gvEmpRec.SelectedIndex Then
+                Session("Recid") = gvEmpRec.SelectedRow.Cells(1).Text
+                row.BackColor = ColorTranslator.FromHtml("#f39c12")
+                row.ToolTip = String.Empty
+
+            Else
+                row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
+                row.ToolTip = "Click to select this row."
+            End If
+        Next
+    End Sub
+
+    Protected Sub gvEmpRec_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            e.Row.Attributes("onclick") = Page.ClientScript.GetPostBackClientHyperlink(gvEmpRec, "Select$" & e.Row.RowIndex)
+            e.Row.ToolTip = "Click to select this row." & e.Row.RowIndex
+        End If
+    End Sub
+
+Protected Sub gvEmpRec_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
+        gvEmpRec.PageIndex = e.NewPageIndex
+        gvEmpRec.DataBind()
+    End Sub
+    Protected Sub txtBasicSalary_TextChanged(sender As Object, e As EventArgs) Handles txtBasicSalary.TextChanged
+        Try
+            If IsPostBack Then
+                txtDailyRate.Text = Format(CDbl(CDbl(txtBasicSalary.Text) / 21.75), "0.00")
+                txtHrRate.Text = Format(CDbl(CDbl(txtDailyRate.Text) / 8), "0.00")
+            End If
+            
+        Catch ex As Exception
+            'MsgBox(ex.Message)
+        End Try
+
     End Sub
 End Class

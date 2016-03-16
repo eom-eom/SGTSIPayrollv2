@@ -12,7 +12,7 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
 
-
+    
     
       
              <asp:Button Text="Details" runat="server" OnClick="btnPInfo_Click" ID="btnPInfo" class="btn  btn-primary btn-flat" />
@@ -31,7 +31,16 @@
    
     <asp:UpdatePanel ID="UP1" runat="server" UpdateMode="Always">
         <ContentTemplate>
+            <br />
+            <div class="row">
+                    <div class="col-md-12">
+                        <div class="messagealert" id="alert_container">
+                        </div>
+                    </div>
+                </div>
+            <br />
             <asp:MultiView ID="multiviews" runat="server"  >
+
         <asp:View ID="viewDetails" runat="server">
             <div class ="row">
                 <div class=" col-md-12">
@@ -52,7 +61,7 @@
                                             </div>
                                 
                                             <div class='col-sm-12 col-md-9'>
-                                                <asp:TextBox ID="txtEmpcode" runat="server"  type="text" CssClass='form-control'  ClientIDMode="Static" />
+                                                <asp:TextBox ID="txtEmpcode" runat="server"  type="textbox" CssClass='form-control'  ClientIDMode="Static" />
                                             </div>
                                         </div>
                                         
@@ -234,11 +243,26 @@
                                             </div>
                                         
                                             <div class='col-sm-12 col-md-9'>
-                                                   <asp:DropDownList class="form-control "  ID="ddJobstats" runat="server" AutoPostBack="True" >
-                                                </asp:DropDownList> 
+                                                   <asp:DropDownList class="form-control "  ID="ddJobstats" runat="server" 
+                                                       OnSelectedIndexChanged="ddJobstats_SelectedIndexChanged" AutoPostBack =" true">
+                                                       <asp:ListItem>Active</asp:ListItem>
+                                                        <asp:ListItem>Resigned</asp:ListItem>
+                                                        <asp:ListItem>Terminated</asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>  
                                         </div>
                                      </div> 
+                                      <div class='form-group'>
+                                        <div class =" row">
+                                            <div class='col-sm-12 col-md-3'>
+                                                <asp:label id="lblDateResigned"  class='control-label disabled' Text="Date resigned:" runat="server"  /> 
+                                            </div>
+                                        <div class='col-sm-12 col-md-5'>
+                                                    <asp:TextBox ID="txtDateResigned" runat="server" Enabled="False" type="date" CssClass='form-control disabled'  ClientIDMode="Static"></asp:TextBox>
+                                            </div>  
+                                            
+                                        </div>
+                                     </div>  
                                       <div class='form-group'>
                                         <div class =" row">
                                             <div class='col-sm-12 col-md-3'>
@@ -249,7 +273,7 @@
                                                    <asp:DropDownList class="form-control select2"  ID="ddTax" runat="server" AutoPostBack="True" >
                                                 </asp:DropDownList> 
                                             </div>  
-                                            <div id="selectedM"></div>
+                                            
                                         </div>
                                      </div>
                                     <div class='form-group'>
@@ -322,7 +346,8 @@
                                                         <div class =" input-group">
                                                             
                                                             <asp:TextBox ID="txtBasicSalary" runat="server"  type="text" CssClass='form-control'  ClientIDMode="Static" 
-                                                                OnTextChanged="txtBasicSalary_TextChanged" />
+                                                                OnTextChanged="txtBasicSalary_TextChanged" AutoPostBack="true"  />
+
                                                             <span class="input-group-addon">PHP</span>
                                                         </div>
                                                     </div>
@@ -601,44 +626,40 @@
                                                             <div class =" box-header with-border">
                                                                 <h5>Receivables</h5>
                                                             </div>
-                                                            
                                                             <div class ="box-body">
+                                                                
+                                                                   
+                                                                <div class ="row">
+                                                                    <div class ="col-md-12">
 
-                                                                <div class ="row">
-                                                                    <div class =" col-md-12">
-                                                                        <asp:dropdownlist ID="ddRecList" class=" form-control select2" runat="server" >
-                                                                          
-                                                                        </asp:dropdownlist>
-                                                                    </div>
-                                                                 </div>
-                                                                <br />
-                                                                <div class ="row">
-                                                                    <div class =" col-md-12">
-                                                                        <asp:ListView ID="ListView1" runat="server" ItemType="details">
-                                                                            <EmptyDataTemplate>
-                                                                                <asp:Label runat="server"> ID</asp:Label>
-                                                                            </EmptyDataTemplate>
-                                                                        </asp:ListView>
+                                                                        <asp:GridView ID="gvEmpRec" runat="server" AutoGenerateColumns="false"
+                                                                            class="table responsive table-bordered table-condensed table-hover table-striped dataTable"
+                                                                            EmptyDataText="No record(s) found.">
+                                                                            <%--OnRowDataBound="gvEmpRec_RowDataBound" --%>
+                                                                            <%--OnSelectedIndexChanged="gvEmpRec_SelectedIndexChanged"  
+                                                                            AllowPaging ="true" PageSize="5" OnPageIndexChanging="gvEmpRec_PageIndexChanging"--%> 
+                                                                            <Columns>
+                                                                                <asp:TemplateField>
+                                                                                    <ItemTemplate>
+                                                                                        <asp:CheckBox ID="chkRow" runat="server" />
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="id" HeaderText="id"  Visible="true" />
+                                                                                <asp:BoundField DataField="rta_code" HeaderText="Code" />
+                                                                                <asp:BoundField DataField="rta_desc" HeaderText="Description"  />
+                                                                                <asp:BoundField DataField="rta_amount" HeaderText="Amount"  />
+                                                                            </Columns>
+                                                                        </asp:GridView>
                                                                         
                                                                     </div>
                                                                  </div>
-                                                            </div>
-                                                                
-                                                        </div>
+                                                              </div>
+                                                         </div>    
+                                                    </div>
                                                    </div>        
                                                </div>
-                                          </div> 
-                                        <div class="form-group">
-                                            <div class ="row">
-                                                <div class='col-sm-offset-8 col-sm-4  col-md-offset-8 col-md-4 '> 
-                                                    <asp:Linkbutton ID="lAddR" runat="server"  class="btn btn-primary  "> <span class='fa fa-plus'></span>Add</asp:Linkbutton>          
-       
-                                                    <asp:Linkbutton ID="lDeleteR" runat="server" class="btn btn-danger   "> <span class='fa  fa-times'></span> Delete </asp:Linkbutton>  
-                                                </div>
-        
-                                            </div>
-                                        </div>               
-                                    </div>
+                                        </div> 
+                                                    
                                     <div class=" col-md-6 col-sm-12">
                                         <div class="form-group">
                                                 <div class="row">
@@ -650,9 +671,24 @@
                                                             <div class ="box-body">
                                                                 <div class ="row">
                                                                     <div class =" col-md-12">
-                                                                        <asp:dropdownlist ID="ddTaxlist" class=" form-control select2" multiple="multiple" runat="server">
-                                                                          
-                                                                        </asp:dropdownlist>
+                                                                        <asp:GridView ID="gvEmpTaxAllow" runat="server" AutoGenerateColumns="false"
+                                                                            class="table responsive table-bordered table-condensed table-hover table-striped dataTable"
+                                                                            EmptyDataText="No record(s) found.">
+                                                                            <%--OnRowDataBound="gvEmpRec_RowDataBound" --%>
+                                                                            <%--OnSelectedIndexChanged="gvEmpRec_SelectedIndexChanged"  
+                                                                            AllowPaging ="true" PageSize="5" OnPageIndexChanging="gvEmpRec_PageIndexChanging"--%> 
+                                                                            <Columns>
+                                                                                <asp:TemplateField>
+                                                                                    <ItemTemplate>
+                                                                                        <asp:CheckBox ID="chkRow" runat="server" />
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="id" HeaderText="id"  Visible="False" />
+                                                                                <asp:BoundField DataField="rta_code" HeaderText="Code" />
+                                                                                <asp:BoundField DataField="rta_desc" HeaderText="Description"  />
+                                                                                <asp:BoundField DataField="rta_amount" HeaderText="Amount"  />
+                                                                            </Columns>
+                                                                        </asp:GridView>
                                                                     </div>
                                                                  </div>
                                                                 </div>
@@ -660,16 +696,7 @@
                                                    </div>        
                                                </div>
                                           </div>
-                                        <div class="form-group">
-                                            <div class ="row">
-                                                <div class='col-sm-offset-8 col-sm-4  col-md-offset-8 col-md-4 '> 
-                                                    <asp:Linkbutton ID="LAddTA" runat="server"  class="btn btn-primary  "> <span class='fa fa-plus'></span>Add</asp:Linkbutton>          
-       
-                                                    <asp:Linkbutton ID="LDeleteTA" runat="server" class="btn btn-danger   "> <span class='fa  fa-times'></span> Delete </asp:Linkbutton>  
-                                                </div>
-        
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

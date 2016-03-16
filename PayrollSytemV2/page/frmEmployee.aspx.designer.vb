@@ -365,6 +365,24 @@ Partial Public Class frmEmployee
     Protected WithEvents ddJobstats As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''lblDateResigned control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDateResigned As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDateResigned control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDateResigned As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblTax_stats control.
     '''</summary>
     '''<remarks>
@@ -707,67 +725,22 @@ Partial Public Class frmEmployee
     Protected WithEvents viewRAT As Global.System.Web.UI.WebControls.View
 
     '''<summary>
-    '''ddRecList control.
+    '''gvEmpRec control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddRecList As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents gvEmpRec As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''ListView1 control.
+    '''gvEmpTaxAllow control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ListView1 As Global.System.Web.UI.WebControls.ListView
-
-    '''<summary>
-    '''lAddR control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lAddR As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lDeleteR control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lDeleteR As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''ddTaxlist control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddTaxlist As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''LAddTA control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LAddTA As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LDeleteTA control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LDeleteTA As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents gvEmpTaxAllow As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''viewDeductions control.
