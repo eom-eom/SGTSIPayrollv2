@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Payroll System</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
@@ -142,7 +142,7 @@
                     </ul>
                     </li>
                     <li>
-                      <a href="#" >
+                      <a href="Employee.aspx" >
                         <i class="fa fa-user"></i> <span>Employee</span>
                       </a>
                     </li>   
@@ -169,7 +169,7 @@
                           <a href="#"><i class="fa fa-circle-o"></i> General Settings <i class="fa fa-angle-left pull-right"></i></a>
                           <ul class="treeview-menu">
                             <li><a href="OvertimeSettings.aspx"><i class="fa fa-circle-o"></i> Overtime Settings</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Settings</a></li>
+                            <li><a href="PayrollSetting.aspx"><i class="fa fa-circle-o"></i> Payroll Settings</a></li>
                             <li><a href="SystemSetting.aspx"><i class="fa fa-circle-o"></i> System Settings</a></li>
                           </ul>
                         </li>
