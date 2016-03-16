@@ -68,6 +68,15 @@ Partial Public Class PhilhealthTable
     Protected WithEvents txtRangeTo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''gvPhilhealth control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvPhilhealth As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
     '''btnNew control.
     '''</summary>
     '''<remarks>

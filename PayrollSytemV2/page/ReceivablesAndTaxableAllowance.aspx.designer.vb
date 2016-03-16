@@ -32,13 +32,13 @@ Partial Public Class ReceivablesAndTaxableAllowance
     Protected WithEvents txtCode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ddlType control.
+    '''txtAmount control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlType As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txtAmount As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtDesc control.
@@ -59,13 +59,13 @@ Partial Public Class ReceivablesAndTaxableAllowance
     Protected WithEvents cbTaxable As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''txtAmount control.
+    '''gvRTA control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtAmount As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents gvRTA As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''btnNew control.

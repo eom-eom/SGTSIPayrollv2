@@ -79,6 +79,7 @@ Public Class HolidayTables
                 cHolTable.id = Session("HTid")
                 cHolTable = cdb.JobTitleUpdateFile(cHolTable)
                 ShowMessage("Holiday Table Sucessfully Editted", MessageType.Success, Me)
+                Session("HTid") = ""
             End If
 
             txtHolName.Text = ""

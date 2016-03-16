@@ -40,6 +40,7 @@ Public Class Department
                 cDepartment.id = Session("Deptid")
                 cDepartment = cdb.DeptUpdateFile(cDepartment)
                 ShowMessage("Department Sucessfully Editted", MessageType.Success, Me)
+                Session("Deptid") = ""
             End If
 
             txtDeptDesc.Text = ""

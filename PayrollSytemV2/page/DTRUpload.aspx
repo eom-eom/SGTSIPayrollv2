@@ -10,7 +10,6 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-
         <ContentTemplate>
              <div class="col-md-12">
              <div class="row">

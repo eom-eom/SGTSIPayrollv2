@@ -11,10 +11,15 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="box box-warning">
+                <div class="box box-warning">
                 <div class="box-body">
                 <div class="col-md-12">
-                
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="messagealert" id="alert_container">
+                        </div>
+                    </div>
+                </div>
                  <div class="row">
                      <br />
                      <div class="row">

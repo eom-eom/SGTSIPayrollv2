@@ -77,6 +77,15 @@ Partial Public Class SSSTable
     Protected WithEvents txtEmployerShare As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''gvSSS control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvSSS As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
     '''btnNew control.
     '''</summary>
     '''<remarks>

@@ -5,6 +5,7 @@ Public Class LateAndUndertimeTable
     Dim dsGrid As DataTable
     Private cLU As New LateUndertime
 
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         txtFrom.Enabled = False
         txtTo.Enabled = False
@@ -12,6 +13,7 @@ Public Class LateAndUndertimeTable
 
 
         fillLU()
+
         FillShift()
     End Sub
 
@@ -28,12 +30,14 @@ Public Class LateAndUndertimeTable
                 Session("LUid") = gvLateUndertime.SelectedRow.Cells(0).Text
                 If gvLateUndertime.SelectedRow.Cells(1).Text = "L" Then
                     rbLate.Checked = True
-                Else
+                    rbUndertime.Checked = False
+                ElseIf gvLateUndertime.SelectedRow.Cells(1).Text = "U" Then
                     rbUndertime.Checked = True
+                    rbLate.Checked = False
                 End If
                 txtFrom.Text = gvLateUndertime.SelectedRow.Cells(2).Text
                 txtTo.Text = gvLateUndertime.SelectedRow.Cells(3).Text
-                ddlShift.Text = gvLateUndertime.SelectedRow.Cells(4).Text
+                ' ddlShift.Text = gvLateUndertime.SelectedRow.Cells(4).Text
                 txtPercentage.Text = gvLateUndertime.SelectedRow.Cells(5).Text
                 row.BackColor = ColorTranslator.FromHtml("#f39c12")
                 row.ToolTip = String.Empty
@@ -98,6 +102,7 @@ Public Class LateAndUndertimeTable
                 cLU.id = Session("LUid")
                 cLU = cdb.LateUndertimeUpdateFile(cLU)
                 ShowMessage("Late / Undertime Sucessfully Editted", MessageType.Success, Me)
+                Session("LUid") = ""
             End If
 
             txtFrom.Text = ""

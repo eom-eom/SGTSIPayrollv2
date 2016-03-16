@@ -41,13 +41,31 @@ Partial Public Class LeaveType
     Protected WithEvents txtNoDays As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''cbDuration control.
+    '''cbWithPay control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbDuration As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents cbWithPay As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''cbConvertable control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbConvertable As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''gvLeaveType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvLeaveType As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''btnNew control.

@@ -17,7 +17,7 @@
             UISetValues(Session("Empid"))
             Session("intEmp") = "0"
         End If
-        
+
     End Sub
     Private Sub fillRec()
         Dim cdb As New EmploymentInfoDB
@@ -26,7 +26,7 @@
         ddRecList.DataTextField = "rta_desc"
         ddRecList.DataSource = dsGrid
         ddRecList.DataBind()
-       
+
     End Sub
 
     Private Sub fillTaxableAllowance()
@@ -46,17 +46,6 @@
         ddDept.DataBind()
         Label2.Text = ddDept.SelectedValue
         Label3.Text = ddDept.SelectedItem.Text
-
-        Dim cdb1 As New JobTitleDB
-
-
-        Dim dt As DataTable = cdb1.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
-        ddPos.Items.Clear()
-
-        ddPos.DataValueField = "job_title_id"
-        ddPos.DataTextField = "job_title_name"
-        ddPos.DataSource = dt
-        ddPos.DataBind()
     End Sub
     Private Sub fillShift()
         Dim cdb As New ShiftsDB
@@ -65,7 +54,7 @@
         ddShift.DataTextField = "shift_name"
         ddShift.DataSource = dsGrid
         ddShift.DataBind()
-        
+
     End Sub
     'Protected Sub Unnamed1_Click(sender As Object, e As EventArgs)
     '    multiviews.SetActiveView(view1)
@@ -99,8 +88,8 @@
     Protected Sub btnDed_Click(sender As Object, e As EventArgs) Handles btn_Ded.Click
         multiviews.SetActiveView(viewDeductions)
     End Sub
-  
- 
+
+
 
     Protected Sub btnHistory_Click(sender As Object, e As EventArgs) Handles btn_history.Click
         multiviews.SetActiveView(viewHistory)
@@ -115,14 +104,14 @@
         End If
     End Sub
 
-   
+
 
     Protected Sub ddDept_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddDept.SelectedIndexChanged
         If IsPostBack Then
             Label2.Text = ddDept.SelectedValue
             Label3.Text = ddDept.SelectedItem.Text
         End If
-        
+
 
     End Sub
 

@@ -50,13 +50,13 @@ Partial Public Class DeMinimisBenefits
     Protected WithEvents txtDescription As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ddlType control.
+    '''gvDeminimis control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlType As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents gvDeminimis As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''btnNew control.

@@ -67,6 +67,7 @@ Public Class Position
                 cJobTitle.id = Session("JTid")
                 cJobTitle = cdb.JobTitleUpdateFile(cJobTitle)
                 ShowMessage("Job Title Sucessfully Editted", MessageType.Success, Me)
+                Session("JTid") = ""
             End If
 
             txtPosDesc.Text = ""

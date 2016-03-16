@@ -4,12 +4,11 @@
     Employee form
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentSmall" runat="server">
-    New/Update <%--condition kung ano pinindodfgfdghdhfkjt--%>  
+    New/Update <%--condition kung ano pinindot   --%> 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contentBC" runat="server">
     Employee form
 </asp:Content>
-
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
 
 
