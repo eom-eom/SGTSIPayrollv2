@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="ShiftingSchedule.aspx.vb" Inherits="PayrollSytemV2.ShiftingSchedule" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="ShiftingSchedule.aspx.vb" Inherits="PayrollSytemV2.ShiftingSchedule" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentHeader" runat="server">
     Shifting Schedule
 </asp:Content>
