@@ -723,8 +723,8 @@ Public Class EmployeeInfo
 End Class
 Public Class EmploymentInfoDB
 
-   
-    
+
+
     Friend Function EmployeeGetList() As DataTable
         Dim dt As DataTable = Nothing
 
