@@ -723,64 +723,8 @@ Public Class EmployeeInfo
 End Class
 Public Class EmploymentInfoDB
 
-    Friend Function fillTaxable() As DataTable
-        Dim dt As DataTable = Nothing
-        Try
-            Dim xSQL As New StringBuilder
-            xSQL.AppendLine("SELECT")
-            xSQL.AppendLine("rta_code,")
-            xSQL.AppendLine("rta_desc")
-            xSQL.AppendLine("FROM receivable_and_taxable_allowances")
-            xSQL.AppendLine("WHERE is_deleted= '1' and rta_taxable='1'")
-            Try
-                Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
-                    SQLConnect.Open()
-                    Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
-                    Dim da As New MySqlDataAdapter(SQLCommand)
-                    Dim ds As New DataSet
-                    da.Fill(ds)
-                    If ds.Tables.Count <> 0 Then
-                        dt = ds.Tables(0)
-                    End If
-                End Using
-            Catch ex As Exception
-                MsgBox(ex.ToString, vbCritical + vbOKOnly, "Error")
-                'ShowMessage(ex.ToString, MessageType.Success, Me)
-            End Try
-        Catch ex As Exception
-            Throw ex
-        End Try
-        Return dt
-    End Function
-    Friend Function fillReceivables() As DataTable
-        Dim dt As DataTable = Nothing
-        Try
-            Dim xSQL As New StringBuilder
-            xSQL.AppendLine("SELECT")
-            xSQL.AppendLine("rta_code,")
-            xSQL.AppendLine("rta_desc")
-            xSQL.AppendLine("FROM receivable_and_taxable_allowances")
-            xSQL.AppendLine("WHERE is_deleted= '1' and rta_taxable='0'")
-            Try
-                Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
-                    SQLConnect.Open()
-                    Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
-                    Dim da As New MySqlDataAdapter(SQLCommand)
-                    Dim ds As New DataSet
-                    da.Fill(ds)
-                    If ds.Tables.Count <> 0 Then
-                        dt = ds.Tables(0)
-                    End If
-                End Using
-            Catch ex As Exception
-                MsgBox(ex.ToString, vbCritical + vbOKOnly, "Error")
-                'ShowMessage(ex.ToString, MessageType.Success, Me)
-            End Try
-        Catch ex As Exception
-            Throw ex
-        End Try
-        Return dt
-    End Function
+   
+    
     Friend Function EmployeeGetList() As DataTable
         Dim dt As DataTable = Nothing
 
@@ -901,32 +845,32 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("@is_deleted")
 
                 xSQL.AppendLine(");")
-                'xSQL.AppendLine("SET @e_id = LAST_INSERT_ID();")
+                xSQL.AppendLine("SET @e_id = LAST_INSERT_ID();")
 
-                ''may update ng is_deleted here I think.
-                'xSQL.AppendLine("INSERT INTO employee_working_days(")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("monday,")
-                'xSQL.AppendLine("tuesday,")
-                'xSQL.AppendLine("wednesday,")
-                'xSQL.AppendLine("thursday,")
-                'xSQL.AppendLine("friday,")
-                'xSQL.AppendLine("saturday,")
-                'xSQL.AppendLine("sunday,")
-                'xSQL.AppendLine("date_stamp")
-                'xSQL.AppendLine("is_deleted")
-                'xSQL.AppendLine(") ")
-                'xSQL.AppendLine("VALUES( ")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("@monday,")
-                'xSQL.AppendLine("@tuesday,")
-                'xSQL.AppendLine("@wednesday,")
-                'xSQL.AppendLine("@thursday,")
-                'xSQL.AppendLine("@friday,")
-                'xSQL.AppendLine("@saturday,")
-                'xSQL.AppendLine("@sunday,")
-                'xSQL.AppendLine("@date_stamp")
-                'xSQL.AppendLine("@emp_wkng_days_deleted")
+                'may update ng is_deleted here I think.
+                xSQL.AppendLine("INSERT INTO employee_working_days(")
+                xSQL.AppendLine("e_id,")
+                xSQL.AppendLine("monday,")
+                xSQL.AppendLine("tuesday,")
+                xSQL.AppendLine("wednesday,")
+                xSQL.AppendLine("thursday,")
+                xSQL.AppendLine("friday,")
+                xSQL.AppendLine("saturday,")
+                xSQL.AppendLine("sunday,")
+                xSQL.AppendLine("date_stamp")
+                xSQL.AppendLine("is_deleted")
+                xSQL.AppendLine(") ")
+                xSQL.AppendLine("VALUES( ")
+                xSQL.AppendLine("e_id,")
+                xSQL.AppendLine("@monday,")
+                xSQL.AppendLine("@tuesday,")
+                xSQL.AppendLine("@wednesday,")
+                xSQL.AppendLine("@thursday,")
+                xSQL.AppendLine("@friday,")
+                xSQL.AppendLine("@saturday,")
+                xSQL.AppendLine("@sunday,")
+                xSQL.AppendLine("@date_stamp")
+                xSQL.AppendLine("@emp_wkng_days_deleted")
 
                 'xSQL.AppendLine(");")
 
@@ -1023,6 +967,18 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@w_hdmf", cItem.w_hdmf)
                 commandDB1.Parameters.AddWithValue("@w_philhealth", cItem.w_philhealth)
                 commandDB1.Parameters.AddWithValue("@is_deleted", cItem.is_deleted)
+
+
+                '----WORKING DAYS-----
+                commandDB1.Parameters.AddWithValue("@monday", cItem.monday)
+                commandDB1.Parameters.AddWithValue("@tuesday", cItem.tuesday)
+                commandDB1.Parameters.AddWithValue("@wednesday", cItem.wednesday)
+                commandDB1.Parameters.AddWithValue("@thursday", cItem.thursday)
+                commandDB1.Parameters.AddWithValue("@friday", cItem.friday)
+                commandDB1.Parameters.AddWithValue("@saturday", cItem.saturday)
+                commandDB1.Parameters.AddWithValue("@sunday", cItem.sunday)
+                commandDB1.Parameters.AddWithValue("@emp_wkng_days_deleted", cItem.emp_wkng_days_deleted)
+
                 commandDB1.ExecuteNonQuery()
             End Using
         Catch ex As Exception
