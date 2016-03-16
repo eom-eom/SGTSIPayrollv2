@@ -523,7 +523,7 @@ Public Class EmployeeInfo
         End Set
     End Property
     '--------------EMPLOYEE  RECEIVABLE AND TAXABLE ALLOWANCES TABLE---------------'
-    Private _rta_id As Int32 = 0
+    Private _rta_id As Int32
     Friend Property rta_id() As Int32
         Get
             Return _rta_id
@@ -766,7 +766,7 @@ Public Class EmploymentInfoDB
     End Function
     'Friend Function EmployeeInsertFile(ByVal cItem As EmployeeInfo, lenOfRTA As Int32, lenofComde As Int32, _
     '                                   lenOfLeaves As Int32, lenOfDMB As Int32) As EmployeeInfo
-    Friend Function EmployeeInsertFile(ByVal cItem As EmployeeInfo) As EmployeeInfo
+    Friend Function EmployeeInsertFile(ByVal cItem As EmployeeInfo, recVal As ArrayList) As EmployeeInfo
         Dim cReturn As New EmployeeInfo
 
         Try
@@ -791,12 +791,13 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("employment_status,")
                 xSQL.AppendLine("date_hired,")
                 xSQL.AppendLine("job_status,")
+                xSQL.AppendLine("date_resigned,")
                 xSQL.AppendLine("tax_comp,")
                 xSQL.AppendLine("emp_last_employer,")
                 xSQL.AppendLine("basic_salary,")
                 xSQL.AppendLine("daily_rate,")
                 xSQL.AppendLine("hour_rate,")
-                'xSQL.AppendLine("shift_id,")
+                xSQL.AppendLine("def_shift_id,")
                 xSQL.AppendLine("def_time_in,")
                 xSQL.AppendLine("def_time_out,")
                 xSQL.AppendLine("w_13monthpay,")
@@ -824,17 +825,18 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("@department_id,")
                 xSQL.AppendLine("@job_title_id,")
                 xSQL.AppendLine("@employment_status,")
-                xSQL.AppendLine("@date_hired,")
+                xSQL.AppendLine("@date_resigned,")
                 xSQL.AppendLine("@job_status,")
+                xSQL.AppendLine("@date_hired,")
                 xSQL.AppendLine("@tax_comp,")
                 xSQL.AppendLine("@emp_last_employer,")
                 xSQL.AppendLine("@basic_salary,")
                 xSQL.AppendLine("@daily_rate,")
                 xSQL.AppendLine("@hour_rate,")
-                'xSQL.AppendLine("@shift_id,")
+                xSQL.AppendLine("@def_shift_id,")
                 xSQL.AppendLine("@def_time_in,")
                 xSQL.AppendLine("@def_time_out,")
-                xSQL.AppendLine("@w_13thmonthpay,")
+                xSQL.AppendLine("@w_13monthpay,")
                 xSQL.AppendLine("@tin_no,")
                 xSQL.AppendLine("@sss_no,")
                 xSQL.AppendLine("@pagibig_no,")
@@ -847,9 +849,13 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine(");")
                 xSQL.AppendLine("SET @e_id = LAST_INSERT_ID();")
 
-                'may update ng is_deleted here I think.
+                'deletion of previous working days
+                xSQL.AppendLine("DELETE FROM employee_working_days")
+                xSQL.AppendLine("WHERE emp_id = @e_id;")
+
+
                 xSQL.AppendLine("INSERT INTO employee_working_days(")
-                xSQL.AppendLine("e_id,")
+                xSQL.AppendLine("emp_id,")
                 xSQL.AppendLine("monday,")
                 xSQL.AppendLine("tuesday,")
                 xSQL.AppendLine("wednesday,")
@@ -858,10 +864,10 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("saturday,")
                 xSQL.AppendLine("sunday,")
                 xSQL.AppendLine("date_stamp")
-                xSQL.AppendLine("is_deleted")
+
                 xSQL.AppendLine(") ")
                 xSQL.AppendLine("VALUES( ")
-                xSQL.AppendLine("e_id,")
+                xSQL.AppendLine("@e_id,")
                 xSQL.AppendLine("@monday,")
                 xSQL.AppendLine("@tuesday,")
                 xSQL.AppendLine("@wednesday,")
@@ -870,21 +876,24 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("@saturday,")
                 xSQL.AppendLine("@sunday,")
                 xSQL.AppendLine("@date_stamp")
-                xSQL.AppendLine("@emp_wkng_days_deleted")
 
-                'xSQL.AppendLine(");")
 
-                ''may update ng is_deleted and looping here I think.
-                'xSQL.AppendLine("INSERT INTO employee_receivable_and_taxable_allowances(")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("rta_id,")
-                'xSQL.AppendLine("is_deleted")
-                'xSQL.AppendLine(") ")
-                'xSQL.AppendLine("VALUES( ")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("@rta_id,")
-                'xSQL.AppendLine("@emp_rta_deleted")
-                'xSQL.AppendLine(");")
+                xSQL.AppendLine(");")
+
+                'may update ng is_deleted and looping here I think.
+                For x = 0 To recVal.Count - 1 Step 1
+                    xSQL.AppendLine("INSERT INTO employee_receivable_and_taxable_allowances(")
+                    xSQL.AppendLine("emp_id,")
+                    xSQL.AppendLine("rta_id,")
+                    xSQL.AppendLine("is_deleted")
+                    xSQL.AppendLine(") ")
+                    xSQL.AppendLine("VALUES( ")
+                    xSQL.AppendLine("@e_id,")
+                    xSQL.AppendLine("@rta_id_" & x & ",")
+                    xSQL.AppendLine("@emp_rta_deleted_" & x)
+                    xSQL.AppendLine(");")
+                Next
+
 
                 ''may update ng is_deleted and looping here I think.
                 'xSQL.AppendLine("INSERT INTO employee_company_deductions(")
@@ -935,6 +944,7 @@ Public Class EmploymentInfoDB
 
                 xSQL.AppendLine("COMMIT;")
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
+
                 commandDB1.Parameters.AddWithValue("@code", cItem.code)
                 commandDB1.Parameters.AddWithValue("@first_name", cItem.first_name)
                 commandDB1.Parameters.AddWithValue("@last_name", cItem.last_name)
@@ -948,14 +958,15 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@department_id", cItem.department_id)
                 commandDB1.Parameters.AddWithValue("@job_title_id", cItem.job_title_id)
                 commandDB1.Parameters.AddWithValue("@employment_status", cItem.employment_status)
-                commandDB1.Parameters.AddWithValue("@date_hired", cItem.date_hired)
+                commandDB1.Parameters.AddWithValue("@date_resigned", cItem.date_resigned)
                 commandDB1.Parameters.AddWithValue("@job_status", cItem.job_status)
+                commandDB1.Parameters.AddWithValue("@date_hired", cItem.date_hired)
                 commandDB1.Parameters.AddWithValue("@tax_comp", cItem.tax_comp)
                 commandDB1.Parameters.AddWithValue("@emp_last_employer", cItem.emp_last_employer)
                 commandDB1.Parameters.AddWithValue("@basic_salary", cItem.basic_salary)
                 commandDB1.Parameters.AddWithValue("@daily_rate", cItem.daily_rate)
                 commandDB1.Parameters.AddWithValue("@hour_rate", cItem.hour_rate)
-                'commandDB1.Parameters.AddWithValue("@def_shift_id", cItem.def_shift_id)
+                commandDB1.Parameters.AddWithValue("@def_shift_id", cItem.def_shift_id)
                 commandDB1.Parameters.AddWithValue("@def_time_in", cItem.def_time_in)
                 commandDB1.Parameters.AddWithValue("@def_time_out", cItem.def_time_out)
                 commandDB1.Parameters.AddWithValue("@w_13monthpay", cItem.w_13monthpay)
@@ -977,7 +988,12 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@friday", cItem.friday)
                 commandDB1.Parameters.AddWithValue("@saturday", cItem.saturday)
                 commandDB1.Parameters.AddWithValue("@sunday", cItem.sunday)
-                commandDB1.Parameters.AddWithValue("@emp_wkng_days_deleted", cItem.emp_wkng_days_deleted)
+                commandDB1.Parameters.AddWithValue("@date_stamp", Date.Now)
+
+                For x = 0 To recVal.Count - 1 Step 1
+                    commandDB1.Parameters.AddWithValue("@rta_id_" & x, recVal(x))
+                    commandDB1.Parameters.AddWithValue("@emp_rta_deleted" & x, cItem.emp_rta_deleted)
+                Next
 
                 commandDB1.ExecuteNonQuery()
             End Using
