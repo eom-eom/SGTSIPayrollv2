@@ -806,6 +806,15 @@ Partial Public Class frmEmployee
     Protected WithEvents chkHDMF As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''gvCompanyDeduction control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvCompanyDeduction As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
     '''LAddComde control.
     '''</summary>
     '''<remarks>
@@ -842,6 +851,15 @@ Partial Public Class frmEmployee
     Protected WithEvents viewLvDmns As Global.System.Web.UI.WebControls.View
 
     '''<summary>
+    '''gvLeaves control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvLeaves As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
     '''LAddLeaves control.
     '''</summary>
     '''<remarks>
@@ -858,6 +876,15 @@ Partial Public Class frmEmployee
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LDeleteLeaves As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''gvDeminimis control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvDeminimis As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''LAddDmns control.

@@ -10,7 +10,9 @@
             fillTaxableAllowance()
             fillDept()
             fillShift()
-
+            fillCompanyDeduction()
+            fillLeaves()
+            fillDeminimis()
         End If
 
         If Not Session("Empid") = "" Then
@@ -55,6 +57,24 @@
         ddShift.DataSource = dsGrid
         ddShift.DataBind()
 
+    End Sub
+    Private Sub fillCompanyDeduction()
+        Dim cdb As New CompanyDeductionDB
+        dsGrid = cdb.CDGetList()
+        gvCompanyDeduction.DataSource = dsGrid
+        gvCompanyDeduction.DataBind()
+    End Sub
+    Private Sub fillLeaves()
+        Dim cdb As New LeaveTypesDB
+        dsGrid = cdb.LeaveTypesGetList()
+        gvLeaves.DataSource = dsGrid
+        gvLeaves.DataBind()
+    End Sub
+    Private Sub fillDeminimis()
+        Dim cdb As New DeMinimisBenefitDB
+        dsGrid = cdb.DMBGetList()
+        gvDeminimis.DataSource = dsGrid
+        gvDeminimis.DataBind()
     End Sub
     'Protected Sub Unnamed1_Click(sender As Object, e As EventArgs)
     '    multiviews.SetActiveView(view1)
@@ -279,5 +299,38 @@
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Protected Sub LAddComde_Click(sender As Object, e As EventArgs) Handles LAddComde.Click
+        For Each row As GridViewRow In gvCompanyDeduction.Rows
+            If row.RowType = DataControlRowType.DataRow Then
+                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
+                If chkRow.Checked Then
+                    MsgBox(row.Cells(1).Text)
+                End If
+            End If
+        Next
+    End Sub
+
+    Protected Sub LAddLeaves_Click(sender As Object, e As EventArgs) Handles LAddLeaves.Click
+        For Each row As GridViewRow In gvLeaves.Rows
+            If row.RowType = DataControlRowType.DataRow Then
+                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
+                If chkRow.Checked Then
+                    MsgBox(row.Cells(1).Text)
+                End If
+            End If
+        Next
+    End Sub
+
+    Protected Sub LAddDmns_Click(sender As Object, e As EventArgs) Handles LAddDmns.Click
+        For Each row As GridViewRow In gvDeminimis.Rows
+            If row.RowType = DataControlRowType.DataRow Then
+                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
+                If chkRow.Checked Then
+                    MsgBox(row.Cells(1).Text)
+                End If
+            End If
+        Next
     End Sub
 End Class

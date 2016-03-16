@@ -736,12 +736,21 @@
                                                 <h5>Company Deductions</h5>
                                             </div>
                                                 <div class ="box-body">
-                                                    <div class ="row">
-                                                        <div class="col-md-12 col-sm-12">
-                                                        
-                                                            <!-- table here -->
-
-                                                            
+                                                   <div class="row">
+                                                        <div class="col-md-12">
+                                                            <asp:GridView ID="gvCompanyDeduction" runat="server" class="table table-bordered table-striped dataTable" 
+                                                               AutoGenerateColumns="false" AllowPaging ="true" PageSize="5"  EmptyDataText="No Record/s Found.">
+                                                                <Columns>
+                                                                    <asp:TemplateField>
+                                                                        <ItemTemplate>
+                                                                            <asp:CheckBox ID="chkCtrl" runat="server" />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField DataField="id" HeaderText="ID"  />
+                                                                    <asp:BoundField DataField="comde_code" HeaderText="Code"  />
+                                                                    <asp:BoundField DataField="comde_desc" HeaderText="Description"  />
+                                                                </Columns>
+                                                            </asp:GridView>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -806,9 +815,26 @@
                                                                 <h5>Leaves</h5>
                                                             </div>
                                                             <div class ="box-body">
-                                                                <div class ="row">
-                                                                 </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <asp:GridView ID="gvLeaves" runat="server" class="table table-bordered table-striped dataTable" 
+                                                                           AutoGenerateColumns="false" AllowPaging ="true" PageSize="5"  EmptyDataText="No Record/s Found.">
+                                                                            <Columns>
+                                                                                <asp:TemplateField>
+                                                                                    <ItemTemplate>
+                                                                                        <asp:CheckBox ID="chkCtrl" runat="server" />
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="id" HeaderText="ID"  />
+                                                                                <asp:BoundField DataField="leave_desc" HeaderText="Description"  />
+                                                                                <asp:BoundField DataField="leave_no_of_days" HeaderText="No of Days"  />
+                                                                                <asp:BoundField DataField="leave_convertable" HeaderText="Convertable to Cash"  />
+                                                                                <asp:BoundField DataField="w_pay" HeaderText="With Pay"  />
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </div>
                                                                 </div>
+                                                            </div>
                                                         </div>
                                                    </div>        
                                                </div>
@@ -833,9 +859,25 @@
                                                                 <h5>De minimis Benefits</h5>
                                                             </div>
                                                             <div class ="box-body">
-                                                                <div class ="row">
-                                                                 </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <asp:GridView ID="gvDeminimis" runat="server" class="table table-bordered table-striped dataTable" 
+                                                                           AutoGenerateColumns="false" AllowPaging ="true" PageSize="5"  EmptyDataText="No Record/s Found.">
+                                                                            <Columns>
+                                                                                <asp:TemplateField>
+                                                                                    <ItemTemplate>
+                                                                                        <asp:CheckBox ID="chkCtrl" runat="server" />
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="id" HeaderText="ID"  />
+                                                                                <asp:BoundField DataField="dmb_code" HeaderText="Code"  />
+                                                                                <asp:BoundField DataField="dmb_desc" HeaderText="Description"  />
+                                                                                <asp:BoundField DataField="dmb_amount" HeaderText="Amount"  />
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </div>
                                                                 </div>
+                                                            </div>
                                                         </div>
                                                    </div>        
                                                </div>
