@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="TaxTable.aspx.vb" Inherits="PayrollSytemV2.TaxTable" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="TaxTable.aspx.vb" Inherits="PayrollSytemV2.TaxTable" EnableEventValidation="false"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentHeader" runat="server">
     Tax Table
 </asp:Content>
@@ -11,7 +11,15 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="box box-warning">
+            <div class="box-body">
             <div class="col-md-12">
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="messagealert" id="alert_container">
+                        </div>
+                    </div>
+                </div>
                  <div class="row">
                      <br />
                      <div class="row">
@@ -82,6 +90,24 @@
                     </div>
                     <br />
                     <div class="row">
+                        <div class="col-md-12">
+                            <asp:GridView ID="gvTaxTable" runat="server" class="table table-bordered table-striped dataTable" OnRowDataBound="gvTaxTable_RowDataBound" 
+                                OnSelectedIndexChanged="gvTaxTable_SelectedIndexChanged" AutoGenerateColumns="false" AllowPaging ="true" PageSize="5" OnPageIndexChanging="gvTaxTable_PageIndexChanging" EmptyDataText="No Record/s Found.">
+                                <Columns>
+                                    <asp:BoundField DataField="id" HeaderText="ID"  />
+                                    <asp:BoundField DataField="tax_code" HeaderText="Code"  />
+                                    <asp:BoundField DataField="tax_status" HeaderText="Status"  />
+                                    <asp:BoundField DataField="tax_operand" HeaderText="Operand"  />
+                                    <asp:BoundField DataField="tax_amount_comp" HeaderText="Amount Compensation"  />
+                                    <asp:BoundField DataField="tax_ceiling" HeaderText="Ceiling"  />
+                                    <asp:BoundField DataField="tax_additional" HeaderText="Additional"  />
+                                    <asp:BoundField DataField="tax_rate" HeaderText="Rate"  />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
                         <div class="col-md-3">
                             <asp:Button ID="btnNew" runat="server" Text="New" class="btn btn-block btn-primary btn-md" />
                         </div>
@@ -96,6 +122,8 @@
                         </div>
                     </div>
                  </div>
+             </div>
+             </div>
              </div>
         </ContentTemplate>
     </asp:UpdatePanel>

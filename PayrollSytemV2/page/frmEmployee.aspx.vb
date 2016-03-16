@@ -11,14 +11,16 @@ Public Class frmEmployee
             fillTaxableAllowance()
             fillDept()
             fillShift()
-
+            fillCompanyDeduction()
+            fillLeaves()
+            fillDeminimis()
         End If
 
         If Not Session("Empid") = "" Then
             UISetValues(Session("Empid"))
             Session("intEmp") = "0"
         End If
-        
+
     End Sub
     Private Sub fillRec()
         Dim cdb As New ReceivablesAndTaxableDB
@@ -48,17 +50,6 @@ Public Class frmEmployee
         ddDept.DataBind()
         Label2.Text = ddDept.SelectedValue
         Label3.Text = ddDept.SelectedItem.Text
-
-        Dim cdb1 As New JobTitleDB
-
-
-        Dim dt As DataTable = cdb1.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
-        ddPos.Items.Clear()
-
-        ddPos.DataValueField = "job_title_id"
-        ddPos.DataTextField = "job_title_name"
-        ddPos.DataSource = dt
-        ddPos.DataBind()
     End Sub
     Private Sub fillShift()
         Dim cdb As New ShiftsDB
@@ -74,7 +65,25 @@ Public Class frmEmployee
         Dim dt As DataTable = cdb.ShiftGetListWhereClause("is_deleted = '1' AND id = '" & ddShift.SelectedValue & "' ")
         txtTimeIn.Text = dt.Rows(0).Item(2).ToString
         txtTimeOut.Text = dt.Rows(0).Item(3).ToString
-        
+
+    End Sub
+    Private Sub fillCompanyDeduction()
+        Dim cdb As New CompanyDeductionDB
+        dsGrid = cdb.CDGetList()
+        gvCompanyDeduction.DataSource = dsGrid
+        gvCompanyDeduction.DataBind()
+    End Sub
+    Private Sub fillLeaves()
+        Dim cdb As New LeaveTypesDB
+        dsGrid = cdb.LeaveTypesGetList()
+        gvLeaves.DataSource = dsGrid
+        gvLeaves.DataBind()
+    End Sub
+    Private Sub fillDeminimis()
+        Dim cdb As New DeMinimisBenefitDB
+        dsGrid = cdb.DMBGetList()
+        gvDeminimis.DataSource = dsGrid
+        gvDeminimis.DataBind()
     End Sub
     'Protected Sub Unnamed1_Click(sender As Object, e As EventArgs)
     '    multiviews.SetActiveView(view1)
@@ -87,7 +96,7 @@ Public Class frmEmployee
     'Protected Sub Unnamed3_Click(sender As Object, e As EventArgs)
     '    multiviews.SetActiveView(view3)
     'End Sub
-    
+
     Protected Sub btnPInfo_Click(sender As Object, e As EventArgs) Handles btnPInfo.Click
         multiviews.SetActiveView(viewDetails)
     End Sub
@@ -102,8 +111,8 @@ Public Class frmEmployee
     Protected Sub btnDed_Click(sender As Object, e As EventArgs) Handles btn_Ded.Click
         multiviews.SetActiveView(viewDeductions)
     End Sub
-  
- 
+
+
 
     Protected Sub btnHistory_Click(sender As Object, e As EventArgs) Handles btn_history.Click
         multiviews.SetActiveView(viewHistory)
@@ -114,14 +123,14 @@ Public Class frmEmployee
     End Sub
 
 
-   
+
 
     Protected Sub ddDept_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddDept.SelectedIndexChanged
         If IsPostBack Then
             Label2.Text = ddDept.SelectedValue
             Label3.Text = ddDept.SelectedItem.Text
         End If
-        
+
         Dim cdb As New JobTitleDB
 
 
@@ -141,7 +150,7 @@ Public Class frmEmployee
             txtDateResigned.Text = ""
         End If
     End Sub
- 
+
 
     Protected Sub LSaveEmployee_Click(sender As Object, e As EventArgs) Handles LSaveEmployee.Click
         Dim rec_Val As New ArrayList()
@@ -265,7 +274,7 @@ Public Class frmEmployee
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
                     If chkRow.Checked Then
                         'values here pano?
-                       
+
                     End If
                 End If
             Next
@@ -387,8 +396,8 @@ Public Class frmEmployee
         End Try
     End Sub
 
-     Protected Sub gvEmpRec_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvEmpRec.SelectedIndexChanged
-         For Each row As GridViewRow In gvEmpRec.Rows
+    Protected Sub gvEmpRec_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvEmpRec.SelectedIndexChanged
+        For Each row As GridViewRow In gvEmpRec.Rows
             If row.RowIndex = gvEmpRec.SelectedIndex Then
                 Session("Recid") = gvEmpRec.SelectedRow.Cells(1).Text
                 row.BackColor = ColorTranslator.FromHtml("#f39c12")
@@ -408,7 +417,7 @@ Public Class frmEmployee
         End If
     End Sub
 
-Protected Sub gvEmpRec_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
+    Protected Sub gvEmpRec_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
         gvEmpRec.PageIndex = e.NewPageIndex
         gvEmpRec.DataBind()
     End Sub
@@ -418,10 +427,43 @@ Protected Sub gvEmpRec_PageIndexChanging(sender As Object, e As GridViewPageEven
                 txtDailyRate.Text = Format(CDbl(CDbl(txtBasicSalary.Text) / 21.75), "0.00")
                 txtHrRate.Text = Format(CDbl(CDbl(txtDailyRate.Text) / 8), "0.00")
             End If
-            
+
         Catch ex As Exception
             'MsgBox(ex.Message)
         End Try
 
+    End Sub
+
+    Protected Sub LAddComde_Click(sender As Object, e As EventArgs) Handles LAddComde.Click
+        For Each row As GridViewRow In gvCompanyDeduction.Rows
+            If row.RowType = DataControlRowType.DataRow Then
+                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
+                If chkRow.Checked Then
+                    MsgBox(row.Cells(1).Text)
+                End If
+            End If
+        Next
+    End Sub
+
+    Protected Sub LAddLeaves_Click(sender As Object, e As EventArgs) Handles LAddLeaves.Click
+        For Each row As GridViewRow In gvLeaves.Rows
+            If row.RowType = DataControlRowType.DataRow Then
+                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
+                If chkRow.Checked Then
+                    MsgBox(row.Cells(1).Text)
+                End If
+            End If
+        Next
+    End Sub
+
+    Protected Sub LAddDmns_Click(sender As Object, e As EventArgs) Handles LAddDmns.Click
+        For Each row As GridViewRow In gvDeminimis.Rows
+            If row.RowType = DataControlRowType.DataRow Then
+                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
+                If chkRow.Checked Then
+                    MsgBox(row.Cells(1).Text)
+                End If
+            End If
+        Next
     End Sub
 End Class

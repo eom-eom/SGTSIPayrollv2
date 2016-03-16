@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="CompanyDeductions.aspx.vb" Inherits="PayrollSytemV2.CompanyDeductions" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="CompanyDeductions.aspx.vb" Inherits="PayrollSytemV2.CompanyDeductions" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentHeader" runat="server">
     Company Deductions
 </asp:Content>
@@ -11,7 +11,15 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="box box-warning">
+            <div class="box-body">
             <div class="col-md-12">
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="messagealert" id="alert_container">
+                        </div>
+                    </div>
+                </div>
                  <div class="row">
                      <br />
                      <div class="row">
@@ -30,13 +38,25 @@
                          <div class="col-md-1">
                            
                         </div>
-                        <div class="col-md-3">
+                      <%--  <div class="col-md-3">
                             <h5><asp:CheckBox ID="cbDuration" runat="server" /> Duration</h5>
                             
-                        </div>
+                        </div>--%>
                         
                     </div>
-                     
+                     <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <asp:GridView ID="gvCompanyDeduction" runat="server" class="table table-bordered table-striped dataTable" OnRowDataBound="gvCompanyDeduction_RowDataBound" 
+                                OnSelectedIndexChanged="gvCompanyDeduction_SelectedIndexChanged" AutoGenerateColumns="false" AllowPaging ="true" PageSize="5" OnPageIndexChanging="gvCompanyDeduction_PageIndexChanging" EmptyDataText="No Record/s Found.">
+                                <Columns>
+                                    <asp:BoundField DataField="id" HeaderText="ID"  />
+                                    <asp:BoundField DataField="comde_code" HeaderText="Code"  />
+                                    <asp:BoundField DataField="comde_desc" HeaderText="Description"  />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
                     <br />
                     <div class="row">
                         <div class="col-md-3">
@@ -54,6 +74,8 @@
                     </div>
                  </div>
              </div>
+            </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

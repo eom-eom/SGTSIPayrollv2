@@ -50,13 +50,13 @@ Partial Public Class HDMFTable
     Protected WithEvents txtFromRange As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''rbPercantage control.
+    '''rbPercentage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rbPercantage As Global.System.Web.UI.WebControls.RadioButton
+    Protected WithEvents rbPercentage As Global.System.Web.UI.WebControls.RadioButton
 
     '''<summary>
     '''rbAmount control.
@@ -84,6 +84,15 @@ Partial Public Class HDMFTable
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmployerShare As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''gvHDMF control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvHDMF As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''btnNew control.

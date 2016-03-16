@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="HDMFTable.aspx.vb" Inherits="PayrollSytemV2.HDMFTable" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="HDMFTable.aspx.vb" Inherits="PayrollSytemV2.HDMFTable" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentHeader" runat="server">
     HDMF Table
 </asp:Content>
@@ -11,7 +11,16 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="box box-warning">
+            <div class="box-body">
             <div class="col-md-12">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="messagealert" id="alert_container">
+                        </div>
+                    </div>
+                </div>
                  <div class="row">
                      <br />
                      <div class="row">
@@ -63,6 +72,24 @@
                     </div>
                     <br />
                     <div class="row">
+                        <div class="col-md-12">
+                            <asp:GridView ID="gvHDMF" runat="server" class="table table-bordered table-striped dataTable" OnRowDataBound="gvHDMF_RowDataBound" 
+                                OnSelectedIndexChanged="gvHDMF_SelectedIndexChanged" AutoGenerateColumns="false" AllowPaging ="true" PageSize="5" OnPageIndexChanging="gvHDMF_PageIndexChanging" EmptyDataText="No Record/s Found.">
+                                <Columns>
+                                    <asp:BoundField DataField="id" HeaderText="ID"  />
+                                    <asp:BoundField DataField="hdmf_code" HeaderText="Code"  />
+                                    <asp:BoundField DataField="hdmf_from_comp" HeaderText="Range Compensation From"  />
+                                    <asp:BoundField DataField="hdmf_to_comp" HeaderText="Range Compensation To"  />
+                                    <asp:BoundField DataField="hdmf_cont_option" HeaderText="Contribution Option"  />
+                                    <asp:BoundField DataField="hdmf_ee" HeaderText="Employee Share"  />
+                                    <asp:BoundField DataField="hdmf_er" HeaderText="Employer Share"  />
+                                    
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
                         <div class="col-md-3">
                             <asp:Button ID="btnNew" runat="server" Text="New" class="btn btn-block btn-primary btn-md" />
                         </div>
@@ -78,6 +105,8 @@
                     </div>
                  </div>
              </div>
+             </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

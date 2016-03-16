@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="DeMinimisBenefits.aspx.vb" Inherits="PayrollSytemV2.DeMinimisBenefits" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="DeMinimisBenefits.aspx.vb" Inherits="PayrollSytemV2.DeMinimisBenefits"  EnableEventValidation="false"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentHeader" runat="server">
     De Minimis Benefits
 </asp:Content>
@@ -11,7 +11,15 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="box box-warning">
+            <div class="box-body">
             <div class="col-md-12">
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="messagealert" id="alert_container">
+                        </div>
+                    </div>
+                </div>
                  <div class="row">
                      <br />
                      <div class="row">
@@ -37,7 +45,7 @@
                         <div class="col-md-4">
                             <asp:TextBox ID="txtDescription" runat="server"  type="text" CssClass='form-control'  ClientIDMode="Static"></asp:TextBox>
                         </div>
-                        <div class="col-md-2">
+                        <%--<div class="col-md-2">
                             <h5>Type</h5>
                         </div>
                         <div class="col-md-4">
@@ -45,9 +53,22 @@
                                 <asp:ListItem Text="Daily" Value="daily"></asp:ListItem>
                                 <asp:ListItem Text="Monthly" Value="monthly"></asp:ListItem>
                             </asp:DropDownList> 
+                        </div>--%>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <asp:GridView ID="gvDeminimis" runat="server" class="table table-bordered table-striped dataTable" OnRowDataBound="gvDeminimis_RowDataBound" 
+                                OnSelectedIndexChanged="gvDeminimis_SelectedIndexChanged" AutoGenerateColumns="false" AllowPaging ="true" PageSize="5" OnPageIndexChanging="gvDeminimis_PageIndexChanging" EmptyDataText="No Record/s Found.">
+                                <Columns>
+                                    <asp:BoundField DataField="id" HeaderText="ID"  />
+                                    <asp:BoundField DataField="dmb_code" HeaderText="Code"  />
+                                    <asp:BoundField DataField="dmb_desc" HeaderText="Description"  />
+                                    <asp:BoundField DataField="dmb_amount" HeaderText="Amount"  />
+                                </Columns>
+                            </asp:GridView>
                         </div>
                     </div>
-                    
                     <br />
                     <div class="row">
                         <div class="col-md-3">
@@ -65,6 +86,8 @@
                     </div>
                  </div>
              </div>
+            </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
