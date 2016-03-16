@@ -68,6 +68,68 @@ Public Class ReceivablesAndTaxable
 #End Region
 End Class
 Public Class ReceivablesAndTaxableDB
+    Friend Function fillReceivables() As DataTable
+        Dim dt As DataTable = Nothing
+        Try
+            Dim xSQL As New StringBuilder
+            xSQL.AppendLine("SELECT")
+            xSQL.AppendLine("id,")
+            xSQL.AppendLine("rta_code,")
+            xSQL.AppendLine("rta_desc,")
+            xSQL.AppendLine("rta_amount")
+            xSQL.AppendLine("FROM receivable_and_taxable_allowances")
+            xSQL.AppendLine("WHERE is_deleted= '1' and rta_taxable='0'")
+            Try
+                Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
+                    SQLConnect.Open()
+                    Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
+                    Dim da As New MySqlDataAdapter(SQLCommand)
+                    Dim ds As New DataSet
+                    da.Fill(ds)
+                    If ds.Tables.Count <> 0 Then
+                        dt = ds.Tables(0)
+                    End If
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.ToString, vbCritical + vbOKOnly, "Error")
+                'ShowMessage(ex.ToString, MessageType.Success, Me)
+            End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dt
+    End Function
+    Friend Function fillTaxable() As DataTable
+        Dim dt As DataTable = Nothing
+        Try
+            Dim xSQL As New StringBuilder
+            xSQL.AppendLine("SELECT")
+            xSQL.AppendLine("id,")
+            xSQL.AppendLine("rta_code,")
+            xSQL.AppendLine("rta_desc,")
+            xSQL.AppendLine("rta_amount")
+            xSQL.AppendLine("FROM receivable_and_taxable_allowances")
+            xSQL.AppendLine("WHERE is_deleted= '1' and rta_taxable='1'")
+            Try
+                Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
+                    SQLConnect.Open()
+                    Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
+                    Dim da As New MySqlDataAdapter(SQLCommand)
+                    Dim ds As New DataSet
+                    da.Fill(ds)
+                    If ds.Tables.Count <> 0 Then
+                        dt = ds.Tables(0)
+                    End If
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.ToString, vbCritical + vbOKOnly, "Error")
+                'ShowMessage(ex.ToString, MessageType.Success, Me)
+            End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dt
+    End Function
     Friend Function RTAGetList() As DataTable
         Dim dt As DataTable = Nothing
         Try
