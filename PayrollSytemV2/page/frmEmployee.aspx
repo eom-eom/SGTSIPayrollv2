@@ -29,12 +29,6 @@
             <asp:Button Text="Leave/Deminimis" runat="server" OnClick="btnLD_Click" ID="btnLD" class="btn  btn-primary btn-flat"/>
          
    
-        
-   
-   
-    
-    
-   
     <asp:UpdatePanel ID="UP1" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <asp:MultiView ID="multiviews" runat="server"  >
@@ -327,7 +321,8 @@
                                                     <div class='col-sm-12 col-md-9'>
                                                         <div class =" input-group">
                                                             
-                                                            <asp:TextBox ID="txtBasicSalary" runat="server"  type="text" CssClass='form-control'  ClientIDMode="Static" />
+                                                            <asp:TextBox ID="txtBasicSalary" runat="server"  type="text" CssClass='form-control'  ClientIDMode="Static" 
+                                                                OnTextChanged="txtBasicSalary_TextChanged" />
                                                             <span class="input-group-addon">PHP</span>
                                                         </div>
                                                     </div>

@@ -20,7 +20,7 @@
         
     End Sub
     Private Sub fillRec()
-        Dim cdb As New EmploymentInfoDB
+        Dim cdb As New ReceivablesAndTaxableDB
         dsGrid = cdb.fillReceivables()
         ddRecList.DataValueField = "rta_code"
         ddRecList.DataTextField = "rta_desc"
@@ -30,7 +30,7 @@
     End Sub
 
     Private Sub fillTaxableAllowance()
-        Dim cdb As New EmploymentInfoDB
+        Dim cdb As New ReceivablesAndTaxableDB
         dsGrid = cdb.fillTaxable()
         ddTaxlist.DataValueField = "rta_code"
         ddTaxlist.DataTextField = "rta_desc"
@@ -78,13 +78,7 @@
     'Protected Sub Unnamed3_Click(sender As Object, e As EventArgs)
     '    multiviews.SetActiveView(view3)
     'End Sub
-    Protected Sub gvRec_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-
-    End Sub
-    Protected Sub gvRec_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
-
-    End Sub
+    
     Protected Sub btnPInfo_Click(sender As Object, e As EventArgs) Handles btnPInfo.Click
         multiviews.SetActiveView(viewDetails)
     End Sub
@@ -125,6 +119,15 @@
         
 
     End Sub
+    Protected Sub txtBasicSalary_TextChanged(sender As Object, e As EventArgs) Handles txtBasicSalary.TextChanged
+        Try
+            txtDailyRate.Text = Format(CDbl(CDbl(txtBasicSalary.Text) / 21.75), "0.00")
+            txtHrRate.Text = Format(CDbl(CDbl(txtDailyRate.Text) / 8), "0.00")
+        Catch ex As Exception
+            'MsgBox(ex.Message)
+        End Try
+
+    End Sub
 
     Protected Sub LSaveEmployee_Click(sender As Object, e As EventArgs) Handles LSaveEmployee.Click
         If Not txtEmpcode.Text = "" Then
@@ -148,7 +151,7 @@
             cEmployee.basic_salary = Trim(txtBasicSalary.Text)
             cEmployee.daily_rate = Trim(txtDailyRate.Text)
             cEmployee.hour_rate = Trim(txtHrRate.Text)
-            cEmployee.shift_id = 0 'ddShift.selectedValue
+            cEmployee.shift_id = ddShift.SelectedValue
             cEmployee.def_time_in = Trim(txtTimeIn.Text)
             cEmployee.def_time_out = Trim(txtTimeOut.Text)
             If chk13month.Checked = True Then
@@ -175,7 +178,57 @@
             Else
                 cEmployee.w_philhealth = "0"
             End If
+
             cEmployee.is_deleted = "1"
+
+            If chkMonday.Checked = True Then
+                cEmployee.monday = "1"
+            Else
+                cEmployee.monday = "0"
+            End If
+
+            If chkTuesday.Checked = True Then
+                cEmployee.tuesday = "1"
+            Else
+                cEmployee.tuesday = "0"
+            End If
+
+            If chkWednesday.Checked = True Then
+                cEmployee.wednesday = "1"
+            Else
+                cEmployee.wednesday = "0"
+            End If
+
+            If chkThursday.Checked = True Then
+                cEmployee.thursday = "1"
+            Else
+                cEmployee.thursday = "0"
+            End If
+
+            If chkFriday.Checked = True Then
+                cEmployee.friday = "1"
+            Else
+                cEmployee.friday = "0"
+            End If
+
+            If chkSaturday.Checked = True Then
+                cEmployee.saturday = "1"
+            Else
+                cEmployee.saturday = "0"
+            End If
+            If chkSunday.Checked = True Then
+                chkSunday.Text = "1"
+            Else
+                chkSunday.Text = "0"
+            End If
+
+            If chk13month.Checked = True Then
+                cEmployee.w_13monthpay = "1"
+            Else
+                cEmployee.w_13monthpay = "0"
+            End If
+
+
 
             Dim cdb As New EmploymentInfoDB
             If Not Session("intEmp") = "0" Then
@@ -186,6 +239,7 @@
                 cEmployee = cdb.EmployeeUpdateFile(cEmployee)
                 ShowMessage("Employee Sucessfully Edited", MessageType.Success, Me)
             End If
+
 
             clearMe()
             Server.Transfer("Employee.aspx")
