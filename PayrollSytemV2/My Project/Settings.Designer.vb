@@ -56,7 +56,8 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("server=localhost;user=root;database=payrollsystem;port=3306;password=;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("server=localhost;user=root;database=payrollsystem;port=3306;password=;Allow User "& _ 
+            "Variables=True")>  _
         Public ReadOnly Property DBConn() As String
             Get
                 Return CType(Me("DBConn"),String)
