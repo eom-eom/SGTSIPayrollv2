@@ -21,11 +21,22 @@
                     <div class="col-md-3">
                         <asp:FileUpload ID="UploadDTR" runat="server"  />
                     </div>
+                    <div class="col-md-3">
+                        <asp:Button ID="btnUpload" runat="server" Text="Upload" class="btn btn-block btn-primary btn-md" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <asp:GridView ID="gvDTR" runat="server" AllowPaging = "true" AutoGenerateColumns="true">
+                        </asp:GridView>
+                    </div>
                 </div>
              </div>
          </div>
         </ContentTemplate>
-          
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnUpload" />
+        </Triggers>  
     </asp:UpdatePanel>
     
 </asp:Content>
