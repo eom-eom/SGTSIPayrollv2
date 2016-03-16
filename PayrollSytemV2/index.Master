@@ -170,8 +170,7 @@
                           <ul class="treeview-menu">
                             <li><a href="OvertimeSettings.aspx"><i class="fa fa-circle-o"></i> Overtime Settings</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Settings</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Employee Settings</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> System Settings</a></li>
+                            <li><a href="SystemSetting.aspx"><i class="fa fa-circle-o"></i> System Settings</a></li>
                           </ul>
                         </li>
                         <li>
