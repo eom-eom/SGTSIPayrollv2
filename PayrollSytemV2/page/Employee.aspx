@@ -12,16 +12,22 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
         <ContentTemplate>
+            <div class =" row">
+                <div class="col-md-12">
+                                <div class="messagealert" id="alert_container">
+                                </div>
+                            </div>
+                </div>
+            
+            <br />
             <div class="box box-warning">
             <div class="box-body">
                 <div class=" row">
                     
                         
-                             <div class="col-md-12">
-                                <div class="messagealert" id="alert_container">
-                                </div>
-                            </div>
+                             
                         
                            
                        
@@ -30,7 +36,7 @@
                             class="table responsive table-bordered table-condensed table-hover table-striped dataTable" 
                             OnRowDataBound="gvEmployee_RowDataBound" 
                             OnSelectedIndexChanged="gvEmployee_SelectedIndexChanged" AutoGenerateColumns="false" 
-                            AllowPaging ="true" PageSize="5" OnPageIndexChanging="gvEmployee_PageIndexChanging" 
+                            AllowPaging ="true" PageSize="15" OnPageIndexChanging="gvEmployee_PageIndexChanging" 
                             EmptyDataText="No Record/s Found." >
                             <Columns>
                                 <asp:BoundField DataField="id" HeaderText="id"  Visible="False" />
@@ -54,7 +60,7 @@
                            <asp:LinkButton ID="btnNew" runat="server" Text="New" class="btn btn-block btn-primary btn-md-3" />  
                           </div>
                         <div class=" col-md-3">
-                           <asp:LinkButton ID="btnEdit" runat="server" Text="Edit" class="btn btn-block btn-warning btn-md-3" />  
+                           <asp:LinkButton  ID="btnEdit" runat="server" Text="Edit" class="btn btn-block btn-warning btn-md-3" />  
                           </div>
                         <div class=" col-md-3">
                            <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" class="btn btn-block btn-danger btn-md-3" />  

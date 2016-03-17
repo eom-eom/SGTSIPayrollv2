@@ -766,7 +766,9 @@ Public Class EmploymentInfoDB
     End Function
     'Friend Function EmployeeInsertFile(ByVal cItem As EmployeeInfo, lenOfRTA As Int32, lenofComde As Int32, _
     '                                   lenOfLeaves As Int32, lenOfDMB As Int32) As EmployeeInfo
-    Friend Function EmployeeInsertFile(ByVal cItem As EmployeeInfo, recVal As ArrayList) As EmployeeInfo
+    Friend Function EmployeeInsertFile(ByVal cItem As EmployeeInfo, _
+                                       recVal As ArrayList, taxAllowVal As ArrayList, _
+                                       comDeVal As ArrayList) As EmployeeInfo
         Dim cReturn As New EmployeeInfo
 
         Try
@@ -865,6 +867,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("sunday,")
                 xSQL.AppendLine("date_stamp")
 
+
                 xSQL.AppendLine(") ")
                 xSQL.AppendLine("VALUES( ")
                 xSQL.AppendLine("@e_id,")
@@ -876,8 +879,6 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("@saturday,")
                 xSQL.AppendLine("@sunday,")
                 xSQL.AppendLine("@date_stamp")
-
-
                 xSQL.AppendLine(");")
 
                 'may update ng is_deleted and looping here I think.
@@ -894,26 +895,41 @@ Public Class EmploymentInfoDB
                     xSQL.AppendLine(");")
                 Next
 
+                For x = 0 To taxAllowVal.Count - 1 Step 1
+                    xSQL.AppendLine("INSERT INTO employee_receivable_and_taxable_allowances(")
+                    xSQL.AppendLine("emp_id,")
+                    xSQL.AppendLine("rta_id,")
+                    xSQL.AppendLine("is_deleted")
+                    xSQL.AppendLine(") ")
+                    xSQL.AppendLine("VALUES( ")
+                    xSQL.AppendLine("@e_id,")
+                    xSQL.AppendLine("@rta_id_ta_" & x & ",")
+                    xSQL.AppendLine("@emp_rta_deleted_ta_" & x)
+                    xSQL.AppendLine(");")
+                Next
 
+                For x = 0 To comDeVal.Count - 1 Step 1
+                    xSQL.AppendLine("INSERT INTO employee_company_deductions(")
+                    xSQL.AppendLine("e_id,")
+                    xSQL.AppendLine("comde_id,")
+                    xSQL.AppendLine("emp_comde_amt,")
+                    xSQL.AppendLine("emp_comde_start_date,")
+                    xSQL.AppendLine("emp_comde_end_date,")
+                    xSQL.AppendLine("emp_deduct_type,")
+                    xSQL.AppendLine("is_deleted")
+                    xSQL.AppendLine(") ")
+                    xSQL.AppendLine("VALUES( ")
+                    xSQL.AppendLine("e_id,")
+                    xSQL.AppendLine("@comde_id_" & x & ",")
+                    xSQL.AppendLine("@emp_comde_" & x & ",")
+                    xSQL.AppendLine("@emp_comde_start_date_" & x & ",")
+                    xSQL.AppendLine("@emp_comde_end_date_" & x & ",")
+                    xSQL.AppendLine("@emp_deduct_type_" & x & ",")
+                    xSQL.AppendLine("@emp_comde_deleted_" & x & ",")
+                    xSQL.AppendLine(");")
+                Next
                 ''may update ng is_deleted and looping here I think.
-                'xSQL.AppendLine("INSERT INTO employee_company_deductions(")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("comde_id,")
-                'xSQL.AppendLine("emp_comde_amt,")
-                'xSQL.AppendLine("emp_comde_start_date,")
-                'xSQL.AppendLine("emp_comde_end_date,")
-                'xSQL.AppendLine("emp_deduct_type,")
-                'xSQL.AppendLine("is_deleted")
-                'xSQL.AppendLine(") ")
-                'xSQL.AppendLine("VALUES( ")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("@comde_id,")
-                'xSQL.AppendLine("@emp_comde_amt,")
-                'xSQL.AppendLine("@emp_comde_start_date,")
-                'xSQL.AppendLine("@emp_comde_end_date,")
-                'xSQL.AppendLine("@emp_deduct_type,")
-                'xSQL.AppendLine("@emp_comde_deleted")
-                'xSQL.AppendLine(");")
+                
 
 
                 ''may update ng is_deleted and looping here I think.
@@ -990,9 +1006,22 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@sunday", cItem.sunday)
                 commandDB1.Parameters.AddWithValue("@date_stamp", Date.Now)
 
+
                 For x = 0 To recVal.Count - 1 Step 1
                     commandDB1.Parameters.AddWithValue("@rta_id_" & x, recVal(x))
-                    commandDB1.Parameters.AddWithValue("@emp_rta_deleted" & x, cItem.emp_rta_deleted)
+                    'commandDB1.Parameters.AddWithValue("@emp_rta_deleted" & x, cItem.emp_rta_deleted)
+                Next
+                For x = 0 To taxAllowVal.Count - 1 Step 1
+                    commandDB1.Parameters.AddWithValue("@rta_id_ta_" & x, taxAllowVal(x))
+                    'commandDB1.Parameters.AddWithValue("@emp_rta_deleted_ta_" & x, cItem.emp_rta_deleted)
+                Next
+                For x = 0 To comDeVal.Count - 1 Step 1
+                    commandDB1.Parameters.AddWithValue("@comde_id_" & x, comDeVal(x))
+                    commandDB1.Parameters.AddWithValue("@emp_comde_" & x, comDeVal(x))
+                    commandDB1.Parameters.AddWithValue("@emp_comde_start_date_" & x, comDeVal(x))
+                    commandDB1.Parameters.AddWithValue("@emp_comde_end_date_" & x, comDeVal(x))
+                    commandDB1.Parameters.AddWithValue("@emp_deduct_type_" & x, comDeVal(x))
+                    'commandDB1.Parameters.AddWithValue("@emp_comde_deleted_" & x, cItem.emp_comde_deleted)
                 Next
 
                 commandDB1.ExecuteNonQuery()

@@ -8,6 +8,7 @@ Public Class Employee
     End Sub
 
     Protected Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
+
         Response.Redirect("frmEmployee.aspx")
     End Sub
     Private Sub fillEmployee()
@@ -54,5 +55,21 @@ Public Class Employee
             ShowMessage("Please Select before you Edit", MessageType.Errors, Me)
         End If
     End Sub
-   
+    Public Sub clearMe(Optional ByVal ctlcol As ControlCollection = Nothing)
+        If ctlcol Is Nothing Then ctlcol = Me.Controls
+        For Each ctl As Control In ctlcol
+            If TypeOf (ctl) Is TextBox Then
+                DirectCast(ctl, TextBox).Text = Nothing
+
+            ElseIf TypeOf (ctl) Is DropDownList Then
+                DirectCast(ctl, DropDownList).Text = Nothing
+            Else
+                If Not ctl.Controls Is Nothing OrElse ctl.Controls.Count <> 0 Then
+                    clearMe(ctl.Controls)
+                End If
+            End If
+
+        Next
+
+    End Sub
 End Class

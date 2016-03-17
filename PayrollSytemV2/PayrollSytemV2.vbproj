@@ -117,6 +117,7 @@
     <Content Include="page\LeaveType.aspx" />
     <Content Include="page\Login.aspx" />
     <Content Include="page\OvertimeSettings.aspx" />
+    <Content Include="page\PayrollSetting.aspx" />
     <Content Include="page\PhilhealthTable.aspx" />
     <Content Include="page\Position.aspx" />
     <Content Include="page\ReceivablesAndTaxableAllowance.aspx" />
@@ -146,8 +147,10 @@
     <Compile Include="Class\LateUndertime.vb" />
     <Compile Include="Class\LeaveTypes.vb" />
     <Compile Include="Class\Overtime.vb" />
+    <Compile Include="Class\PayrollSettings.vb" />
     <Compile Include="Class\PhilhealthTables.vb" />
     <Compile Include="Class\ReceivablesAndTaxable.vb" />
+    <Compile Include="Class\ShiftingSchedules.vb" />
     <Compile Include="Class\ShiftsClass.vb" />
     <Compile Include="Class\SSSTables.vb" />
     <Compile Include="Class\SystemSettings.vb" />
@@ -269,6 +272,13 @@
     <Compile Include="page\OvertimeSettings.aspx.vb">
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="page\PayrollSetting.aspx.designer.vb">
+      <DependentUpon>PayrollSetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\PayrollSetting.aspx.vb">
+      <DependentUpon>PayrollSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\PhilhealthTable.aspx.designer.vb">
       <DependentUpon>PhilhealthTable.aspx</DependentUpon>
