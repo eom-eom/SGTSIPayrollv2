@@ -501,14 +501,14 @@ Public Class EmployeeInfo
         End Set
     End Property
 
-    Private _date_apply As String = ""
+    Private _leave_used As String = ""
 
-    Friend Property date_apply() As String
+    Friend Property leave_used() As String
         Get
-            Return _date_apply
+            Return _leave_used
         End Get
         Set(ByVal Value As String)
-            _date_apply = Value
+            _leave_used = Value
         End Set
     End Property
 
@@ -768,7 +768,8 @@ Public Class EmploymentInfoDB
     '                                   lenOfLeaves As Int32, lenOfDMB As Int32) As EmployeeInfo
     Friend Function EmployeeInsertFile(ByVal cItem As EmployeeInfo, _
                                        recVal As ArrayList, taxAllowVal As ArrayList, _
-                                       comDeVal As ArrayList) As EmployeeInfo
+                                       comDeVal As ArrayList, leaveVal As ArrayList, _
+                                       deminimisBenVal As ArrayList) As EmployeeInfo
         Dim cReturn As New EmployeeInfo
 
         Try
@@ -852,8 +853,8 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("SET @e_id = LAST_INSERT_ID();")
 
                 'deletion of previous working days
-                xSQL.AppendLine("DELETE FROM employee_working_days")
-                xSQL.AppendLine("WHERE emp_id = @e_id;")
+                'xSQL.AppendLine("DELETE FROM employee_working_days")
+                'xSQL.AppendLine("WHERE emp_id = @e_id;")
 
 
                 xSQL.AppendLine("INSERT INTO employee_working_days(")
@@ -924,39 +925,40 @@ Public Class EmploymentInfoDB
                     xSQL.AppendLine("@emp_comde_" & x & ",")
                     xSQL.AppendLine("@emp_comde_start_date_" & x & ",")
                     xSQL.AppendLine("@emp_comde_end_date_" & x & ",")
-                    xSQL.AppendLine("@emp_deduct_type_" & x & ",")
-                    xSQL.AppendLine("@emp_comde_deleted_" & x & ",")
+                    xSQL.AppendLine("@emp_deduct_type_" & x)
                     xSQL.AppendLine(");")
                 Next
-                ''may update ng is_deleted and looping here I think.
+
+                For x = 0 To leaveVal.Count - 1 Step 1
+                    xSQL.AppendLine("INSERT INTO employee_leaves(")
+                    xSQL.AppendLine("e_id,")
+                    xSQL.AppendLine("leave_id,")
+                    xSQL.AppendLine("leave_used,")
+                    xSQL.AppendLine(") ")
+                    xSQL.AppendLine("VALUES( ")
+                    xSQL.AppendLine("e_id,")
+                    xSQL.AppendLine("@leave_id_" & x & ",")
+                    xSQL.AppendLine("@leaved_used_" & x)
+                    xSQL.AppendLine(");")
+                Next
+
+                For x = 0 To deminimisBenVal.Count - 1 Step 1
+                    'may update ng is_deleted and looping here I think.
+                    xSQL.AppendLine("INSERT INTO employee_de_minimis_benefits(")
+                    xSQL.AppendLine("e_id,")
+                    xSQL.AppendLine("dmb_id,")
+                    xSQL.AppendLine("is_deleted")
+                    xSQL.AppendLine(") ")
+                    xSQL.AppendLine("VALUES( ")
+                    xSQL.AppendLine("e_id,")
+                    xSQL.AppendLine("@dmb_id_" & x & ",")
+                    xSQL.AppendLine("@emp_dmb_deleted_" & x)
+                    xSQL.AppendLine(");")
+                Next
+
                 
 
-
-                ''may update ng is_deleted and looping here I think.
-                'xSQL.AppendLine("INSERT INTO employee_leaves(")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("leave_id,")
-                'xSQL.AppendLine("date_apply,")
-                'xSQL.AppendLine("is_deleted")
-                'xSQL.AppendLine(") ")
-                'xSQL.AppendLine("VALUES( ")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("@leave_id,")
-                'xSQL.AppendLine("@date_apply,")
-                'xSQL.AppendLine("@emp_leaves_deleted")
-                'xSQL.AppendLine(");")
-
-                ''may update ng is_deleted and looping here I think.
-                'xSQL.AppendLine("INSERT INTO employee_de_minimis_benefits(")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("dmb_id,")
-                'xSQL.AppendLine("is_deleted")
-                'xSQL.AppendLine(") ")
-                'xSQL.AppendLine("VALUES( ")
-                'xSQL.AppendLine("e_id,")
-                'xSQL.AppendLine("@dmb_id,")
-                'xSQL.AppendLine("@emp_dmb_deleted")
-                'xSQL.AppendLine(");")
+                
 
                 xSQL.AppendLine("COMMIT;")
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
@@ -1022,6 +1024,10 @@ Public Class EmploymentInfoDB
                     commandDB1.Parameters.AddWithValue("@emp_comde_end_date_" & x, comDeVal(x))
                     commandDB1.Parameters.AddWithValue("@emp_deduct_type_" & x, comDeVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_comde_deleted_" & x, cItem.emp_comde_deleted)
+                Next
+                For x = 0 To leaveVal.Count - 1 Step 1
+                    commandDB1.Parameters.AddWithValue("@leave_id_" & x, leaveVal(x))
+                    commandDB1.Parameters.AddWithValue("@leave_used_" & x, leaveVal(x))
                 Next
 
                 commandDB1.ExecuteNonQuery()
