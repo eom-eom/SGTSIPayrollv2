@@ -40,6 +40,9 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -117,12 +120,14 @@
     <Content Include="page\LeaveType.aspx" />
     <Content Include="page\Login.aspx" />
     <Content Include="page\OvertimeSettings.aspx" />
+    <Content Include="page\PayrollSetting.aspx" />
     <Content Include="page\PhilhealthTable.aspx" />
     <Content Include="page\Position.aspx" />
     <Content Include="page\ReceivablesAndTaxableAllowance.aspx" />
     <Content Include="page\ShiftingSchedule.aspx" />
     <Content Include="page\Shifts.aspx" />
     <Content Include="page\SSSTable.aspx" />
+    <Content Include="page\SystemSetting.aspx" />
     <Content Include="page\TaxTable.aspx" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app.min.js" />
@@ -146,8 +151,10 @@
     <Compile Include="Class\LateUndertime.vb" />
     <Compile Include="Class\LeaveTypes.vb" />
     <Compile Include="Class\Overtime.vb" />
+    <Compile Include="Class\PayrollSettings.vb" />
     <Compile Include="Class\PhilhealthTables.vb" />
     <Compile Include="Class\ReceivablesAndTaxable.vb" />
+    <Compile Include="Class\ShiftingSchedules.vb" />
     <Compile Include="Class\ShiftsClass.vb" />
     <Compile Include="Class\SSSTables.vb" />
     <Compile Include="Class\SystemSettings.vb" />
@@ -270,6 +277,13 @@
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="page\PayrollSetting.aspx.designer.vb">
+      <DependentUpon>PayrollSetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\PayrollSetting.aspx.vb">
+      <DependentUpon>PayrollSetting.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="page\PhilhealthTable.aspx.designer.vb">
       <DependentUpon>PhilhealthTable.aspx</DependentUpon>
     </Compile>
@@ -311,6 +325,13 @@
     <Compile Include="page\SSSTable.aspx.vb">
       <DependentUpon>SSSTable.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="page\SystemSetting.aspx.designer.vb">
+      <DependentUpon>SystemSetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\SystemSetting.aspx.vb">
+      <DependentUpon>SystemSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\TaxTable.aspx.designer.vb">
       <DependentUpon>TaxTable.aspx</DependentUpon>

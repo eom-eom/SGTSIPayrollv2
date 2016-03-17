@@ -7,3 +7,12 @@ D:\ASP.NET Program\PayrollSytemV2\PayrollSytemV2\obj\Debug\PayrollSytemV2.vbproj
 D:\ASP.NET Program\PayrollSytemV2\PayrollSytemV2\obj\Debug\PayrollSytemV2.dll
 D:\ASP.NET Program\PayrollSytemV2\PayrollSytemV2\obj\Debug\PayrollSytemV2.xml
 D:\ASP.NET Program\PayrollSytemV2\PayrollSytemV2\obj\Debug\PayrollSytemV2.pdb
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\bin\PayrollSytemV2.dll.config
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\bin\PayrollSytemV2.dll
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\bin\PayrollSytemV2.pdb
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\bin\PayrollSytemV2.xml
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.Resources.resources
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.vbproj.GenerateResource.Cache
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.dll
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.xml
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.pdb
