@@ -9,8 +9,12 @@
      Daily Time Record Upload
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
+    
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+             <div class="box box-warning">
+             <div class="box-body">
+            
              <div class="col-md-12">
              <div class="row">
                  <br />
@@ -25,13 +29,16 @@
                         <asp:Button ID="btnUpload" runat="server" Text="Upload" class="btn btn-block btn-primary btn-md" />
                     </div>
                 </div>
+                <br />
                 <div class="row">
                     <div class="col-md-12">
-                        <asp:GridView ID="gvDTR" runat="server" AllowPaging = "true" AutoGenerateColumns="true">
+                        <asp:GridView ID="gvDTR" runat="server" class="table table-bordered table-striped dataTable" AutoGenerateColumns="true" >
                         </asp:GridView>
                     </div>
                 </div>
              </div>
+         </div>
+         </div>
          </div>
         </ContentTemplate>
         <Triggers>
