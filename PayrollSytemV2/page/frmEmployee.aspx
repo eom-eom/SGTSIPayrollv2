@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="frmEmployee.aspx.vb" Inherits="PayrollSytemV2.frmEmployee" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="frmEmployee.aspx.vb" Inherits="PayrollSytemV2.frmEmployee" Async="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentHeader" runat="server">
     Employee form
 </asp:Content>
@@ -34,7 +34,7 @@
             <asp:Button Text="Leave/Deminimis" runat="server" OnClick="btnLD_Click" ID="btnLD" class="btn  btn-primary btn-flat"/>
          
    
-    <asp:UpdatePanel ID="UP1" runat="server" UpdateMode="Always">
+    <asp:UpdatePanel ID="UP1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             
             <asp:MultiView ID="multiviews" runat="server"  >
@@ -182,7 +182,7 @@
                                             <div class='col-sm-12 col-md-9'>
                                                     
                                                 <asp:DropDownList class="form-control select2"  ID="ddDept" runat="server" 
-                                                     OnSelectedIndexChanged="ddDept_SelectedIndexChanged" AutoPostBack="True" >
+                                                     OnSelectedIndexChanged="ddDept_SelectedIndexChanged" AutoPostBack="true" >
                                                     
                                                 </asp:DropDownList> 
                                             
@@ -212,7 +212,7 @@
                                         
                                             <div class='col-sm-12 col-md-9'>
                                                     
-                                                    <asp:DropDownList class="form-control select2"  ID="ddEmpType" runat="server" AutoPostBack="False" >
+                                                    <asp:DropDownList class="form-control select2"  ID="ddEmpType" runat="server" AutoPostBack="true" >
                                                        <asp:ListItem>Probitionary</asp:ListItem>
                                                         <asp:ListItem>Regular</asp:ListItem>
                                                         <asp:ListItem>Part-time</asp:ListItem>
@@ -242,7 +242,7 @@
                                         
                                             <div class='col-sm-12 col-md-9'>
                                                    <asp:DropDownList class="form-control "  ID="ddJobstats" runat="server" 
-                                                       OnSelectedIndexChanged="ddJobstats_SelectedIndexChanged" AutoPostBack =" true">
+                                                       OnSelectedIndexChanged="ddJobstats_SelectedIndexChanged" AutoPostBack ="true">
                                                        <asp:ListItem>Active</asp:ListItem>
                                                         <asp:ListItem>Resigned</asp:ListItem>
                                                         <asp:ListItem>Terminated</asp:ListItem>
@@ -269,7 +269,11 @@
                                         
                                             <div class='col-sm-12 col-md-9'>
                                                    <asp:DropDownList class="form-control select2"  ID="ddTax" runat="server" AutoPostBack="True" >
-                                                </asp:DropDownList> 
+                                                       <asp:ListItem>S</asp:ListItem>
+                                                       <asp:ListItem>ME1</asp:ListItem>
+                                                       <asp:ListItem>ME2</asp:ListItem>
+                                                       <asp:ListItem>ME4</asp:ListItem>
+                                                      </asp:DropDownList> 
                                             </div>  
                                             
                                         </div>
@@ -397,7 +401,9 @@
                                                     </div>
                                 
                                                     <div class='col-sm-12 col-md-9'>
-                                                        <asp:DropDownList class="form-control select2"  ID="ddShift" runat="server"  >
+                                                        <asp:DropDownList class="form-control select2"  ID="ddShift" 
+                                                            AutoPostBack ="true"
+                                                            runat="server"  OnSelectedIndexChanged ="ddShift_SelectedIndexChanged" >
                                                     
                                                         </asp:DropDownList> 
                                                     </div>
@@ -629,7 +635,7 @@
                                                                    
                                                                 <div class ="row">
                                                                     <div class ="col-md-12">
-
+                                                                       
                                                                         <asp:GridView ID="gvEmpRec" runat="server" AutoGenerateColumns="false"
                                                                             class="table responsive table-bordered table-condensed table-hover table-striped dataTable"
                                                                             EmptyDataText="No record(s) found.">
@@ -932,7 +938,9 @@
     </div>
 
         </ContentTemplate>
-
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="ddDept" EventName="SelectedIndexChanged" />
+        </Triggers>
     </asp:UpdatePanel>
     
     
