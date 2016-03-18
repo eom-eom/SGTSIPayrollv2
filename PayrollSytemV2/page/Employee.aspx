@@ -37,9 +37,9 @@
                             OnRowDataBound="gvEmployee_RowDataBound" 
                             OnSelectedIndexChanged="gvEmployee_SelectedIndexChanged" AutoGenerateColumns="false" 
                             AllowPaging ="true" PageSize="15" OnPageIndexChanging="gvEmployee_PageIndexChanging" 
-                            EmptyDataText="No Record/s Found." >
+                            EmptyDataText="No Record/s Found." DataKeyNames="id">
                             <Columns>
-                                <asp:BoundField DataField="id" HeaderText="id"  Visible="False" />
+                                <asp:BoundField DataField="id" HeaderText="id" visible="false"  />
                                 <asp:BoundField DataField="code" HeaderText="Employee Code" />
                                 <asp:BoundField DataField="name" HeaderText="Name"  />
                                 <asp:BoundField DataField="birthday" HeaderText="Birthday"  />

@@ -3,6 +3,7 @@ Public Class Employee
     Inherits System.Web.UI.Page
     Dim dsGrid As DataTable
     Private cEmployee As New EmployeeInfo
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         fillEmployee()
     End Sub
@@ -27,7 +28,9 @@ Public Class Employee
 
         For Each row As GridViewRow In gvEmployee.Rows
             If row.RowIndex = gvEmployee.SelectedIndex Then
-                Session("Empid") = gvEmployee.SelectedRow.Cells(1).Text
+
+                Session("Empid") = CStr(gvEmployee.DataKeys(gvEmployee.SelectedIndex).Values("id"))
+
                 row.BackColor = ColorTranslator.FromHtml("#f39c12")
                 row.ToolTip = String.Empty
 
@@ -71,5 +74,26 @@ Public Class Employee
 
         Next
 
+    End Sub
+
+    Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        If gvEmployee.Rows.Count <> 0 Then
+            If Not Session("Empid") = "" Then
+                If MsgBox("Are you sure you want to delete this record?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    cEmployee.id = Session("Empid")
+                    
+                    cEmployee.is_deleted = "0"
+
+                    Dim cdb As New EmploymentInfoDB
+                    cEmployee = cdb.CEmpUpdatetoDeleteFile(cEmployee)
+                    fillEmployee()
+                    ShowMessage("Record deleted.", MessageType.Errors, Me)
+                End If
+            Else
+                ShowMessage("Please Select before you delete", MessageType.Errors, Me)
+            End If
+        Else
+            ShowMessage("No Record to delete", MessageType.Errors, Me)
+        End If
     End Sub
 End Class
