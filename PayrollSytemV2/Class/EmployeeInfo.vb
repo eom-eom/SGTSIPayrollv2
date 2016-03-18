@@ -1008,7 +1008,7 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@sunday", cItem.sunday)
                 commandDB1.Parameters.AddWithValue("@date_stamp", Date.Now)
 
-
+                '----RECEIVABLE AND TAXABLE ALLOWANCE-----
                 For x = 0 To recVal.Count - 1 Step 1
                     commandDB1.Parameters.AddWithValue("@rta_id_" & x, recVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_rta_deleted" & x, cItem.emp_rta_deleted)
@@ -1017,6 +1017,7 @@ Public Class EmploymentInfoDB
                     commandDB1.Parameters.AddWithValue("@rta_id_ta_" & x, taxAllowVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_rta_deleted_ta_" & x, cItem.emp_rta_deleted)
                 Next
+                '----COMPANY DEDUCTIONS-----
                 For x = 0 To comDeVal.Count - 1 Step 1
                     commandDB1.Parameters.AddWithValue("@comde_id_" & x, comDeVal(x))
                     commandDB1.Parameters.AddWithValue("@emp_comde_" & x, comDeVal(x))
@@ -1025,9 +1026,19 @@ Public Class EmploymentInfoDB
                     commandDB1.Parameters.AddWithValue("@emp_deduct_type_" & x, comDeVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_comde_deleted_" & x, cItem.emp_comde_deleted)
                 Next
+
+                '----LEAVES-----
                 For x = 0 To leaveVal.Count - 1 Step 1
                     commandDB1.Parameters.AddWithValue("@leave_id_" & x, leaveVal(x))
                     commandDB1.Parameters.AddWithValue("@leave_used_" & x, leaveVal(x))
+                Next
+
+                '----DEMINIMIS BENEFITS-----
+                For x = 0 To deminimisBenVal.Count - 1 Step 1
+                    commandDB1.Parameters.AddWithValue("@leave_id_" & x, leaveVal(x))
+                    commandDB1.Parameters.AddWithValue("@leave_used_" & x, leaveVal(x))
+                    xSQL.AppendLine("@dmb_id_" & x & ",")
+                    xSQL.AppendLine("@emp_dmb_deleted_" & x)
                 Next
 
                 commandDB1.ExecuteNonQuery()
@@ -1079,7 +1090,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("    emp_last_employer = @emp_last_employer, ")
                 xSQL.AppendLine("    prev_employer_date_resigned = @prev_employer_date_resigned, ")
                 xSQL.AppendLine("    acu_id = @acu_id, ")
-                'xSQL.AppendLine("    shift_id, ")
+                xSQL.AppendLine("    def_shift_id, ")
                 xSQL.AppendLine("    w_sss = @w_sss, ")
                 xSQL.AppendLine("    w_hdmf = @w_hdmf, ")
                 xSQL.AppendLine("    w_philhealth = @w_philhealth ")
@@ -1166,6 +1177,7 @@ Public Class EmploymentInfoDB
         Try
             Dim xSQL As New StringBuilder
             xSQL.AppendLine("SELECT ")
+            xSQL.AppendLine("    `id`, ")
             xSQL.AppendLine("    `code`, ")
             xSQL.AppendLine("    last_name, ")
             xSQL.AppendLine("    first_name, ")
@@ -1198,24 +1210,25 @@ Public Class EmploymentInfoDB
             xSQL.AppendLine("    emp_last_employer, ")
             xSQL.AppendLine("    prev_employer_date_resigned, ")
             xSQL.AppendLine("    acu_id, ")
-            'xSQL.AppendLine("    shift_id, ")
+            xSQL.AppendLine("    def_shift_id, ")
             xSQL.AppendLine("    w_sss, ")
             xSQL.AppendLine("    w_hdmf, ")
             xSQL.AppendLine("    w_philhealth ")
             xSQL.AppendLine("FROM employee ")
-            xSQL.AppendLine("WHERE code = @code")
+            xSQL.AppendLine("WHERE id = @id")
 
             Try
                 Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
                     SQLConnect.Open()
                     Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
-                    SQLCommand.Parameters.AddWithValue("@code", pEmployee_id)
+                    SQLCommand.Parameters.AddWithValue("@id", pEmployee_id)
                     Dim da As New MySqlDataAdapter(SQLCommand)
                     Dim ds As New DataSet
                     da.Fill(ds)
                     If ds.Tables.Count <> 0 Then
                         For Each dr In ds.Tables(0).Rows
                             'dt.Found = True
+                            If Not IsDBNull(dr("id")) Then dt.id = dr("id")
                             If Not IsDBNull(dr("code")) Then dt.code = dr("code")
                             If Not IsDBNull(dr("last_name")) Then dt.last_name = dr("last_name")
                             If Not IsDBNull(dr("first_name")) Then dt.first_name = dr("first_name")
@@ -1243,25 +1256,128 @@ Public Class EmploymentInfoDB
                             If Not IsDBNull(dr("pagibig_no")) Then dt.pagibig_no = dr("pagibig_no")
                             If Not IsDBNull(dr("philhealth_no")) Then dt.philhealth_no = dr("philhealth_no")
                             If Not IsDBNull(dr("tax_comp")) Then dt.tax_comp = dr("tax_comp")
-                            'If Not IsDBNull(dr("def_shift_id")) Then dt.def_shift_id = dr("def_shift_id")
+                            If Not IsDBNull(dr("def_shift_id")) Then dt.def_shift_id = dr("def_shift_id")
                             If Not IsDBNull(dr("emp_last_employer")) Then dt.emp_last_employer = dr("emp_last_employer")
                             If Not IsDBNull(dr("prev_employer_date_resigned")) Then dt.prev_employer_date_resigned = dr("prev_employer_date_resigned")
                             If Not IsDBNull(dr("acu_id")) Then dt.acu_id = dr("acu_id")
                             If Not IsDBNull(dr("w_sss")) Then dt.w_sss = dr("w_sss")
                             If Not IsDBNull(dr("w_hdmf")) Then dt.w_hdmf = dr("w_hdmf")
                             If Not IsDBNull(dr("w_philhealth")) Then dt.w_philhealth = dr("w_philhealth")
-                            'If Not IsDBNull(dr("telephone")) Then dt.telephone = dr("telephone")
+                            If Not IsDBNull(dr("telephone")) Then dt.telephone = dr("telephone")
                         Next
                     End If
                 End Using
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
+
+            xSQL.Clear()
+
+            xSQL.AppendLine("SELECT")
+            xSQL.AppendLine("emp_id,")
+            xSQL.AppendLine("monday,")
+            xSQL.AppendLine("tuesday,")
+            xSQL.AppendLine("wednesday,")
+            xSQL.AppendLine("thursday,")
+            xSQL.AppendLine("friday,")
+            xSQL.AppendLine("saturday,")
+            xSQL.AppendLine("sunday,")
+            xSQL.AppendLine("date_stamp")
+            xSQL.AppendLine("FROM employee_working_days ")
+            xSQL.AppendLine("WHERE emp_id = @id")
+            Try
+                Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
+                    SQLConnect.Open()
+                    Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
+                    SQLCommand.Parameters.AddWithValue("@id", pEmployee_id)
+                    Dim da As New MySqlDataAdapter(SQLCommand)
+                    Dim ds As New DataSet
+                    da.Fill(ds)
+                    If ds.Tables.Count <> 0 Then
+                        For Each dr In ds.Tables(0).Rows
+
+                            If Not IsDBNull(dr("monday")) Then dt.monday = dr("monday")
+                            If Not IsDBNull(dr("tuesday")) Then dt.tuesday = dr("tuesday")
+                            If Not IsDBNull(dr("wednesday")) Then dt.wednesday = dr("wednesday")
+                            If Not IsDBNull(dr("thursday")) Then dt.thursday = dr("thursday")
+                            If Not IsDBNull(dr("friday")) Then dt.friday = dr("friday")
+                            If Not IsDBNull(dr("saturday")) Then dt.saturday = dr("saturday")
+                            If Not IsDBNull(dr("sunday")) Then dt.sunday = dr("sunday")
+                        Next
+                    End If
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+
+
+
         Catch ex As Exception
             'sadsdasdas
             Throw ex
         End Try
         Return dt
+    End Function
+
+    Friend Function EmployeeGetListWhereClauseofRAT(ByVal pWhereClause As String) As DataTable
+        Dim dt As DataTable = Nothing
+        Try
+            Dim xSQL As New StringBuilder
+            xSQL.AppendLine("SELECT ")
+            xSQL.AppendLine("    rta_id, ")
+            xSQL.AppendLine("  , emp_id")
+            xSQL.AppendLine("FROM employee_receivable_and_taxable_allowances")
+
+
+            If pWhereClause.Length <> 0 Then
+                xSQL.AppendLine("WHERE ")
+                xSQL.AppendLine(pWhereClause)
+            End If
+            Try
+                Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
+                    SQLConnect.Open()
+                    Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
+                    Dim da As New MySqlDataAdapter(SQLCommand)
+                    Dim ds As New DataSet
+                    da.Fill(ds)
+                    If ds.Tables.Count <> 0 Then
+                        dt = ds.Tables(0)
+                    End If
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dt
+    End Function
+    Friend Function CEmpUpdatetoDeleteFile(ByVal Cemp As EmployeeInfo) As EmployeeInfo
+        Dim cReturn As New EmployeeInfo
+        Try
+
+            Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
+                SQLConnect.Open()
+
+                Dim xSQL As New StringBuilder
+                xSQL.AppendLine("UPDATE employee ")
+                xSQL.AppendLine("SET ")
+                xSQL.AppendLine("    is_deleted=  @is_deleted ")
+                xSQL.AppendLine("WHERE id = @id")
+
+                Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
+
+                commandDB1.Parameters.AddWithValue("@is_deleted", Cemp.is_deleted)
+                commandDB1.Parameters.AddWithValue("@id", Cemp.id)
+                commandDB1.ExecuteNonQuery()
+
+
+            End Using
+        Catch ex As Exception
+            Throw (ex)
+        End Try
+        cReturn = Cemp
+        Return cReturn
     End Function
     'WOOOOOOOOOOOOOOOHHHHHHHHHHHHHHh
 End Class
