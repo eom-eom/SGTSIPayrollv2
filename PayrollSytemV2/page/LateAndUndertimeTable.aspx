@@ -72,7 +72,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <asp:GridView ID="gvLateUndertime" runat="server" class="table table-bordered table-striped dataTable" OnRowDataBound="gvLateUndertime_RowDataBound" 
-                                OnSelectedIndexChanged="gvLateUndertime_SelectedIndexChanged" AutoGenerateColumns="false" AllowPaging ="true" PageSize="5" OnPageIndexChanging="gvLateUndertime_PageIndexChanging" EmptyDataText="No Record/s Found.">
+                                OnSelectedIndexChanged="gvLateUndertime_SelectedIndexChanged" AutoGenerateColumns="false" AllowPaging ="true" PageSize="10" OnPageIndexChanging="gvLateUndertime_PageIndexChanging" EmptyDataText="No Record/s Found.">
                                 <Columns>
                                     <asp:BoundField DataField="id" HeaderText="ID"  />
                                     <asp:BoundField DataField="lu_type" HeaderText="Type"  />

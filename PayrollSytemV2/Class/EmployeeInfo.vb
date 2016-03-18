@@ -956,9 +956,9 @@ Public Class EmploymentInfoDB
                     xSQL.AppendLine(");")
                 Next
 
-                
 
-                
+
+
 
                 xSQL.AppendLine("COMMIT;")
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
