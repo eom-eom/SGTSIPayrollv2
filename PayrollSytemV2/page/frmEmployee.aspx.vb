@@ -19,6 +19,7 @@ Public Class frmEmployee
         If Not Session("Empid") = "" Then
             UISetValues(Session("Empid"))
             Session("intEmp") = "0"
+
         End If
 
     End Sub
@@ -153,19 +154,22 @@ Public Class frmEmployee
         ddPos.DataBind()
     End Sub
     Protected Sub ddJobstats_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddJobstats.SelectedIndexChanged
-        If ddJobstats.SelectedItem.Text = "Resigned" Or ddJobstats.SelectedItem.Text = "Terminated" Then
-            txtDateResigned.Enabled = True
-        Else
-            txtDateResigned.Enabled = False
-            txtDateResigned.Text = ""
+        If IsPostBack Then
+            If ddJobstats.SelectedItem.Text = "Resigned" Or ddJobstats.SelectedItem.Text = "Terminated" Then
+                txtDateResigned.Enabled = True
+            Else
+                txtDateResigned.Enabled = False
+                txtDateResigned.Text = ""
+            End If
         End If
+
     End Sub
 
 
     Protected Sub LSaveEmployee_Click(sender As Object, e As EventArgs) Handles LSaveEmployee.Click
-        Dim rec_Val As New ArrayList()
+        Dim rec_Val, comde_Val, taxAllow_val As New ArrayList()
 
-        Dim taxAllow() As String = Nothing
+
         If Not txtEmpcode.Text = "" Then
 
             cEmployee.code = Trim(txtEmpcode.Text)
@@ -179,7 +183,7 @@ Public Class frmEmployee
             cEmployee.nationality = Trim(txtNationality.Text)
             cEmployee.email = Trim(txtEmail.Text)
             cEmployee.department_id = ddDept.SelectedValue
-            cEmployee.job_title_id = 0 'ddPos.SelectedValue
+            cEmployee.job_title_id = ddPos.SelectedValue
             cEmployee.employment_status = ddEmpType.Text
             cEmployee.date_hired = Trim(txtDateHired.Text)
             cEmployee.job_status = ddJobstats.Text
@@ -269,29 +273,50 @@ Public Class frmEmployee
                 If row.RowType = DataControlRowType.DataRow Then
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
                     If chkRow.Checked Then
-                        'values here pano?
-
                         rec_Val.Add(row.Cells(1).Text)
-                        'cEmployee.rta_id = row.Cells(1).Text
-
-                        cEmployee.emp_rta_deleted = "1"
                     End If
                 End If
             Next
-
             For Each row As GridViewRow In gvEmpTaxAllow.Rows
                 If row.RowType = DataControlRowType.DataRow Then
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
                     If chkRow.Checked Then
-                        'values here pano?
+                        taxAllow_val.Add(row.Cells(1).Text)
+                    End If
+                End If
+            Next
+            If chkSSS.Checked = True Then
+                cEmployee.w_sss = "1"
+            Else
+                cEmployee.w_sss = "0"
+            End If
 
+            If chkPhilhealth.Checked = True Then
+                cEmployee.w_philhealth = "1"
+            Else
+                cEmployee.w_philhealth = "0"
+            End If
+
+            If chkHDMF.Checked = True Then
+                cEmployee.w_hdmf = "1"
+            Else
+                cEmployee.w_hdmf = "0"
+            End If
+
+            For Each row As GridViewRow In gvCompanyDeduction.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If chkRow.Checked Then
+
+                        comde_Val.Add(row.Cells(1).Text)
                     End If
                 End If
             Next
 
+            'cEmployee.emp_comde_deleted = "1"
             Dim cdb As New EmploymentInfoDB
             If Not Session("intEmp") = "0" Then
-                cEmployee = cdb.EmployeeInsertFile(cEmployee, rec_Val)
+                cEmployee = cdb.EmployeeInsertFile(cEmployee, rec_Val, taxAllow_val, comde_Val)
 
                 ShowMessage("Employee Sucessfully Added.", MessageType.Success, Me)
             Else
@@ -327,7 +352,7 @@ Public Class frmEmployee
 
         End If
     End Sub
-    Private Sub clearMe(Optional ByVal ctlcol As ControlCollection = Nothing)
+    Public Sub clearMe(Optional ByVal ctlcol As ControlCollection = Nothing)
         If ctlcol Is Nothing Then ctlcol = Me.Controls
         For Each ctl As Control In ctlcol
             If TypeOf (ctl) Is TextBox Then

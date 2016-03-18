@@ -12,7 +12,13 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
 
     
-    
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="messagealert" id="alert_container">
+                        </div>
+                    </div>
+                </div>
+    <br />
       
              <asp:Button Text="Details" runat="server" OnClick="btnPInfo_Click" ID="btnPInfo" class="btn  btn-primary btn-flat" />
          
@@ -30,14 +36,7 @@
    
     <asp:UpdatePanel ID="UP1" runat="server" UpdateMode="Always">
         <ContentTemplate>
-            <br />
-            <div class="row">
-                    <div class="col-md-12">
-                        <div class="messagealert" id="alert_container">
-                        </div>
-                    </div>
-                </div>
-            <br />
+            
             <asp:MultiView ID="multiviews" runat="server"  >
 
         <asp:View ID="viewDetails" runat="server">
