@@ -26,3 +26,4 @@ C:\Users\jonathan\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSy
 C:\Users\jonathan\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.dll
 C:\Users\jonathan\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.xml
 C:\Users\jonathan\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.pdb
+C:\Users\SPARK GLOBAL\Source\Repos\SGTSIPayrollv2\PayrollSytemV2\obj\Debug\PayrollSytemV2.vbproj.ResolveComReference.cache

@@ -14,13 +14,16 @@ Public Class frmEmployee
             fillCompanyDeduction()
             fillLeaves()
             fillDeminimis()
+
+            If Not Session("Empid") = "" Then
+                fillDept()
+                UISetValues(Session("Empid"))
+                Session("intEmp") = "0"
+
+            End If
         End If
 
-        If Not Session("Empid") = "" Then
-            UISetValues(Session("Empid"))
-            Session("intEmp") = "0"
 
-        End If
 
     End Sub
     Private Sub fillRec()
@@ -52,11 +55,8 @@ Public Class frmEmployee
         Label2.Text = ddDept.SelectedValue
         Label3.Text = ddDept.SelectedItem.Text
         Dim cdb1 As New JobTitleDB
-
-
-        Dim dt As DataTable = cdb1.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
         ddPos.Items.Clear()
-
+        Dim dt As DataTable = cdb1.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
         ddPos.DataValueField = "job_title_id"
         ddPos.DataTextField = "job_title_name"
         ddPos.DataSource = dt
@@ -137,9 +137,15 @@ Public Class frmEmployee
 
 
     Protected Sub ddDept_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddDept.SelectedIndexChanged
+        'If Not IsPostBack Then
+
+        'Else
+
+        'End If
         If IsPostBack Then
             Label2.Text = ddDept.SelectedValue
             Label3.Text = ddDept.SelectedItem.Text
+
         End If
 
         Dim cdb As New JobTitleDB
@@ -152,8 +158,11 @@ Public Class frmEmployee
         ddPos.DataTextField = "job_title_name"
         ddPos.DataSource = dt
         ddPos.DataBind()
+
+
     End Sub
     Protected Sub ddJobstats_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddJobstats.SelectedIndexChanged
+
         If IsPostBack Then
             If ddJobstats.SelectedItem.Text = "Resigned" Or ddJobstats.SelectedItem.Text = "Terminated" Then
                 txtDateResigned.Enabled = True
@@ -163,11 +172,15 @@ Public Class frmEmployee
             End If
         End If
 
+
+
+
     End Sub
 
 
     Protected Sub LSaveEmployee_Click(sender As Object, e As EventArgs) Handles LSaveEmployee.Click
-        Dim rec_Val, comde_Val, taxAllow_val As New ArrayList()
+
+        Dim empRec, empComde, empTaxAllw, empLeaves, empDeminimisBen As New ArrayList()
 
 
         If Not txtEmpcode.Text = "" Then
@@ -273,18 +286,25 @@ Public Class frmEmployee
                 If row.RowType = DataControlRowType.DataRow Then
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
                     If chkRow.Checked Then
-                        rec_Val.Add(row.Cells(1).Text)
+
+                        empRec.Add(row.Cells(1).Text)
+                        'cEmployee.rta_id = row.Cells(1).Text
                     End If
                 End If
             Next
+
             For Each row As GridViewRow In gvEmpTaxAllow.Rows
                 If row.RowType = DataControlRowType.DataRow Then
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
                     If chkRow.Checked Then
-                        taxAllow_val.Add(row.Cells(1).Text)
+
+                        empTaxAllw.Add(row.Cells(1).Text)
                     End If
                 End If
             Next
+            'cEmployee.emp_rta_deleted = "1"
+
+            '
             If chkSSS.Checked = True Then
                 cEmployee.w_sss = "1"
             Else
@@ -307,16 +327,33 @@ Public Class frmEmployee
                 If row.RowType = DataControlRowType.DataRow Then
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
                     If chkRow.Checked Then
-
-                        comde_Val.Add(row.Cells(1).Text)
+                        empComde.Add(row.Cells(1).Text)
                     End If
                 End If
             Next
 
+            For Each row As GridViewRow In gvLeaves.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If chkRow.Checked Then
+
+                        empLeaves.Add(row.Cells(1).Text)
+                    End If
+                End If
+            Next
+
+            For Each row As GridViewRow In gvDeminimis.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If chkRow.Checked Then
+                        empDeminimisBen.Add(row.Cells(1).Text)
+                    End If
+                End If
+            Next
             'cEmployee.emp_comde_deleted = "1"
             Dim cdb As New EmploymentInfoDB
             If Not Session("intEmp") = "0" Then
-                cEmployee = cdb.EmployeeInsertFile(cEmployee, rec_Val, taxAllow_val, comde_Val)
+                cEmployee = cdb.EmployeeInsertFile(cEmployee, empRec, empTaxAllw, empComde, empLeaves, empDeminimisBen)
 
                 ShowMessage("Employee Sucessfully Added.", MessageType.Success, Me)
             Else
@@ -328,7 +365,7 @@ Public Class frmEmployee
 
             clearMe()
             Response.Redirect("Employee.aspx")
-
+            ShowMessage("Employee was saved successfully.", MessageType.Info, Me)
 
         Else
             ShowMessage("Code must not be blank", MessageType.Warning, Me)
@@ -385,12 +422,23 @@ Public Class frmEmployee
                 txtEmail.Text = .email
                 txtNationality.Text = .nationality
                 ddDept.SelectedValue = .department_id
+                Label2.Text = .department_id
+                Dim cdb1 As New JobTitleDB
+                ddPos.Items.Clear()
+                Dim dt As DataTable = cdb1.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
+                ddPos.DataValueField = "job_title_id"
+                ddPos.DataTextField = "job_title_name"
+                ddPos.DataSource = dt
+                ddPos.DataBind()
                 ddPos.SelectedValue = .job_title_id
+                Label3.Text = ddDept.SelectedItem.Text
+
+
                 ddEmpType.Text = .employment_status
                 txtDateHired.Text = .date_hired
                 txtaddress.Text = .address
                 ddJobstats.Text = .job_status
-                'txt.Text = .date_resigned
+                txtDateResigned.Text = .date_resigned
                 txtBasicSalary.Text = .basic_salary
                 txtDailyRate.Text = .daily_rate
                 txtHrRate.Text = .hour_rate
@@ -406,7 +454,7 @@ Public Class frmEmployee
                 txtPagibig.Text = .pagibig_no
                 txtPH.Text = .philhealth_no
                 ddTax.SelectedValue = .tax_comp
-                'ddShift.SelectedValue = .def_shift_id
+                ddShift.SelectedValue = .def_shift_id
                 txtLastEmployer.Text = .emp_last_employer
                 txtLEmpDtRes.Text = .prev_employer_date_resigned
                 If .w_sss = "1" Then
@@ -424,7 +472,55 @@ Public Class frmEmployee
                 ElseIf .w_philhealth = "0" Then
                     chkPhilhealth.Checked = False
                 End If
+
+                'working days pa...
+
+                If .monday = "1" Then
+                    chkMonday.Checked = True
+                Else
+                    chkMonday.Checked = False
+                End If
+
+                If .tuesday = "1" Then
+                    chkTuesday.Checked = True
+                Else
+                    chkTuesday.Checked = False
+                End If
+
+                If .wednesday = "1" Then
+                    chkWednesday.Checked = True
+                Else
+                    chkWednesday.Checked = False
+                End If
+
+                If .thursday = "1" Then
+                    chkThursday.Checked = True
+                Else
+                    chkThursday.Checked = False
+                End If
+
+                If .friday = "1" Then
+                    chkFriday.Checked = True
+                Else
+                    chkFriday.Checked = False
+                End If
+
+                If .saturday = "1" Then
+                    chkSaturday.Checked = True
+                Else
+                    chkSaturday.Checked = False
+                End If
+
+                If .sunday = "1" Then
+                    chkSunday.Checked = True
+                Else
+                    chkSunday.Checked = False
+                End If
             End With
+
+            'call here of the functions I've set
+            'cdb.EmployeeGetListWhereClauseofRAT("emp_id = " & value)
+
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -500,5 +596,14 @@ Public Class frmEmployee
                 End If
             End If
         Next
+    End Sub
+    Protected Sub ddShift_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddShift.SelectedIndexChanged
+        Dim cdb As New ShiftsDB
+        Dim dt As DataTable = cdb.ShiftGetListWhereClause("is_deleted = '1' AND id = '" & ddShift.SelectedValue & "' ")
+        txtTimeIn.Text = dt.Rows(0).Item(2).ToString
+        txtTimeOut.Text = dt.Rows(0).Item(3).ToString
+        'Format(CDate(dt.Rows(0).Item(3).ToString), "HH:MM:ss tt")
+
+
     End Sub
 End Class
