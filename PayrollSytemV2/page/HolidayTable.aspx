@@ -52,7 +52,7 @@
                         <div class="col-md-4">
                              <asp:DropDownList class="form-control select2"  ID="ddlHolType" runat="server" AutoPostBack="False" >
                                 <asp:ListItem Text="Legal Holiday" Value="Legal Holiday"></asp:ListItem>
-                                <asp:ListItem Text="Regular Holiday" Value="Regular Holiday"></asp:ListItem>
+                                <asp:ListItem Text="Special Holiday" Value="Special Holiday"></asp:ListItem>
                             </asp:DropDownList> 
                         </div>
                     </div>
