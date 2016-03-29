@@ -48,4 +48,112 @@ Partial Public Class DTRUpload
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvDTR As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''lblORate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblORate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblORegSH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblORegSH As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblOExSH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOExSH As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblOSHandO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOSHandO As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblORegLH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblORegLH As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblOExLH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOExLH As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblOLHandOT control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOLHandOT As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblORegSun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblORegSun As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblOExSun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOExSun As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblORegLHSun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblORegLHSun As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblOExLHSun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOExLHSun As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblONightDiff control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblONightDiff As Global.System.Web.UI.WebControls.Label
 End Class
