@@ -227,7 +227,7 @@ Public Class payroll
             Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
                 SQLConnect.Open()
                 Dim xSQL As New System.Text.StringBuilder
-                xSQL.AppendLine("SELECT code from employee where job_status = 'Active' and is_deleted = '1' ")
+                xSQL.AppendLine("SELECT DISTINCT emp_code FROM employee INNER JOIN dtrcompute ON employee.`code` = dtrcompute.emp_code where job_status = 'Active' and dtrcompute.is_deleted = '1' ")
 
                 Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
 
