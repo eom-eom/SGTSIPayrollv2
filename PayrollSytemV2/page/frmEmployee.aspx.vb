@@ -17,7 +17,7 @@ Public Class frmEmployee
             fillLeaves()
             fillDeminimis()
 
-            
+
             Dim dt As New DataTable()
             dt.Columns.AddRange(New DataColumn(5) {New DataColumn("comde_code"), New DataColumn("comde_desc"), _
                                                     New DataColumn("emp_comde_amt"), New DataColumn("emp_comde_start_date"), _
@@ -218,7 +218,7 @@ Public Class frmEmployee
             cEmployee.basic_salary = Trim(txtBasicSalary.Text)
             cEmployee.daily_rate = Trim(txtDailyRate.Text)
             cEmployee.hour_rate = Trim(txtHrRate.Text)
-            cEmployee.night_diff = Trim(txtNightDiff.Text)
+            cEmployee.night_rate = Trim(txtNightDiff.Text)
             cEmployee.def_shift_id = ddShift.SelectedValue
             cEmployee.def_time_in = Format(CDate(Trim(txtTimeIn.Text)), "hh:mm:ss tt")
             cEmployee.def_time_out = Format(CDate(Trim(txtTimeOut.Text)), "hh:mm:ss tt")
@@ -337,8 +337,8 @@ Public Class frmEmployee
             Else
                 cEmployee.w_hdmf = "0"
             End If
-            
-          
+
+
             If gvEmpCompanyDeduction.Rows.Count = 0 Then
                 empComde = Nothing
             Else
@@ -476,11 +476,11 @@ Public Class frmEmployee
                 txtBasicSalary.Text = .basic_salary
                 txtDailyRate.Text = .daily_rate
                 txtHrRate.Text = .hour_rate
-                txtNightDiff.Text = .night_diff
+                txtNightDiff.Text = .night_rate
                 Dim datteIN, datteOut As DateTime
                 datteIN = DateTime.ParseExact(.def_time_in, "hh:mm:ss tt", CultureInfo.CurrentCulture)
                 datteOut = DateTime.ParseExact(.def_time_out, "hh:mm:ss tt", CultureInfo.CurrentCulture)
-                
+
                 txtTimeIn.Text = datteIN.ToString("HH:mm:ss", CultureInfo.CurrentCulture)
                 txtTimeOut.Text = datteOut.ToString("HH:mm:ss", CultureInfo.CurrentCulture)
                 If .w_13monthpay = "1" Then
@@ -650,7 +650,7 @@ Public Class frmEmployee
         Next
     End Sub
 
-   
+
 
     Protected Sub gvEmpCompanyDeduction_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
@@ -689,7 +689,7 @@ Public Class frmEmployee
         selectedComde.Text = "Select"
         ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal", "$('#myModal').modal()", True)
     End Sub
-   
+
     'Protected Sub LAddLeaves_Click(sender As Object, e As EventArgs) Handles LAddLeaves.Click
     '    For Each row As GridViewRow In gvLeaves.Rows
     '        If row.RowType = DataControlRowType.DataRow Then
@@ -725,7 +725,7 @@ Public Class frmEmployee
     End Sub
 
     Protected Sub ddComde_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddComde.SelectedIndexChanged
-        If IsPostBack then
+        If IsPostBack Then
             lblTheChosenOne.Text = ddcomde.SelectedValue & "-" & ddComde.selecteditem.Text
         End If
         UPmodal.Update()
@@ -736,7 +736,7 @@ Public Class frmEmployee
         gvEmpCompanyDeduction.DataBind()
     End Sub
     Protected Sub selectedComde_Click(sender As Object, e As EventArgs) Handles selectedComde.Click
-       
+
         ' insertCompanyDeductions()
         'check muna if nasa gridview na po
         'check muna si gridview
@@ -788,9 +788,9 @@ Public Class frmEmployee
         ' UPGvEmpComde.Update()
     End Sub
 
-    
- 
- 
+
+
+
     Protected Sub LEditComde_Click(sender As Object, e As EventArgs) Handles LEditComde.Click
         If gvEmpCompanyDeduction.Rows.Count <> 0 Then
             If IsNothing(gvEmpCompanyDeduction.SelectedRow) Then
@@ -816,11 +816,11 @@ Public Class frmEmployee
         Else
             ShowMessage("No record(s).", MessageType.Errors, Me)
         End If
-       
+
     End Sub
 
-   
-   
+
+
 
     Protected Sub LDeleteComde_Click(sender As Object, e As EventArgs) Handles LDeleteComde.Click
         If gvEmpCompanyDeduction.Rows.Count <> 0 Then
