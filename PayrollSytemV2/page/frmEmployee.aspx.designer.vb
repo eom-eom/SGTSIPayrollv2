@@ -518,6 +518,24 @@ Partial Public Class frmEmployee
     Protected WithEvents txtHrRate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblNightDiff control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNightDiff As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNightDiff control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNightDiff As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblshift control.
     '''</summary>
     '''<remarks>
@@ -779,13 +797,22 @@ Partial Public Class frmEmployee
     Protected WithEvents chkHDMF As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''gvCompanyDeduction control.
+    '''UPGvEmpComde control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvCompanyDeduction As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents UPGvEmpComde As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''gvEmpCompanyDeduction control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvEmpCompanyDeduction As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''LAddComde control.
@@ -797,6 +824,15 @@ Partial Public Class frmEmployee
     Protected WithEvents LAddComde As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''LEditComde control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LEditComde As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''LDeleteComde control.
     '''</summary>
     '''<remarks>
@@ -804,6 +840,123 @@ Partial Public Class frmEmployee
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LDeleteComde As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''UPmodal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UPmodal As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''lblTheChosenOne control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTheChosenOne As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblSelect control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSelect As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddComde control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddComde As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''lblComdeAmt control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblComdeAmt As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtComdeAmt control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtComdeAmt As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''dtStart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dtStart As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtComdeStart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtComdeStart As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''dtEnd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dtEnd As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtComdeEnd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtComdeEnd As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblDedtype control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDedtype As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddDeductType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddDeductType As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''selectedComde control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents selectedComde As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''viewHistory control.
@@ -833,24 +986,6 @@ Partial Public Class frmEmployee
     Protected WithEvents gvLeaves As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''LAddLeaves control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LAddLeaves As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LDeleteLeaves control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LDeleteLeaves As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''gvDeminimis control.
     '''</summary>
     '''<remarks>
@@ -858,24 +993,6 @@ Partial Public Class frmEmployee
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvDeminimis As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''LAddDmns control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LAddDmns As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''LDeleteDmns control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LDeleteDmns As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''LcancelEmployee control.
