@@ -709,7 +709,7 @@
                                                                                         <asp:CheckBox ID="chkRow" runat="server" />
                                                                                     </ItemTemplate>
                                                                                 </asp:TemplateField>
-                                                                                <asp:BoundField DataField="id" HeaderText="id"  Visible="False" />
+                                                                                <asp:BoundField DataField="id" HeaderText="id"  Visible="true" />
                                                                                 <asp:BoundField DataField="rta_code" HeaderText="Code" />
                                                                                 <asp:BoundField DataField="rta_desc" HeaderText="Description"  />
                                                                                 <asp:BoundField DataField="rta_amount" HeaderText="Amount"  />
