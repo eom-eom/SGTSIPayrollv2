@@ -66,4 +66,13 @@ Partial Public Class payroll
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvGenerate As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''gvGenerateTotal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvGenerateTotal As Global.System.Web.UI.WebControls.GridView
 End Class

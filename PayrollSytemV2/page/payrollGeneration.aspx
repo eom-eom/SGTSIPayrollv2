@@ -51,7 +51,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div style ="width:inherit; overflow:auto;" >
-                        <asp:GridView ID="gvGenerate" runat="server" class="table table-responsive table-bordered table-striped dataTable" AutoGenerateColumns="true" HeaderStyle-Font-Size="Smaller" AllowCustomPaging="true" >
+                        <asp:GridView ID="gvGenerate" runat="server" class="table table-responsive table-bordered table-striped dataTable" AutoGenerateColumns="true" HeaderStyle-Font-Size="Smaller" >
+                        </asp:GridView>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style ="width:inherit; overflow:auto;" >
+                        <asp:GridView ID="gvGenerateTotal" runat="server" class="table table-responsive table-bordered table-striped dataTable" AutoGenerateColumns="true" HeaderStyle-Font-Size="Smaller"   >
                         </asp:GridView>
                         </div>
                     </div>
