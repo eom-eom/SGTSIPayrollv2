@@ -247,7 +247,8 @@ Public Class payroll
 
     Protected Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
         If PayrollCheck(txtFrom.Text, TxtTo.Text) = True Then
-            MsgBox("Check payroll date, it might be already in the database.", vbInformation)
+            ' MsgBox("Check payroll date, it might be already in the database.", vbInformation)
+            ShowMessage("Check payroll date, it might be already in the database.", MessageType.Warning, Me)
             Exit Sub
         End If
 
