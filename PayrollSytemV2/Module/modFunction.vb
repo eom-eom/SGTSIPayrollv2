@@ -5,8 +5,21 @@
     Public default_shift As String
     Public grace_period As String
 
-    Public salary_setting As String
     Public overtime_rate As String
+    Public overtime_regular_sh As String
+    Public overtime_excess_sh As String
+    Public overtime_sh_and_ot As String
+    Public overtime_regular_lh As String
+    Public overtime_excess_lh As String
+    Public overtime_lh_and_ot As String
+    Public overtime_regular_sun As String
+    Public overtime_excess_sun As String
+    Public overtime_regular_lh_sun As String
+    Public overtime_excess_lh_sun As String
+    Public overtime_nightdiff As String
+
+    Public salary_setting As String
+    'Public overtime_rate As String
     Public night_diff_rate As String
     Public special_holiday_rate As String
     Public legal_holiday_rate As String
@@ -15,6 +28,7 @@
     Public month_release_date As String
     Public comp_deduction_settings As String
     Public minimum_wage As String
+
     Enum MessageType
         Success
         Info
@@ -24,6 +38,12 @@
     Public Sub ShowMessage(Message As String, Types As MessageType, p As Page)
         ScriptManager.RegisterStartupScript(p, p.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" & Types & "');", True)
     End Sub
+    Friend Function ModC(ByVal x As Double) As Double
+        ModC = Format(x, "0.00")
+    End Function
+    Friend Function ShowComma(ByVal x As Double) As String
+        ShowComma = x.ToString("N")
+    End Function
     Public Sub ShowMessage_mod(Message As String, Types As MessageType, p As Page)
         ScriptManager.RegisterStartupScript(p, p.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage_mod('" + Message + "','" & Types & "');", True)
     End Sub
