@@ -6,6 +6,15 @@ Public Class Employee
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         fillEmployee()
+        'If IsPostBack Then
+        '    If Not Session("intEmp") = "1" Then
+        '        ShowMessage("Employee Sucessfully Added.", MessageType.Success, Me)
+        '    ElseIf Session("intEmp") = "2" Then
+        '        ShowMessage("Employee was edited successfully.", MessageType.Info, Me)
+        '    End If
+        'End If
+        
+
     End Sub
 
     Protected Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
@@ -33,7 +42,7 @@ Public Class Employee
 
                 row.BackColor = ColorTranslator.FromHtml("#f39c12")
                 row.ToolTip = String.Empty
-
+                'Exit For
             Else
                 row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
                 row.ToolTip = "Click to select this row."
