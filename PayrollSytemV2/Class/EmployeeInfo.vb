@@ -2,7 +2,7 @@
 Imports MySql.Data.MySqlClient
 Public Class EmployeeInfo
 #Region "Properties"
-    '--------------EMPLOYEE TABLE---------------'
+    '--------------EMPLOYEE TABLE----------------'
     Private _id As String = ""
 
     Friend Property id() As String
