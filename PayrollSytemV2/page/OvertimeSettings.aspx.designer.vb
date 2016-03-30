@@ -23,15 +23,6 @@ Partial Public Class OvertimeSettings
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
-    '''txtOName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtOName As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''txtORate control.
     '''</summary>
     '''<remarks>
@@ -41,31 +32,103 @@ Partial Public Class OvertimeSettings
     Protected WithEvents txtORate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''gvOT control.
+    '''txtOLHandOT control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents gvOT As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents txtOLHandOT As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnNew control.
+    '''txtORegSH control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnNew As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents txtORegSH As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnSave control.
+    '''txtORegSun control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSave As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents txtORegSun As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtOExSH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtOExSH As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtOExSun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtOExSun As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtOSHandO control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtOSHandO As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtORegLHSun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtORegLHSun As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtORegLH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtORegLH As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtOExLHSun control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtOExLHSun As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtOExLH control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtOExLH As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtONightDiff control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtONightDiff As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnEdit control.
@@ -75,13 +138,4 @@ Partial Public Class OvertimeSettings
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnEdit As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnDelete control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDelete As Global.System.Web.UI.WebControls.Button
 End Class
