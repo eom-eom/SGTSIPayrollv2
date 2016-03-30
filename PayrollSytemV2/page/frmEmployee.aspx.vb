@@ -1,4 +1,6 @@
 ﻿Imports System.Drawing
+Imports System.Globalization
+
 Public Class frmEmployee
     Inherits System.Web.UI.Page
     Dim dsGrid As DataTable
@@ -15,17 +17,24 @@ Public Class frmEmployee
             fillLeaves()
             fillDeminimis()
 
+            
+            Dim dt As New DataTable()
+            dt.Columns.AddRange(New DataColumn(5) {New DataColumn("comde_code"), New DataColumn("comde_desc"), _
+                                                    New DataColumn("emp_comde_amt"), New DataColumn("emp_comde_start_date"), _
+                                                   New DataColumn("emp_comde_end_date"), New DataColumn("emp_deduct_type")})
+            ViewState("comp_de") = dt
+            Me.BindGrid()
             If Not Session("Empid") = "" Then
-                fillDept()
+                'fillDept()
                 UISetValues(Session("Empid"))
                 Session("intEmp") = "0"
-
             End If
+
         End If
 
 
-
     End Sub
+
     Private Sub fillRec()
         Dim cdb As New ReceivablesAndTaxableDB
         dsGrid = cdb.fillReceivables()
@@ -81,8 +90,11 @@ Public Class frmEmployee
     Private Sub fillCompanyDeduction()
         Dim cdb As New CompanyDeductionDB
         dsGrid = cdb.CDGetList()
-        gvCompanyDeduction.DataSource = dsGrid
-        gvCompanyDeduction.DataBind()
+        ddComde.DataValueField = "comde_code"
+        ddComde.DataTextField = "comde_Desc"
+        ddcomde.DataSource = dsGrid
+        ddcomde.DataBind()
+        ddcomde.Text = Nothing
     End Sub
     Private Sub fillLeaves()
         Dim cdb As New LeaveTypesDB
@@ -180,11 +192,12 @@ Public Class frmEmployee
 
     Protected Sub LSaveEmployee_Click(sender As Object, e As EventArgs) Handles LSaveEmployee.Click
 
-        Dim empRec, empComde, empTaxAllw, empLeaves, empDeminimisBen As New ArrayList()
+        Dim empRec, empTaxAllw, empDeminimisBen, empLeaves As New ArrayList()
+        Dim empComde As DataTable = Nothing
 
 
         If Not txtEmpcode.Text = "" Then
-
+            cEmployee.id = Session("Empid")
             cEmployee.code = Trim(txtEmpcode.Text)
             cEmployee.first_name = Trim(txtFirstname.Text)
             cEmployee.last_name = Trim(txtLastname.Text)
@@ -205,9 +218,10 @@ Public Class frmEmployee
             cEmployee.basic_salary = Trim(txtBasicSalary.Text)
             cEmployee.daily_rate = Trim(txtDailyRate.Text)
             cEmployee.hour_rate = Trim(txtHrRate.Text)
+            cEmployee.night_diff = Trim(txtNightDiff.Text)
             cEmployee.def_shift_id = ddShift.SelectedValue
-            cEmployee.def_time_in = Trim(txtTimeIn.Text)
-            cEmployee.def_time_out = Trim(txtTimeOut.Text)
+            cEmployee.def_time_in = Format(CDate(Trim(txtTimeIn.Text)), "hh:mm:ss tt")
+            cEmployee.def_time_out = Format(CDate(Trim(txtTimeOut.Text)), "hh:mm:ss tt")
             If chk13month.Checked = True Then
                 cEmployee.w_13monthpay = "1"
             Else
@@ -271,9 +285,9 @@ Public Class frmEmployee
                 cEmployee.saturday = "0"
             End If
             If chkSunday.Checked = True Then
-                chkSunday.Text = "1"
+                cEmployee.sunday = "1"
             Else
-                chkSunday.Text = "0"
+                cEmployee.sunday = "0"
             End If
 
             If chk13month.Checked = True Then
@@ -285,6 +299,7 @@ Public Class frmEmployee
             For Each row As GridViewRow In gvEmpRec.Rows
                 If row.RowType = DataControlRowType.DataRow Then
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+
                     If chkRow.Checked Then
 
                         empRec.Add(row.Cells(1).Text)
@@ -322,21 +337,31 @@ Public Class frmEmployee
             Else
                 cEmployee.w_hdmf = "0"
             End If
-
-            For Each row As GridViewRow In gvCompanyDeduction.Rows
-                If row.RowType = DataControlRowType.DataRow Then
-                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
-                    If chkRow.Checked Then
-                        empComde.Add(row.Cells(1).Text)
+            
+          
+            If gvEmpCompanyDeduction.Rows.Count = 0 Then
+                empComde = Nothing
+            Else
+                empComde = DirectCast(ViewState("comp_de"), DataTable)
+                For x = 0 To empComde.Rows.Count - 1 Step 1
+                    If empComde.Rows(x).Item(5).ToString = "Halfmonth" Then
+                        empComde.Rows(x).Item(5) = "0"
+                    Else
+                        empComde.Rows(x).Item(5) = "1"
                     End If
-                End If
-            Next
+                Next
+            End If
+
+
+
 
             For Each row As GridViewRow In gvLeaves.Rows
                 If row.RowType = DataControlRowType.DataRow Then
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If gvLeaves.Rows.Count = 0 Then
+                        Exit For
+                    End If
                     If chkRow.Checked Then
-
                         empLeaves.Add(row.Cells(1).Text)
                     End If
                 End If
@@ -345,28 +370,37 @@ Public Class frmEmployee
             For Each row As GridViewRow In gvDeminimis.Rows
                 If row.RowType = DataControlRowType.DataRow Then
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If gvDeminimis.Rows.Count = 0 Then
+                        Exit For
+                    End If
                     If chkRow.Checked Then
                         empDeminimisBen.Add(row.Cells(1).Text)
                     End If
                 End If
             Next
+
             'cEmployee.emp_comde_deleted = "1"
             Dim cdb As New EmploymentInfoDB
             If Not Session("intEmp") = "0" Then
                 cEmployee = cdb.EmployeeInsertFile(cEmployee, empRec, empTaxAllw, empComde, empLeaves, empDeminimisBen)
 
-                ShowMessage("Employee Sucessfully Added.", MessageType.Success, Me)
+                'ShowMessage("Employee Sucessfully Added.", MessageType.Success, Me)
+                MsgBox("Employee added successfully.")
+                Session("intEmp") = "1"
             Else
-                cEmployee.id = Trim(txtEmpcode.Text)
-                cEmployee = cdb.EmployeeUpdateFile(cEmployee)
-                ShowMessage("Employee Sucessfully Edited", MessageType.Success, Me)
+
+                cEmployee = cdb.EmployeeUpdateFile(cEmployee, empRec, empTaxAllw, empComde, empLeaves, empDeminimisBen)
+                MsgBox("Employee edited successfully.")
+                ' ShowMessage("Employee Sucessfully Edited", MessageType.Success, Me)
+                Session("intEmp") = "2"
             End If
 
 
             clearMe()
-            Response.Redirect("Employee.aspx")
-            ShowMessage("Employee was saved successfully.", MessageType.Info, Me)
 
+            Response.Redirect("Employee.aspx")
+
+            Session.RemoveAll()
         Else
             ShowMessage("Code must not be blank", MessageType.Warning, Me)
 
@@ -393,7 +427,7 @@ Public Class frmEmployee
         If ctlcol Is Nothing Then ctlcol = Me.Controls
         For Each ctl As Control In ctlcol
             If TypeOf (ctl) Is TextBox Then
-                DirectCast(ctl, TextBox).Text = Nothing
+                DirectCast(ctl, TextBox).Text = String.Empty
 
             ElseIf TypeOf (ctl) Is DropDownList Then
                 DirectCast(ctl, DropDownList).Text = Nothing
@@ -425,10 +459,10 @@ Public Class frmEmployee
                 Label2.Text = .department_id
                 Dim cdb1 As New JobTitleDB
                 ddPos.Items.Clear()
-                Dim dt As DataTable = cdb1.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
+                Dim dtJobtitle As DataTable = cdb1.PosGetListWhereClause("job_titles.is_deleted = '1' AND job_titles.dept_id = '" & Label2.Text & "' ")
                 ddPos.DataValueField = "job_title_id"
                 ddPos.DataTextField = "job_title_name"
-                ddPos.DataSource = dt
+                ddPos.DataSource = dtJobtitle
                 ddPos.DataBind()
                 ddPos.SelectedValue = .job_title_id
                 Label3.Text = ddDept.SelectedItem.Text
@@ -442,8 +476,13 @@ Public Class frmEmployee
                 txtBasicSalary.Text = .basic_salary
                 txtDailyRate.Text = .daily_rate
                 txtHrRate.Text = .hour_rate
-                txtTimeIn.Text = .def_time_in
-                txtTimeOut.Text = .def_time_out
+                txtNightDiff.Text = .night_diff
+                Dim datteIN, datteOut As DateTime
+                datteIN = DateTime.ParseExact(.def_time_in, "hh:mm:ss tt", CultureInfo.CurrentCulture)
+                datteOut = DateTime.ParseExact(.def_time_out, "hh:mm:ss tt", CultureInfo.CurrentCulture)
+                
+                txtTimeIn.Text = datteIN.ToString("HH:mm:ss", CultureInfo.CurrentCulture)
+                txtTimeOut.Text = datteOut.ToString("HH:mm:ss", CultureInfo.CurrentCulture)
                 If .w_13monthpay = "1" Then
                     chk13month.Checked = True
                 ElseIf .w_13monthpay = "0" Then
@@ -519,8 +558,77 @@ Public Class frmEmployee
             End With
 
             'call here of the functions I've set
-            'cdb.EmployeeGetListWhereClauseofRAT("emp_id = " & value)
+            Dim dtEmpRecTax As DataTable = cdb.EmployeeGetListWhereClauseofRAT("emp_id = " & value)
+            For Each row As GridViewRow In gvEmpRec.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If dtEmpRecTax.Rows.Count = 0 Then
+                        Exit For
+                    End If
+                    For x = 0 To dtEmpRecTax.Rows.Count - 1 Step 1
+                        If row.Cells(1).Text = dtEmpRecTax.Rows(x).Item(0).ToString Then
+                            chkRow.Checked = True
+                        End If
+                    Next
+                End If
+            Next
+            For Each row As GridViewRow In gvEmpTaxAllow.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If dtEmpRecTax.Rows.Count = 0 Then
+                        Exit For
+                    End If
+                    For x = 0 To dtEmpRecTax.Rows.Count - 1 Step 1
+                        If row.Cells(1).Text = dtEmpRecTax.Rows(x).Item(0).ToString Then
+                            chkRow.Checked = True
+                        End If
+                    Next
+                End If
+            Next
 
+            '-------company deduction----------
+            Dim dtEmpComde As DataTable = cdb.EmployeeGetListWhereClauseofCompanyDeductions("emp_id = " & value)
+            For x = 0 To dtEmpComde.Rows.Count - 1 Step 1
+                If dtEmpComde.Rows(x).Item(5).ToString = "0" Then
+                    dtEmpComde.Rows(x).Item(5) = "Halfmonth"
+                Else
+                    dtEmpComde.Rows(x).Item(5) = "Endmonth"
+                End If
+            Next
+            ViewState("comp_de") = dtEmpComde
+            Me.BindGrid()
+            UPGvEmpComde.Update()
+
+            '-------leaves------------------
+            Dim dtEmpLeaves As DataTable = cdb.EmployeeGetListWhereClauseofLeaves("emp_id = " & value)
+            For Each row As GridViewRow In gvLeaves.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If dtEmpLeaves.Rows.Count = 0 Then
+                        Exit For
+                    End If
+                    For x = 0 To dtEmpLeaves.Rows.Count - 1 Step 1
+                        If row.Cells(1).Text = dtEmpLeaves.Rows(x).Item(0).ToString Then
+                            chkRow.Checked = True
+                        End If
+                    Next
+                End If
+            Next
+
+            Dim dtEmpDMB As DataTable = cdb.EmployeeGetListWhereClauseofDeMinimisBen("emp_id = " & value)
+            For Each row As GridViewRow In gvDeminimis.Rows
+                If row.RowType = DataControlRowType.DataRow Then
+                    Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
+                    If dtEmpDMB.Rows.Count = 0 Then
+                        Exit For
+                    End If
+                    For x = 0 To dtEmpDMB.Rows.Count - 1 Step 1
+                        If row.Cells(1).Text = dtEmpDMB.Rows(x).Item(0).ToString Then
+                            chkRow.Checked = True
+                        End If
+                    Next
+                End If
+            Next
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -528,23 +636,33 @@ Public Class frmEmployee
     End Sub
 
     Protected Sub gvEmpRec_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvEmpRec.SelectedIndexChanged
+
         For Each row As GridViewRow In gvEmpRec.Rows
             If row.RowIndex = gvEmpRec.SelectedIndex Then
                 Session("Recid") = gvEmpRec.SelectedRow.Cells(1).Text
                 row.BackColor = ColorTranslator.FromHtml("#f39c12")
-                row.ToolTip = String.Empty
+                ' row.ToolTip = String.Empty
 
             Else
                 row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
-                row.ToolTip = "Click to select this row."
+                'row.ToolTip = "Click to select this row."
             End If
         Next
     End Sub
 
+   
+
+    Protected Sub gvEmpCompanyDeduction_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            e.Row.Attributes("onclick") = Page.ClientScript.GetPostBackClientHyperlink(gvEmpCompanyDeduction, "Select$" & e.Row.RowIndex)
+            e.Row.ToolTip = "Click to select this row." & e.Row.Cells(1).Text
+        End If
+        ' UPGvEmpComde.Update()
+    End Sub
     Protected Sub gvEmpRec_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
             e.Row.Attributes("onclick") = Page.ClientScript.GetPostBackClientHyperlink(gvEmpRec, "Select$" & e.Row.RowIndex)
-            e.Row.ToolTip = "Click to select this row." & e.Row.RowIndex
+            e.Row.ToolTip = "Click to select this row." & e.Row.Cells(1).Text
         End If
     End Sub
 
@@ -557,6 +675,7 @@ Public Class frmEmployee
             If IsPostBack Then
                 txtDailyRate.Text = Format(CDbl(CDbl(txtBasicSalary.Text) / 21.75), "0.00")
                 txtHrRate.Text = Format(CDbl(CDbl(txtDailyRate.Text) / 8), "0.00")
+                txtNightDiff.Text = Format(CDbl((CDbl(txtHrRate.Text) * 1.25 * 0.1) + (CDbl(txtHrRate.Text * 1.25))), "0.00")
             End If
 
         Catch ex As Exception
@@ -566,44 +685,165 @@ Public Class frmEmployee
     End Sub
 
     Protected Sub LAddComde_Click(sender As Object, e As EventArgs) Handles LAddComde.Click
-        For Each row As GridViewRow In gvCompanyDeduction.Rows
-            If row.RowType = DataControlRowType.DataRow Then
-                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
-                If chkRow.Checked Then
-                    MsgBox(row.Cells(1).Text)
-                End If
-            End If
-        Next
+        'show modal
+        selectedComde.Text = "Select"
+        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal", "$('#myModal').modal()", True)
     End Sub
+   
+    'Protected Sub LAddLeaves_Click(sender As Object, e As EventArgs) Handles LAddLeaves.Click
+    '    For Each row As GridViewRow In gvLeaves.Rows
+    '        If row.RowType = DataControlRowType.DataRow Then
+    '            Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
+    '            If chkRow.Checked Then
+    '                MsgBox(row.Cells(1).Text)
+    '            End If
+    '        End If
+    '    Next
+    'End Sub
 
-    Protected Sub LAddLeaves_Click(sender As Object, e As EventArgs) Handles LAddLeaves.Click
-        For Each row As GridViewRow In gvLeaves.Rows
-            If row.RowType = DataControlRowType.DataRow Then
-                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
-                If chkRow.Checked Then
-                    MsgBox(row.Cells(1).Text)
-                End If
-            End If
-        Next
-    End Sub
-
-    Protected Sub LAddDmns_Click(sender As Object, e As EventArgs) Handles LAddDmns.Click
-        For Each row As GridViewRow In gvDeminimis.Rows
-            If row.RowType = DataControlRowType.DataRow Then
-                Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
-                If chkRow.Checked Then
-                    MsgBox(row.Cells(1).Text)
-                End If
-            End If
-        Next
-    End Sub
+    'Protected Sub LAddDmns_Click(sender As Object, e As EventArgs) Handles LAddDmns.Click
+    '    For Each row As GridViewRow In gvDeminimis.Rows
+    '        If row.RowType = DataControlRowType.DataRow Then
+    '            Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkCtrl"), CheckBox)
+    '            If chkRow.Checked Then
+    '                MsgBox(row.Cells(1).Text)
+    '            End If
+    '        End If
+    '    Next
+    'End Sub
     Protected Sub ddShift_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddShift.SelectedIndexChanged
         Dim cdb As New ShiftsDB
         Dim dt As DataTable = cdb.ShiftGetListWhereClause("is_deleted = '1' AND id = '" & ddShift.SelectedValue & "' ")
-        txtTimeIn.Text = dt.Rows(0).Item(2).ToString
-        txtTimeOut.Text = dt.Rows(0).Item(3).ToString
+        Dim datteIN, datteOut As DateTime
+        datteIN = DateTime.ParseExact(dt.Rows(0).Item(2).ToString, "hh:mm:ss tt", CultureInfo.CurrentCulture)
+        datteOut = DateTime.ParseExact(dt.Rows(0).Item(3).ToString, "hh:mm:ss tt", CultureInfo.CurrentCulture)
+        txtTimeIn.Text = datteIN.ToString("HH:mm:ss", CultureInfo.CurrentCulture)
+        txtTimeOut.Text = datteOut.ToString("HH:mm:ss", CultureInfo.CurrentCulture)
         'Format(CDate(dt.Rows(0).Item(3).ToString), "HH:MM:ss tt")
 
 
+    End Sub
+
+    Protected Sub ddComde_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddComde.SelectedIndexChanged
+        If IsPostBack then
+            lblTheChosenOne.Text = ddcomde.SelectedValue & "-" & ddComde.selecteditem.Text
+        End If
+        UPmodal.Update()
+    End Sub
+
+    Protected Sub BindGrid()
+        gvEmpCompanyDeduction.DataSource = DirectCast(ViewState("comp_de"), DataTable)
+        gvEmpCompanyDeduction.DataBind()
+    End Sub
+    Protected Sub selectedComde_Click(sender As Object, e As EventArgs) Handles selectedComde.Click
+       
+        ' insertCompanyDeductions()
+        'check muna if nasa gridview na po
+        'check muna si gridview
+
+        If Not txtComdeAmt.Text = "" Then
+            Dim dt As DataTable = DirectCast(ViewState("comp_de"), DataTable)
+            If selectedComde.Text = "Update" And dt.Rows.Count <> 0 Then
+                For x = 0 To dt.Rows.Count - 1 Step 1
+
+                    If dt.Rows(x).Item(0).ToString = gvEmpCompanyDeduction.SelectedRow.Cells(0).Text Then
+                        dt.Rows(x).Delete()
+                        dt.AcceptChanges()
+                        ViewState("comp_de") = dt
+                        Me.BindGrid()
+                        Exit For
+                    End If
+                Next
+            End If
+            dt.Rows.Add(ddComde.SelectedValue, ddComde.SelectedItem.Text, Trim(txtComdeAmt.Text), txtComdeStart.Text, txtComdeEnd.Text, ddDeductType.SelectedItem.Text)
+            ViewState("comp_de") = dt
+            Me.BindGrid()
+            'updating modal and gridview
+            UPmodal.Update()
+            UPGvEmpComde.Update()
+
+            'How do I close the modal after my codings ????? :)))) 
+        Else
+            ShowMessage_mod("Invalid Amount", MessageType.Success, Me)
+        End If
+        ddComde.Text = Nothing
+        txtComdeAmt.Text = String.Empty
+        txtComdeStart.Text = String.Empty
+        txtComdeEnd.Text = String.Empty
+        ddDeductType.Text = Nothing
+    End Sub
+
+    Protected Sub gvEmpCompanyDeduction_SelectedIndexChanged(sender As Object, e As EventArgs)
+        For Each row As GridViewRow In gvEmpCompanyDeduction.Rows
+            If row.RowIndex = gvEmpCompanyDeduction.SelectedIndex Then
+                'gvEmpCompanyDeduction.SelectedRow.Cells(1).Text
+                row.BackColor = ColorTranslator.FromHtml("#f39c12")
+                ' row.ToolTip = String.Empty
+                'Exit For
+            Else
+                row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
+                'row.ToolTip = "Click to select this row."
+            End If
+        Next
+        ' UPGvEmpComde.Update()
+    End Sub
+
+    
+ 
+ 
+    Protected Sub LEditComde_Click(sender As Object, e As EventArgs) Handles LEditComde.Click
+        If gvEmpCompanyDeduction.Rows.Count <> 0 Then
+            If IsNothing(gvEmpCompanyDeduction.SelectedRow) Then
+
+                ShowMessage("Please select record.", MessageType.Errors, Me)
+                Exit Sub
+
+            End If
+            selectedComde.Text = "Update"
+
+            ddComde.SelectedValue = gvEmpCompanyDeduction.SelectedRow.Cells(0).Text
+            txtComdeAmt.Text = gvEmpCompanyDeduction.SelectedRow.Cells(2).Text
+            txtComdeStart.Text = gvEmpCompanyDeduction.SelectedRow.Cells(3).Text
+            txtComdeEnd.Text = gvEmpCompanyDeduction.SelectedRow.Cells(4).Text
+            If gvEmpCompanyDeduction.SelectedRow.Cells(5).Text = "Halfmonth" Then
+                ddDeductType.SelectedIndex = 0
+            Else
+                ddDeductType.SelectedIndex = 1
+            End If
+
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal", "$('#myModal').modal()", True)
+
+        Else
+            ShowMessage("No record(s).", MessageType.Errors, Me)
+        End If
+       
+    End Sub
+
+   
+   
+
+    Protected Sub LDeleteComde_Click(sender As Object, e As EventArgs) Handles LDeleteComde.Click
+        If gvEmpCompanyDeduction.Rows.Count <> 0 Then
+            If IsNothing(gvEmpCompanyDeduction.SelectedRow) Then
+
+                ShowMessage("Please select record.", MessageType.Errors, Me)
+                Exit Sub
+
+            End If
+            Dim dt As DataTable = DirectCast(ViewState("comp_de"), DataTable)
+            If MsgBox("Are you sure you want to delete this record?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                For x = 0 To dt.Rows.Count - 1 Step 1
+                    If dt.Rows(x).Item(0).ToString = gvEmpCompanyDeduction.SelectedRow.Cells(0).Text Then
+                        dt.Rows(x).Delete()
+                        dt.AcceptChanges()
+                        ViewState("comp_de") = dt
+                        Me.BindGrid()
+                        Exit For
+                    End If
+                Next
+            End If
+        Else
+            ShowMessage("No Record to delete", MessageType.Errors, Me)
+        End If
     End Sub
 End Class

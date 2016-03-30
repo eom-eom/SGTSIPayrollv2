@@ -25,11 +25,6 @@
             <div class="box box-warning">
             <div class="box-body">
                 <div class=" row">
-                    
-                        
-                             
-                        
-                           
                        
                            <div class="col-md-12 ">
                         <asp:GridView ID="gvEmployee" runat="server" 

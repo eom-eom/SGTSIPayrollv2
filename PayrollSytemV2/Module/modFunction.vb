@@ -44,4 +44,7 @@
     Friend Function ShowComma(ByVal x As Double) As String
         ShowComma = x.ToString("N")
     End Function
+    Public Sub ShowMessage_mod(Message As String, Types As MessageType, p As Page)
+        ScriptManager.RegisterStartupScript(p, p.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage_mod('" + Message + "','" & Types & "');", True)
+    End Sub
 End Module

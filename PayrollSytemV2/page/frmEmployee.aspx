@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="frmEmployee.aspx.vb" Inherits="PayrollSytemV2.frmEmployee" Async="true" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="frmEmployee.aspx.vb" Inherits="PayrollSytemV2.frmEmployee" Async="true" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentHeader" runat="server">
     Employee form
 </asp:Content>
@@ -10,11 +10,12 @@
     Employee form
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" runat="server">
-
+                
     
                 <div class="row">
                     <div class="col-md-12">
                         <div class="messagealert" id="alert_container">
+                                
                         </div>
                     </div>
                 </div>
@@ -377,7 +378,7 @@
                                                 </div>
                                         
                                             </div>
-                                           
+                                          
                                            <div class='form-group'>
                                                 <div class ="row">
                                                     <div class='col-sm-12 col-md-3 '>
@@ -394,6 +395,27 @@
                                                 </div>
                                         
                                             </div>
+                                            <div class='form-group'>
+                                                <div class ="row">
+                                                    <div class='col-sm-12 col-md-3 '>
+                                                        
+                                                        <asp:label id="lblNightDiff"  class='control-label' Text="Night diff rate:" runat="server"  /> 
+                                                        
+                                                        
+                                                    </div>
+                                
+                                                    <div class='col-sm-12 col-md-9'>
+                                                        <div class =" input-group">
+                                                            
+                                                                <asp:TextBox ID="txtNightDiff" runat="server"  type="text" CssClass='form-control'  ClientIDMode="Static" ReadOnly="True" />
+                                                                <span class="input-group-addon">PHP</span>
+                                                        </div>                                                                
+                                                    </div>
+                                                    
+                                                </div>
+                                        
+                                            </div>
+
                                            <div class='form-group'>
                                                 <div class ="row">
                                                     <div class='col-sm-12 col-md-3 '>
@@ -763,46 +785,161 @@
                                                 <h5>Company Deductions</h5>
                                             </div>
                                                 <div class ="box-body">
+                                                    
+                                                    <asp:UpdatePanel ID="UPGvEmpComde" runat="server" UpdateMode="conditional"> 
+                                                         <ContentTemplate>
                                                    <div class="row">
                                                         <div class="col-md-12">
-                                                            <asp:GridView ID="gvCompanyDeduction" runat="server" class="table table-bordered table-striped dataTable" 
-                                                               AutoGenerateColumns="false" AllowPaging ="true" PageSize="5"  EmptyDataText="No Record/s Found.">
+                                                            <asp:GridView ID="gvEmpCompanyDeduction" runat="server" 
+                                                                class="table table-hover table-bordered table-striped dataTable" 
+                                                                OnRowDataBound ="gvEmpCompanyDeduction_RowDataBound"
+                                                               AutoGenerateColumns="false" AllowPaging ="true" PageSize="5"  EmptyDataText="No Record/s Found."
+                                                                DataKeyNames="comde_code" OnSelectedIndexChanged ="gvEmpCompanyDeduction_SelectedIndexChanged"
+                                                                >
+                                                
                                                                 <Columns>
-                                                                    <asp:TemplateField>
+
+                                                                    <%--<asp:TemplateField>
                                                                         <ItemTemplate>
-                                                                            <asp:CheckBox ID="chkCtrl" runat="server" />
+                                                                            <asp:CheckBox ID="chkRow" runat="server" />
                                                                         </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="id" HeaderText="ID"  />
+                                                                    </asp:TemplateField>--%>
+                                                                    
+                                                                  
                                                                     <asp:BoundField DataField="comde_code" HeaderText="Code"  />
                                                                     <asp:BoundField DataField="comde_desc" HeaderText="Description"  />
+                                                                    <asp:BoundField DataField="emp_comde_amt" HeaderText="Amount"  />
+                                                                    <asp:BoundField DataField="emp_comde_start_date" HeaderText="Start date"  />
+                                                                    <asp:BoundField DataField="emp_comde_end_date" HeaderText="End date"  />
+                                                                    <asp:BoundField DataField="emp_deduct_type" HeaderText=" Deduction type"  />
+
                                                                 </Columns>
                                                             </asp:GridView>
                                                         </div>
+                                                       
                                                     </div>
-                                                </div>
-                                           </div>
-                                        <div class="form-group">
-                                            <div class ="row">
-                                                <div class='col-sm-offset-9 col-sm-3  col-md-offset-9 col-md-3 '> 
-                                                    <asp:Linkbutton ID="LAddComde" runat="server"  class="btn btn-primary  "> <span class='fa fa-plus'></span>Add</asp:Linkbutton>          
-       
-                                                    <asp:Linkbutton ID="LDeleteComde" runat="server" class="btn btn-danger   "> <span class='fa  fa-times'></span> Delete </asp:Linkbutton>  
-                                                </div>
+                                                             </ContentTemplate>
+                                                        </asp:UpdatePanel>
+                                                    <div class="form-group">
+                                                        <div class ="row">
+                                                            <div class='col-sm-offset-8 col-sm-4  col-md-offset-8 col-md-4 '> 
+                                                                <asp:Linkbutton ID="LAddComde" runat="server"   class="btn btn-primary " > <span class='fa fa-plus'></span> Add</asp:Linkbutton>          
+                                                                <asp:Linkbutton ID="LEditComde" runat="server"   class="btn btn-warning " > <span class='fa fa-pencil-square-o'></span> Edit</asp:Linkbutton>   
+                                                                <asp:Linkbutton ID="LDeleteComde" runat="server" class="btn btn-danger   "> <span class='fa  fa-times'></span> Delete</asp:Linkbutton>  
+                                                            </div>
         
-                                            </div>
-                                        </div>
+                                                        </div>
+       <!-- this is bootstrp modal popup -->  
+         <div id="myModal" class="modal fade ">  
+            <div class="modal-dialog">  
+                <div class="modal-content">  
+                    <div class="modal-header">  
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>  
+                        <h4 class="modal-title modal-warning">Company deduction List</h4>  
+                    </div>  
+                    <asp:UpdatePanel ID="UPmodal" runat="server" UpdateMode="Conditional"> 
+                        <ContentTemplate>
+                    <div class="modal-body" >
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="messagealert" id="alert_container_mod">
+                                </div>
+                            </div>
+                        </div>
+                    <br />
+                        <div class='form-group'>
+                            <div class="row">
+                                <div class ="col-md-3">
+                                    <asp:label id="lblTheChosenOne"  class='control-label' Text="" runat="server" Visible="true"/> 
+                                    
+                                    <asp:label id="lblSelect"  class='control-label' Text="Select: " runat="server"/> 
+                                </div> 
+                                <div class ="col-md-9">
+                                    <asp:DropDownList class="form-control select2"  ID="ddComde" runat="server" 
+                                        OnSelectedIndexChanged="ddComde_SelectedIndexChanged" AutoPostBack="true" Width =" 100%"  >        
+                                    </asp:DropDownList>
+                                     
+                                </div> 
+                            </div>
+                        </div>  
+                        <div class='form-group'>
+                            <div class="row">
+                                <div class ="col-md-3">
+                                    <asp:label id="lblComdeAmt"  class='control-label' Text="Amount: " runat="server"/> 
+                                </div> 
+                                <div class ="col-md-5">
+                                   <asp:TextBox ID="txtComdeAmt" runat="server" CssClass='form-control'  ClientIDMode="Static"></asp:TextBox>
+                                     
+                                </div> 
+                            </div>
+                        </div>
+                         <div class='form-group'>
+                            <div class="row">
+                                <div class='col-sm-12 col-md-3 '>
+                                    <asp:label id="dtStart"  class='control-label' Text="Date start:" runat="server"  /> 
+                                </div>
+                                <div class='col-sm-12 col-md-5 '>
+                                    <asp:TextBox ID="txtComdeStart" runat="server"  type="date" CssClass='form-control'  ClientIDMode="Static"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class='form-group'>
+                            <div class="row">
+                                <div class='col-sm-12 col-md-3 '>
+                                    <asp:label id="dtEnd"  class='control-label' Text="Date end: " runat="server"  /> 
+                                </div>
+                                <div class ="col-md-5">
+                                    <asp:TextBox ID="txtComdeEnd" runat="server"  type="date" CssClass='form-control'  ClientIDMode="Static"></asp:TextBox>
+                                    </div>
+                            </div>
+                        </div>
+                           <div class='form-group'>
+                            <div class="row">
+                                <div class ="col-md-3">
+                                   
+                                    <asp:label id="lblDedtype"  class='control-label' Text="Deduction type: " runat="server"/> 
+                                </div> 
+                                <div class ="col-md-5">
+                                    <asp:DropDownList class="form-control select2"  ID="ddDeductType" runat="server" 
+                                       Width =" 100%"  > 
+                                        <asp:ListItem>Halfmonth</asp:ListItem>
+                                        <asp:ListItem>Endmonth</asp:ListItem>
+                                                                                       
+                                    </asp:DropDownList>
+                                     
+                                </div> 
+                            </div>
+                        </div>   
+                    </div>  
+               
+                    <div class="modal-footer">  
+                        <asp:Linkbutton ID="selectedComde" runat="server" class="btn btn-primary "  OnClick ="selectedComde_Click" > <span class='fa fa-plus'></span> Select</asp:Linkbutton>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>  
+                          
+                    </div>  
+                             </ContentTemplate>
+            </asp:UpdatePanel>
+                </div>  
+            </div>  
+             
+        </div>  
+         
+        <!-- end -->
+                                                    </div>
+                                                    
+                                                 </div>
+                                               </div>
+                                           </div>
+                                        
                                    </div>
                                 </div>
                             </div>
                         
                     </div>
                 </div> 
-                <div class="col-md-9 col-sm-12">
-
-                </div>
+               
                 
-            </div>
+         
         </asp:View>
         <asp:View ID="viewHistory" runat="server">
             <div class=" row">
@@ -849,7 +986,7 @@
                                                                             <Columns>
                                                                                 <asp:TemplateField>
                                                                                     <ItemTemplate>
-                                                                                        <asp:CheckBox ID="chkCtrl" runat="server" />
+                                                                                        <asp:CheckBox ID="chkRow" runat="server" />
                                                                                     </ItemTemplate>
                                                                                 </asp:TemplateField>
                                                                                 <asp:BoundField DataField="id" HeaderText="ID"  />
@@ -857,6 +994,7 @@
                                                                                 <asp:BoundField DataField="leave_no_of_days" HeaderText="No of Days"  />
                                                                                 <asp:BoundField DataField="leave_convertable" HeaderText="Convertable to Cash"  />
                                                                                 <asp:BoundField DataField="w_pay" HeaderText="With Pay"  />
+                                                                                
                                                                             </Columns>
                                                                         </asp:GridView>
                                                                     </div>
@@ -866,16 +1004,7 @@
                                                    </div>        
                                                </div>
                                           </div> 
-                                        <div class="form-group">
-                                            <div class ="row">
-                                                <div class='col-sm-offset-8 col-sm-4  col-md-offset-8 col-md-4 '> 
-                                                    <asp:Linkbutton ID="LAddLeaves" runat="server"  class="btn btn-primary"> <span class='fa fa-plus'></span>Add</asp:Linkbutton>          
-       
-                                                    <asp:Linkbutton ID="LDeleteLeaves" runat="server" class="btn btn-danger "> <span class='fa  fa-times'></span> Delete </asp:Linkbutton>  
-                                                </div>
-        
-                                            </div>
-                                        </div>               
+                                                   
                                     </div>
                                     <div class=" col-md-6 col-sm-12">
                                         <div class="form-group">
@@ -893,7 +1022,7 @@
                                                                             <Columns>
                                                                                 <asp:TemplateField>
                                                                                     <ItemTemplate>
-                                                                                        <asp:CheckBox ID="chkCtrl" runat="server" />
+                                                                                        <asp:CheckBox ID="chkRow" runat="server" />
                                                                                     </ItemTemplate>
                                                                                 </asp:TemplateField>
                                                                                 <asp:BoundField DataField="id" HeaderText="ID"  />
@@ -909,16 +1038,7 @@
                                                    </div>        
                                                </div>
                                           </div>
-                                        <div class="form-group">
-                                            <div class ="row">
-                                                <div class='col-sm-offset-8 col-sm-4  col-md-offset-8 col-md-4 '> 
-                                                    <asp:Linkbutton ID="LAddDmns" runat="server"  class="btn btn-primary"> <span class='fa fa-plus'></span>Add</asp:Linkbutton>          
-       
-                                                    <asp:Linkbutton ID="LDeleteDmns" runat="server" class="btn btn-danger "> <span class='fa  fa-times'></span> Delete </asp:Linkbutton>  
-                                                </div>
-        
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -936,7 +1056,7 @@
         </div>
         
     </div>
-
+            
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="ddDept" EventName="SelectedIndexChanged" />
