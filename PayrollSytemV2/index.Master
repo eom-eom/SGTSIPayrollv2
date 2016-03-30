@@ -193,7 +193,7 @@
                         <i class="fa fa-gg-circle"></i> <span>Payroll</span> <i class="fa fa-angle-left pull-right"></i>
                       </a>
                       <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Generation</a></li>
+                        <li><a href="payrollGeneration.aspx"><i class="fa fa-circle-o"></i> Payroll Generation</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Adjustment</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Report</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Maintenance</a></li>
