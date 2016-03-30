@@ -236,7 +236,7 @@ Public Class payroll
                 da.Fill(ds)
 
                 For Each dr In ds.Tables(0).Rows
-                    empcodes.Add(dr("code"))
+                    empcodes.Add(dr("emp_code"))
                 Next
             End Using
         Catch ex As Exception
