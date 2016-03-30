@@ -224,13 +224,13 @@ Public Class EmployeeInfo
         End Set
     End Property
 
-    Private _night_diff As String = ""
-    Friend Property night_diff() As String
+    Private _night_rate As String = ""
+    Friend Property night_rate() As String
         Get
-            Return _night_diff
+            Return _night_rate
         End Get
         Set(ByVal Value As String)
-            _night_diff = Value
+            _night_rate = Value
         End Set
     End Property
 
@@ -810,7 +810,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("basic_salary,")
                 xSQL.AppendLine("daily_rate,")
                 xSQL.AppendLine("hour_rate,")
-                xSQL.AppendLine("night_diff,")
+                xSQL.AppendLine("night_rate,")
                 xSQL.AppendLine("def_shift_id,")
                 xSQL.AppendLine("def_time_in,")
                 xSQL.AppendLine("def_time_out,")
@@ -847,7 +847,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("@basic_salary,")
                 xSQL.AppendLine("@daily_rate,")
                 xSQL.AppendLine("@hour_rate,")
-                xSQL.AppendLine("@night_diff,")
+                xSQL.AppendLine("@night_rate,")
                 xSQL.AppendLine("@def_shift_id,")
                 xSQL.AppendLine("@def_time_in,")
                 xSQL.AppendLine("@def_time_out,")
@@ -995,7 +995,7 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@basic_salary", cItem.basic_salary)
                 commandDB1.Parameters.AddWithValue("@daily_rate", cItem.daily_rate)
                 commandDB1.Parameters.AddWithValue("@hour_rate", cItem.hour_rate)
-                commandDB1.Parameters.AddWithValue("@hour_rate", cItem.night_diff)
+                commandDB1.Parameters.AddWithValue("@hour_rate", cItem.night_rate)
                 commandDB1.Parameters.AddWithValue("@def_shift_id", cItem.def_shift_id)
                 commandDB1.Parameters.AddWithValue("@def_time_in", cItem.def_time_in)
                 commandDB1.Parameters.AddWithValue("@def_time_out", cItem.def_time_out)
@@ -1091,7 +1091,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("    basic_salary = @basic_salary, ")
                 xSQL.AppendLine("    daily_rate = @daily_rate, ")
                 xSQL.AppendLine("    hour_rate = @hour_rate, ")
-                xSQL.AppendLine("    night_diff = @night_diff, ")
+                xSQL.AppendLine("    night_rate = @night_rate, ")
                 xSQL.AppendLine("    def_time_in = @def_time_in, ")
                 xSQL.AppendLine("    def_time_out = @def_time_out, ")
                 xSQL.AppendLine("    w_13monthpay = @w_13monthpay, ")
@@ -1269,7 +1269,7 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@basic_salary", cItem.basic_salary)
                 commandDB1.Parameters.AddWithValue("@daily_rate", cItem.daily_rate)
                 commandDB1.Parameters.AddWithValue("@hour_rate", cItem.hour_rate)
-                commandDB1.Parameters.AddWithValue("@night_diff", cItem.night_diff)
+                commandDB1.Parameters.AddWithValue("@night_rate", cItem.night_rate)
                 commandDB1.Parameters.AddWithValue("@def_time_in", cItem.def_time_in)
                 commandDB1.Parameters.AddWithValue("@def_time_out", cItem.def_time_out)
                 commandDB1.Parameters.AddWithValue("@w_13monthpay", cItem.w_13monthpay)
@@ -1397,7 +1397,7 @@ Public Class EmploymentInfoDB
             xSQL.AppendLine("    basic_salary, ")
             xSQL.AppendLine("    daily_rate, ")
             xSQL.AppendLine("    hour_rate, ")
-            xSQL.AppendLine("    night_diff, ")
+            xSQL.AppendLine("    night_rate, ")
             xSQL.AppendLine("    def_time_in, ")
             xSQL.AppendLine("    def_time_out, ")
             xSQL.AppendLine("    w_13monthpay, ")
@@ -1449,7 +1449,7 @@ Public Class EmploymentInfoDB
                             If Not IsDBNull(dr("basic_salary")) Then dt.basic_salary = dr("basic_salary")
                             If Not IsDBNull(dr("daily_rate")) Then dt.daily_rate = dr("daily_rate")
                             If Not IsDBNull(dr("hour_rate")) Then dt.hour_rate = dr("hour_rate")
-                            If Not IsDBNull(dr("night_diff")) Then dt.night_diff = dr("night_diff")
+                            If Not IsDBNull(dr("night_rate")) Then dt.night_rate = dr("night_rate")
                             If Not IsDBNull(dr("def_time_in")) Then dt.def_time_in = dr("def_time_in")
                             If Not IsDBNull(dr("def_time_out")) Then dt.def_time_out = dr("def_time_out")
                             If Not IsDBNull(dr("w_13monthpay")) Then dt.w_13monthpay = dr("w_13monthpay")
