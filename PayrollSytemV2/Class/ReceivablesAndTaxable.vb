@@ -76,7 +76,8 @@ Public Class ReceivablesAndTaxableDB
             xSQL.AppendLine("id,")
             xSQL.AppendLine("rta_code,")
             xSQL.AppendLine("rta_desc,")
-            xSQL.AppendLine("rta_amount")
+            xSQL.AppendLine("rta_amount,")
+            xSQL.AppendLine("rta_type")
             xSQL.AppendLine("FROM receivable_and_taxable_allowances")
             xSQL.AppendLine("WHERE is_deleted= '1' and rta_taxable='0'")
             Try
@@ -107,7 +108,8 @@ Public Class ReceivablesAndTaxableDB
             xSQL.AppendLine("id,")
             xSQL.AppendLine("rta_code,")
             xSQL.AppendLine("rta_desc,")
-            xSQL.AppendLine("rta_amount")
+            xSQL.AppendLine("rta_amount,")
+            xSQL.AppendLine("rta_type")
             xSQL.AppendLine("FROM receivable_and_taxable_allowances")
             xSQL.AppendLine("WHERE is_deleted= '1' and rta_taxable='1'")
             Try
