@@ -2,7 +2,7 @@
 Imports MySql.Data.MySqlClient
 Public Class EmployeeInfo
 #Region "Properties"
-    '--------------EMPLOYEE TABLE----------------'
+    '--------------EMPLOYEE TABLE---------------'
     Private _id As String = ""
 
     Friend Property id() As String
@@ -826,7 +826,7 @@ Public Class EmploymentInfoDB
 
                 xSQL.AppendLine(") ")
                 xSQL.AppendLine("VALUES( ")
-                xSQL.AppendLine("@code,")
+                xSQL.AppendLine("@emp_code,")
                 xSQL.AppendLine("@first_name,")
                 xSQL.AppendLine("@last_name,")
                 xSQL.AppendLine("@middle_name,")
@@ -871,6 +871,7 @@ Public Class EmploymentInfoDB
 
                 xSQL.AppendLine("INSERT INTO employee_working_days(")
                 xSQL.AppendLine("emp_id,")
+                xSQL.AppendLine("emp_code,")
                 xSQL.AppendLine("monday,")
                 xSQL.AppendLine("tuesday,")
                 xSQL.AppendLine("wednesday,")
@@ -884,6 +885,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine(") ")
                 xSQL.AppendLine("VALUES( ")
                 xSQL.AppendLine("@e_id,")
+                xSQL.AppendLine("@emp_code,")
                 xSQL.AppendLine("@monday,")
                 xSQL.AppendLine("@tuesday,")
                 xSQL.AppendLine("@wednesday,")
@@ -897,12 +899,14 @@ Public Class EmploymentInfoDB
                 For x = 0 To recVal.Count - 1 Step 1
                     xSQL.AppendLine("INSERT INTO employee_receivable_and_taxable_allowances(")
                     xSQL.AppendLine("emp_id,")
-                    xSQL.AppendLine("rta_id,")
+                    xSQL.AppendLine("rta_code,")
+                    xSQL.AppendLine("emp_code,")
                     xSQL.AppendLine("is_deleted")
                     xSQL.AppendLine(") ")
                     xSQL.AppendLine("VALUES( ")
                     xSQL.AppendLine("@e_id,")
-                    xSQL.AppendLine("@rta_id_" & x & ",")
+                    xSQL.AppendLine("@rta_code_" & x & ",")
+                    xSQL.AppendLine("@emp_code,")
                     xSQL.AppendLine("@emp_rta_deleted_" & x)
                     xSQL.AppendLine(");")
                 Next
@@ -910,35 +914,38 @@ Public Class EmploymentInfoDB
                 For x = 0 To taxAllowVal.Count - 1 Step 1
                     xSQL.AppendLine("INSERT INTO employee_receivable_and_taxable_allowances(")
                     xSQL.AppendLine("emp_id,")
-                    xSQL.AppendLine("rta_id,")
+                    xSQL.AppendLine("rta_code,")
                     xSQL.AppendLine("is_deleted")
                     xSQL.AppendLine(") ")
                     xSQL.AppendLine("VALUES( ")
                     xSQL.AppendLine("@e_id,")
-                    xSQL.AppendLine("@rta_id_ta_" & x & ",")
+                    xSQL.AppendLine("@rta_code_ta_" & x & ",")
                     xSQL.AppendLine("@emp_rta_deleted_ta_" & x)
                     xSQL.AppendLine(");")
                 Next
 
-                For x = 0 To comDeVal.Rows.Count - 1 Step 1
-                    xSQL.AppendLine("INSERT INTO employee_company_deductions(")
-                    xSQL.AppendLine("e_id,")
-                    xSQL.AppendLine("comde_code,")
-                    xSQL.AppendLine("emp_comde_amt,")
-                    xSQL.AppendLine("emp_comde_start_date,")
-                    xSQL.AppendLine("emp_comde_end_date,")
-                    xSQL.AppendLine("emp_deduct_type")
+                If Not IsNothing(comDeVal) Then
+                    For x = 0 To comDeVal.Rows.Count - 1 Step 1
+                        xSQL.AppendLine("INSERT INTO employee_company_deductions(")
+                        xSQL.AppendLine("e_id,")
+                        xSQL.AppendLine("comde_code,")
+                        xSQL.AppendLine("emp_comde_amt,")
+                        xSQL.AppendLine("emp_comde_start_date,")
+                        xSQL.AppendLine("emp_comde_end_date,")
+                        xSQL.AppendLine("emp_deduct_type")
 
-                    xSQL.AppendLine(") ")
-                    xSQL.AppendLine("VALUES( ")
-                    xSQL.AppendLine("e_id,")
-                    xSQL.AppendLine("@comde_code_" & x & ",")
-                    xSQL.AppendLine("@emp_comde_amt" & x & ",")
-                    xSQL.AppendLine("@emp_comde_start_date_" & x & ",")
-                    xSQL.AppendLine("@emp_comde_end_date_" & x & ",")
-                    xSQL.AppendLine("@emp_deduct_type_" & x)
-                    xSQL.AppendLine(");")
-                Next
+                        xSQL.AppendLine(") ")
+                        xSQL.AppendLine("VALUES( ")
+                        xSQL.AppendLine("e_id,")
+                        xSQL.AppendLine("@comde_code_" & x & ",")
+                        xSQL.AppendLine("@emp_comde_amt" & x & ",")
+                        xSQL.AppendLine("@emp_comde_start_date_" & x & ",")
+                        xSQL.AppendLine("@emp_comde_end_date_" & x & ",")
+                        xSQL.AppendLine("@emp_deduct_type_" & x)
+                        xSQL.AppendLine(");")
+                    Next
+                End If
+               
 
                 For x = 0 To leaveVal.Count - 1 Step 1
                     xSQL.AppendLine("INSERT INTO employee_leaves(")
@@ -957,12 +964,14 @@ Public Class EmploymentInfoDB
                     'may update ng is_deleted and looping here I think.
                     xSQL.AppendLine("INSERT INTO employee_de_minimis_benefits(")
                     xSQL.AppendLine("e_id,")
-                    xSQL.AppendLine("dmb_id")
+                    xSQL.AppendLine("emp_code,")
+                    xSQL.AppendLine("dmb_code")
                     'xSQL.AppendLine("is_deleted")
                     xSQL.AppendLine(") ")
                     xSQL.AppendLine("VALUES( ")
                     xSQL.AppendLine("e_id,")
-                    xSQL.AppendLine("@dmb_id_" & x)
+                    xSQL.AppendLine("@emp_code,")
+                    xSQL.AppendLine("@dmb_code_" & x)
                     'xSQL.AppendLine("@emp_dmb_deleted_" & x)
                     xSQL.AppendLine(");")
                 Next
@@ -974,7 +983,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("COMMIT;")
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
 
-                commandDB1.Parameters.AddWithValue("@code", cItem.code)
+                commandDB1.Parameters.AddWithValue("@emp_code", cItem.code)
                 commandDB1.Parameters.AddWithValue("@first_name", cItem.first_name)
                 commandDB1.Parameters.AddWithValue("@last_name", cItem.last_name)
                 commandDB1.Parameters.AddWithValue("@middle_name", cItem.middle_name)
@@ -995,7 +1004,7 @@ Public Class EmploymentInfoDB
                 commandDB1.Parameters.AddWithValue("@basic_salary", cItem.basic_salary)
                 commandDB1.Parameters.AddWithValue("@daily_rate", cItem.daily_rate)
                 commandDB1.Parameters.AddWithValue("@hour_rate", cItem.hour_rate)
-                commandDB1.Parameters.AddWithValue("@hour_rate", cItem.night_rate)
+                commandDB1.Parameters.AddWithValue("@night_rate", cItem.night_rate)
                 commandDB1.Parameters.AddWithValue("@def_shift_id", cItem.def_shift_id)
                 commandDB1.Parameters.AddWithValue("@def_time_in", cItem.def_time_in)
                 commandDB1.Parameters.AddWithValue("@def_time_out", cItem.def_time_out)
@@ -1011,6 +1020,7 @@ Public Class EmploymentInfoDB
 
 
                 '----WORKING DAYS-----
+
                 commandDB1.Parameters.AddWithValue("@monday", cItem.monday)
                 commandDB1.Parameters.AddWithValue("@tuesday", cItem.tuesday)
                 commandDB1.Parameters.AddWithValue("@wednesday", cItem.wednesday)
@@ -1022,11 +1032,11 @@ Public Class EmploymentInfoDB
 
                 '----RECEIVABLE AND TAXABLE ALLOWANCE-----
                 For x = 0 To recVal.Count - 1 Step 1
-                    commandDB1.Parameters.AddWithValue("@rta_id_" & x, recVal(x))
+                    commandDB1.Parameters.AddWithValue("@rta_code_" & x, recVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_rta_deleted" & x, cItem.emp_rta_deleted)
                 Next
                 For x = 0 To taxAllowVal.Count - 1 Step 1
-                    commandDB1.Parameters.AddWithValue("@rta_id_ta_" & x, taxAllowVal(x))
+                    commandDB1.Parameters.AddWithValue("@rta_code_ta_" & x, taxAllowVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_rta_deleted_ta_" & x, cItem.emp_rta_deleted)
                 Next
                 '----COMPANY DEDUCTIONS-----
@@ -1047,7 +1057,7 @@ Public Class EmploymentInfoDB
 
                 '----DEMINIMIS BENEFITS-----
                 For x = 0 To deminimisBenVal.Count - 1 Step 1
-                    commandDB1.Parameters.AddWithValue("@dmb_id_" & x, deminimisBenVal(x))
+                    commandDB1.Parameters.AddWithValue("@dmb_code_" & x, deminimisBenVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_dmb_deleted_" & x, deminimisBenVal(x))
                 Next
 
@@ -1072,7 +1082,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("START TRANSACTION;")
                 xSQL.AppendLine("UPDATE employee ")
                 xSQL.AppendLine("SET ")
-                xSQL.AppendLine("code= @code,")
+                xSQL.AppendLine("code= @emp_code,")
                 xSQL.AppendLine("    last_name = @last_name, ")
                 xSQL.AppendLine("    first_name = @first_name, ")
                 xSQL.AppendLine("    middle_name = @middle_name, ")
@@ -1117,6 +1127,7 @@ Public Class EmploymentInfoDB
 
                 xSQL.AppendLine("INSERT INTO employee_working_days(")
                 xSQL.AppendLine("emp_id,")
+                xSQL.AppendLine("emp_code,")
                 xSQL.AppendLine("monday,")
                 xSQL.AppendLine("tuesday,")
                 xSQL.AppendLine("wednesday,")
@@ -1127,6 +1138,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine(") ")
                 xSQL.AppendLine("VALUES( ")
                 xSQL.AppendLine("@id,")
+                xSQL.AppendLine("@emp_code,")
                 xSQL.AppendLine("@monday,")
                 xSQL.AppendLine("@tuesday,")
                 xSQL.AppendLine("@wednesday,")
@@ -1150,12 +1162,14 @@ Public Class EmploymentInfoDB
                 For x = 0 To recVal.Count - 1 Step 1
                     xSQL.AppendLine("INSERT INTO employee_receivable_and_taxable_allowances(")
                     xSQL.AppendLine("emp_id,")
-                    xSQL.AppendLine("rta_id,")
+                    xSQL.AppendLine("emp_code,")
+                    xSQL.AppendLine("rta_code,")
                     xSQL.AppendLine("is_deleted")
                     xSQL.AppendLine(") ")
                     xSQL.AppendLine("VALUES( ")
                     xSQL.AppendLine("@id,")
-                    xSQL.AppendLine("@rta_id_" & x & ",")
+                    xSQL.AppendLine("@emp_code,")
+                    xSQL.AppendLine("@rta_code_" & x & ",")
                     xSQL.AppendLine("@emp_rta_deleted_" & x)
                     xSQL.AppendLine(");")
                 Next
@@ -1163,12 +1177,14 @@ Public Class EmploymentInfoDB
                 For x = 0 To taxAllowVal.Count - 1 Step 1
                     xSQL.AppendLine("INSERT INTO employee_receivable_and_taxable_allowances(")
                     xSQL.AppendLine("emp_id,")
-                    xSQL.AppendLine("rta_id,")
+                    xSQL.AppendLine("emp_code,")
+                    xSQL.AppendLine("rta_code,")
                     xSQL.AppendLine("is_deleted")
                     xSQL.AppendLine(") ")
                     xSQL.AppendLine("VALUES( ")
                     xSQL.AppendLine("@id,")
-                    xSQL.AppendLine("@rta_id_ta_" & x & ",")
+                    xSQL.AppendLine("@emp_code,")
+                    xSQL.AppendLine("@rta_code_ta_" & x & ",")
                     xSQL.AppendLine("@emp_rta_deleted_ta_" & x)
                     xSQL.AppendLine(");")
                 Next
@@ -1178,7 +1194,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("WHERE emp_id = @id;")
 
                 If Not IsNothing(comDeVal) Then
-                    
+
 
                     For x = 0 To comDeVal.Rows.Count - 1 Step 1
                         xSQL.AppendLine("INSERT INTO employee_company_deductions(")
@@ -1204,7 +1220,7 @@ Public Class EmploymentInfoDB
                 End If
 
 
-                
+
 
                 'LEAVES
                 If leaveVal.Count <> 0 Then
@@ -1216,10 +1232,12 @@ Public Class EmploymentInfoDB
                 For x = 0 To leaveVal.Count - 1 Step 1
                     xSQL.AppendLine("INSERT INTO employee_leaves(")
                     xSQL.AppendLine("emp_id,")
+                    xSQL.AppendLine("emp_code,")
                     xSQL.AppendLine("leave_id")
                     xSQL.AppendLine(") ")
                     xSQL.AppendLine("VALUES( ")
                     xSQL.AppendLine("@id,")
+                    xSQL.AppendLine("@emp_code,")
                     xSQL.AppendLine("@leave_id_" & x)
                     xSQL.AppendLine(");")
                 Next
@@ -1235,12 +1253,14 @@ Public Class EmploymentInfoDB
                     'may update ng is_deleted and looping here I think.
                     xSQL.AppendLine("INSERT INTO employee_de_minimis_benefits(")
                     xSQL.AppendLine("emp_id,")
-                    xSQL.AppendLine("dmb_id")
+                    xSQL.AppendLine("emp_code,")
+                    xSQL.AppendLine("dmb_code")
                     'xSQL.AppendLine("is_deleted")
                     xSQL.AppendLine(") ")
                     xSQL.AppendLine("VALUES( ")
                     xSQL.AppendLine("@id,")
-                    xSQL.AppendLine("@dmb_id_" & x)
+                    xSQL.AppendLine("@emp_code,")
+                    xSQL.AppendLine("@dmb_code_" & x)
                     ' xSQL.AppendLine("@emp_dmb_deleted_" & x)
                     xSQL.AppendLine(");")
                 Next
@@ -1250,7 +1270,7 @@ Public Class EmploymentInfoDB
                 xSQL.AppendLine("COMMIT;")
 
                 Dim commandDB1 As New MySqlCommand(xSQL.ToString, SQLConnect)
-                commandDB1.Parameters.AddWithValue("@code", cItem.code)
+                commandDB1.Parameters.AddWithValue("@emp_code", cItem.code)
                 commandDB1.Parameters.AddWithValue("@last_name", cItem.last_name)
                 commandDB1.Parameters.AddWithValue("@first_name", cItem.first_name)
                 commandDB1.Parameters.AddWithValue("@middle_name", cItem.middle_name)
@@ -1299,11 +1319,11 @@ Public Class EmploymentInfoDB
 
                 '----RECEIVABLE AND TAXABLE ALLOWANCE-----
                 For x = 0 To recVal.Count - 1 Step 1
-                    commandDB1.Parameters.AddWithValue("@rta_id_" & x, recVal(x))
+                    commandDB1.Parameters.AddWithValue("@rta_code_" & x, recVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_rta_deleted" & x, cItem.emp_rta_deleted)
                 Next
                 For x = 0 To taxAllowVal.Count - 1 Step 1
-                    commandDB1.Parameters.AddWithValue("@rta_id_ta_" & x, taxAllowVal(x))
+                    commandDB1.Parameters.AddWithValue("@rta_code_ta_" & x, taxAllowVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_rta_deleted_ta_" & x, cItem.emp_rta_deleted)
                 Next
 
@@ -1318,7 +1338,7 @@ Public Class EmploymentInfoDB
                         'commandDB1.Parameters.AddWithValue("@emp_comde_deleted_" & x, cItem.emp_comde_deleted)
                     Next
                 End If
-                
+
 
                 '----LEAVES-----
                 For x = 0 To leaveVal.Count - 1 Step 1
@@ -1328,7 +1348,7 @@ Public Class EmploymentInfoDB
 
                 '----DEMINIMIS BENEFITS-----
                 For x = 0 To deminimisBenVal.Count - 1 Step 1
-                    commandDB1.Parameters.AddWithValue("@dmb_id_" & x, deminimisBenVal(x))
+                    commandDB1.Parameters.AddWithValue("@dmb_code_" & x, deminimisBenVal(x))
                     'commandDB1.Parameters.AddWithValue("@emp_dmb_deleted_" & x, deminimisBenVal(x))
                 Next
 
@@ -1526,11 +1546,12 @@ Public Class EmploymentInfoDB
         Try
             Dim xSQL As New StringBuilder
             xSQL.AppendLine("SELECT ")
-            xSQL.AppendLine("    rta_id, ")
+            xSQL.AppendLine("    a.rta_code, ")
             xSQL.AppendLine("  emp_id")
+
             xSQL.AppendLine("FROM employee_receivable_and_taxable_allowances a")
             xSQL.AppendLine("INNER JOIN receivable_and_taxable_allowances b")
-            xSQL.AppendLine("ON a.rta_id = b.id")
+            xSQL.AppendLine("ON a.rta_code = b.rta_code")
 
             If pWhereClause.Length <> 0 Then
                 xSQL.AppendLine("WHERE ")
@@ -1633,11 +1654,11 @@ Public Class EmploymentInfoDB
         Try
             Dim xSQL As New StringBuilder
             xSQL.AppendLine("SELECT ")
-            xSQL.AppendLine("    dmb_id, ")
+            xSQL.AppendLine("    a.dmb_code, ")
             xSQL.AppendLine("  emp_id")
             xSQL.AppendLine("FROM employee_de_minimis_benefits a")
             xSQL.AppendLine("INNER JOIN de_minimis_benefits b")
-            xSQL.AppendLine("ON a.dmb_id = b.id")
+            xSQL.AppendLine("ON a.dmb_code = b.dmb_code")
 
             If pWhereClause.Length <> 0 Then
                 xSQL.AppendLine("WHERE ")
@@ -1662,7 +1683,7 @@ Public Class EmploymentInfoDB
         End Try
         Return dt
     End Function
-    
+
     Friend Function CEmpUpdatetoDeleteFile(ByVal Cemp As EmployeeInfo) As EmployeeInfo
         Dim cReturn As New EmployeeInfo
         Try
