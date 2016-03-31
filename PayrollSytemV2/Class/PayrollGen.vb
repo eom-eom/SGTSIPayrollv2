@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class PayrollGen
-   
+    ''
 End Class
 Public Class PayrollGenDB
     Friend Function GetPayrollSetting() As DataTable
