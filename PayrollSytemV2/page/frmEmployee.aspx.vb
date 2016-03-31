@@ -29,7 +29,6 @@ Public Class frmEmployee
                 UISetValues(Session("Empid"))
                 Session("intEmp") = "0"
             End If
-
         End If
 
 
@@ -188,7 +187,10 @@ Public Class frmEmployee
 
 
     End Sub
-
+    Protected Sub LcancelEmployee_Click(sender As Object, e As EventArgs) Handles LcancelEmployee.Click
+        Session.RemoveAll()
+        Response.Redirect("Employee.aspx")
+    End Sub
 
     Protected Sub LSaveEmployee_Click(sender As Object, e As EventArgs) Handles LSaveEmployee.Click
 
@@ -302,7 +304,7 @@ Public Class frmEmployee
 
                     If chkRow.Checked Then
 
-                        empRec.Add(row.Cells(1).Text)
+                        empRec.Add(row.Cells(2).Text)
                         'cEmployee.rta_id = row.Cells(1).Text
                     End If
                 End If
@@ -313,7 +315,7 @@ Public Class frmEmployee
                     Dim chkRow As CheckBox = TryCast(row.Cells(0).FindControl("chkRow"), CheckBox)
                     If chkRow.Checked Then
 
-                        empTaxAllw.Add(row.Cells(1).Text)
+                        empTaxAllw.Add(row.Cells(2).Text)
                     End If
                 End If
             Next
@@ -374,7 +376,7 @@ Public Class frmEmployee
                         Exit For
                     End If
                     If chkRow.Checked Then
-                        empDeminimisBen.Add(row.Cells(1).Text)
+                        empDeminimisBen.Add(row.Cells(2).Text)
                     End If
                 End If
             Next
@@ -397,10 +399,10 @@ Public Class frmEmployee
 
 
             clearMe()
-
+            Session.RemoveAll()
             Response.Redirect("Employee.aspx")
 
-            Session.RemoveAll()
+
         Else
             ShowMessage("Code must not be blank", MessageType.Warning, Me)
 
@@ -566,7 +568,7 @@ Public Class frmEmployee
                         Exit For
                     End If
                     For x = 0 To dtEmpRecTax.Rows.Count - 1 Step 1
-                        If row.Cells(1).Text = dtEmpRecTax.Rows(x).Item(0).ToString Then
+                        If row.Cells(2).Text = dtEmpRecTax.Rows(x).Item(0).ToString Then
                             chkRow.Checked = True
                         End If
                     Next
@@ -579,7 +581,7 @@ Public Class frmEmployee
                         Exit For
                     End If
                     For x = 0 To dtEmpRecTax.Rows.Count - 1 Step 1
-                        If row.Cells(1).Text = dtEmpRecTax.Rows(x).Item(0).ToString Then
+                        If row.Cells(2).Text = dtEmpRecTax.Rows(x).Item(0).ToString Then
                             chkRow.Checked = True
                         End If
                     Next
@@ -623,7 +625,7 @@ Public Class frmEmployee
                         Exit For
                     End If
                     For x = 0 To dtEmpDMB.Rows.Count - 1 Step 1
-                        If row.Cells(1).Text = dtEmpDMB.Rows(x).Item(0).ToString Then
+                        If row.Cells(2).Text = dtEmpDMB.Rows(x).Item(0).ToString Then
                             chkRow.Checked = True
                         End If
                     Next
