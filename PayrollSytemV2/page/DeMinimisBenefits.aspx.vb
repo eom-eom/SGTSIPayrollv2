@@ -34,6 +34,7 @@ Public Class DeMinimisBenefits
                 txtCode.Text = gvDeminimis.SelectedRow.Cells(1).Text
                 txtDescription.Text = gvDeminimis.SelectedRow.Cells(2).Text
                 txtAmount.Text = gvDeminimis.SelectedRow.Cells(3).Text
+                ddlType.SelectedValue = gvDeminimis.SelectedRow.Cells(4).Text
                 row.BackColor = ColorTranslator.FromHtml("#f39c12")
                 row.ToolTip = String.Empty
 
@@ -62,6 +63,7 @@ Public Class DeMinimisBenefits
             cDMB.dmb_code = txtCode.Text
             cDMB.dmb_desc = txtDescription.Text
             cDMB.dmb_amount = txtAmount.Text
+            cDMB.dmb_type = ddlType.SelectedValue
             cDMB.is_deleted = "1"
 
             Dim cdb As New DeMinimisBenefitDB
@@ -94,6 +96,7 @@ Public Class DeMinimisBenefits
                     cDMB.dmb_code = txtCode.Text
                     cDMB.dmb_desc = txtDescription.Text
                     cDMB.dmb_amount = txtAmount.Text
+                    cDMB.dmb_type = ddlType.SelectedValue
                     cDMB.is_deleted = "0"
 
 

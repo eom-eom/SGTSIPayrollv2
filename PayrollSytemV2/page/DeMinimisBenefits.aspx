@@ -45,15 +45,15 @@
                         <div class="col-md-4">
                             <asp:TextBox ID="txtDescription" runat="server"  type="text" CssClass='form-control'  ClientIDMode="Static"></asp:TextBox>
                         </div>
-                        <%--<div class="col-md-2">
+                        <div class="col-md-2">
                             <h5>Type</h5>
                         </div>
                         <div class="col-md-4">
                              <asp:DropDownList class="form-control select2"  ID="ddlType" runat="server" AutoPostBack="True" >
-                                <asp:ListItem Text="Daily" Value="daily"></asp:ListItem>
-                                <asp:ListItem Text="Monthly" Value="monthly"></asp:ListItem>
+                                <asp:ListItem Text="Half Month" Value="HalfMonth"></asp:ListItem>
+                                <asp:ListItem Text="Monthly" Value="Monthly"></asp:ListItem>
                             </asp:DropDownList> 
-                        </div>--%>
+                        </div>
                     </div>
                     <br />
                     <div class="row">
@@ -65,6 +65,7 @@
                                     <asp:BoundField DataField="dmb_code" HeaderText="Code"  />
                                     <asp:BoundField DataField="dmb_desc" HeaderText="Description"  />
                                     <asp:BoundField DataField="dmb_amount" HeaderText="Amount"  />
+                                    <asp:BoundField DataField="dmb_type" HeaderText="Type"  />
                                 </Columns>
                             </asp:GridView>
                         </div>
