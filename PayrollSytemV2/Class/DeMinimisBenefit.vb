@@ -65,7 +65,8 @@ Public Class DeMinimisBenefitDB
             xSQL.AppendLine("    id, ")
             xSQL.AppendLine("    dmb_code, ")
             xSQL.AppendLine("    dmb_desc, ")
-            xSQL.AppendLine("    dmb_amount ")
+            xSQL.AppendLine("    dmb_amount, ")
+            xSQL.AppendLine("    dmb_type ")
             xSQL.AppendLine("FROM de_minimis_benefits")
             xSQL.AppendLine("WHERE is_deleted = '1' ")
 
