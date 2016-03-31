@@ -53,6 +53,17 @@ Public Class ReceivablesAndTaxable
             _rta_taxable = Value
         End Set
     End Property
+
+    Private _rta_type As String = ""
+    ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+    Friend Property rta_type() As String
+        Get
+            Return _rta_type
+        End Get
+        Set(ByVal Value As String)
+            _rta_type = Value
+        End Set
+    End Property
     Private _is_deleted As String = ""
     ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
     Friend Property is_deleted() As String
@@ -63,7 +74,7 @@ Public Class ReceivablesAndTaxable
             _is_deleted = Value
         End Set
     End Property
- 
+
 
 #End Region
 End Class
@@ -140,7 +151,8 @@ Public Class ReceivablesAndTaxableDB
             xSQL.AppendLine("    id, ")
             xSQL.AppendLine("    rta_code, ")
             xSQL.AppendLine("    rta_desc, ")
-            xSQL.AppendLine("    rta_amount, ")
+            xSQL.AppendLine("    rta_amount,")
+            xSQL.AppendLine("    rta_type,")
             xSQL.AppendLine("    rta_taxable ")
             xSQL.AppendLine("FROM receivable_and_taxable_allowances")
             xSQL.AppendLine("WHERE is_deleted = '1' ")
@@ -176,6 +188,7 @@ Public Class ReceivablesAndTaxableDB
                 xSQL.AppendLine("    rta_code, ")
                 xSQL.AppendLine("    rta_desc, ")
                 xSQL.AppendLine("    rta_amount, ")
+                xSQL.AppendLine("    rta_type,")
                 xSQL.AppendLine("    rta_taxable, ")
                 xSQL.AppendLine("    is_deleted ")
                 xSQL.AppendLine(") ")
@@ -183,6 +196,7 @@ Public Class ReceivablesAndTaxableDB
                 xSQL.AppendLine("    @rta_code, ")
                 xSQL.AppendLine("    @rta_desc, ")
                 xSQL.AppendLine("    @rta_amount, ")
+                xSQL.AppendLine("    @rta_type,")
                 xSQL.AppendLine("    @rta_taxable, ")
                 xSQL.AppendLine("    @is_deleted ")
                 xSQL.AppendLine(")")
@@ -191,6 +205,7 @@ Public Class ReceivablesAndTaxableDB
                 commandDB1.Parameters.AddWithValue("@rta_code", cItem.rta_code)
                 commandDB1.Parameters.AddWithValue("@rta_desc", cItem.rta_desc)
                 commandDB1.Parameters.AddWithValue("@rta_amount", cItem.rta_amount)
+                commandDB1.Parameters.AddWithValue("@rta_type", cItem.rta_type)
                 commandDB1.Parameters.AddWithValue("@rta_taxable", cItem.rta_taxable)
                 commandDB1.Parameters.AddWithValue("@is_deleted", cItem.is_deleted)
                 commandDB1.ExecuteNonQuery()
@@ -215,6 +230,7 @@ Public Class ReceivablesAndTaxableDB
                 xSQL.AppendLine("    rta_code = @rta_code, ")
                 xSQL.AppendLine("    rta_desc = @rta_desc, ")
                 xSQL.AppendLine("    rta_amount = @rta_amount, ")
+                xSQL.AppendLine("    rta_type = @rta_type, ")
                 xSQL.AppendLine("    rta_taxable = @rta_taxable, ")
                 xSQL.AppendLine("    is_deleted =  @is_deleted ")
                 xSQL.AppendLine("WHERE id = @id")
@@ -223,6 +239,7 @@ Public Class ReceivablesAndTaxableDB
                 commandDB1.Parameters.AddWithValue("@rta_code", pRTA.rta_code)
                 commandDB1.Parameters.AddWithValue("@rta_desc", pRTA.rta_desc)
                 commandDB1.Parameters.AddWithValue("@rta_amount", pRTA.rta_amount)
+                commandDB1.Parameters.AddWithValue("@rta_type", pRTA.rta_type)
                 commandDB1.Parameters.AddWithValue("@rta_taxable", pRTA.rta_taxable)
                 commandDB1.Parameters.AddWithValue("@is_deleted", pRTA.is_deleted)
                 commandDB1.Parameters.AddWithValue("@id", pRTA.id)

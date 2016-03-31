@@ -1,6 +1,9 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class PayrollGen
+   
+End Class
+Public Class PayrollGenDB
     Friend Function GetPayrollSetting() As DataTable
         Dim dt As DataTable = Nothing
         Try
@@ -19,7 +22,7 @@ Public Class PayrollGen
                         For Each dr In ds.Tables(0).Rows
                             If Not IsDBNull(dr("gov_deduction_settings")) Then gov_deduction_settings = dr("gov_deduction_settings")
                             If Not IsDBNull(dr("tax_deduction_settings")) Then tax_deduction_settings = dr("tax_deduction_settings")
-                            
+
                         Next
                     End If
                 End Using
@@ -33,3 +36,4 @@ Public Class PayrollGen
         Return dt
     End Function
 End Class
+

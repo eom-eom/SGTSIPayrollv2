@@ -7,7 +7,7 @@ Public Class ReceivablesAndTaxableAllowance
         txtCode.Enabled = False
         txtDesc.Enabled = False
         txtAmount.Enabled = False
-
+      
         fillRTA()
     End Sub
 
@@ -25,9 +25,10 @@ Public Class ReceivablesAndTaxableAllowance
                 txtCode.Text = gvRTA.SelectedRow.Cells(1).Text
                 txtDesc.Text = gvRTA.SelectedRow.Cells(2).Text
                 txtAmount.Text = gvRTA.SelectedRow.Cells(3).Text
-                If gvRTA.SelectedRow.Cells(4).Text = 1 Then
+                ddlType.SelectedValue = gvRTA.SelectedRow.Cells(4).Text
+                If gvRTA.SelectedRow.Cells(5).Text = 1 Then
                     cbTaxable.Checked = True
-                ElseIf gvRTA.SelectedRow.Cells(4).Text = 0 Then
+                ElseIf gvRTA.SelectedRow.Cells(5).Text = 0 Then
                     cbTaxable.Checked = False
                 End If
                 row.BackColor = ColorTranslator.FromHtml("#f39c12")
@@ -67,6 +68,7 @@ Public Class ReceivablesAndTaxableAllowance
             cRTA.rta_code = txtCode.Text
             cRTA.rta_desc = txtDesc.Text
             cRTA.rta_amount = txtAmount.Text
+            cRTA.rta_type = ddlType.SelectedValue
             If cbTaxable.Checked = True Then
                 cRTA.rta_taxable = "1"
             ElseIf cbTaxable.Checked = False Then
@@ -104,6 +106,7 @@ Public Class ReceivablesAndTaxableAllowance
                     cRTA.rta_code = txtCode.Text
                     cRTA.rta_desc = txtDesc.Text
                     cRTA.rta_amount = txtAmount.Text
+                    cRTA.rta_type = ddlType.SelectedValue
                     If cbTaxable.Checked = True Then
                         cRTA.rta_taxable = "1"
                     ElseIf cbTaxable.Checked = False Then
@@ -133,6 +136,7 @@ Public Class ReceivablesAndTaxableAllowance
                 txtCode.Enabled = True
                 txtDesc.Enabled = True
                 txtAmount.Enabled = True
+
             Else
                 ShowMessage("Please Select before you Edit", MessageType.Errors, Me)
             End If

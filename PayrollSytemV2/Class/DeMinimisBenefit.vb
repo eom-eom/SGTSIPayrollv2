@@ -43,6 +43,17 @@ Public Class DeMinimisBenefit
         End Set
     End Property
 
+    Private _dmb_type As String = ""
+    ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+    Friend Property dmb_type() As String
+        Get
+            Return _dmb_type
+        End Get
+        Set(ByVal Value As String)
+            _dmb_type = Value
+        End Set
+    End Property
+
     Private _is_deleted As String = ""
     ''' <summary> Object Property: Type=System.String, ColumnSize=50 </summary>
     Friend Property is_deleted() As String
@@ -53,7 +64,7 @@ Public Class DeMinimisBenefit
             _is_deleted = Value
         End Set
     End Property
-    
+
 #End Region
 End Class
 Public Class DeMinimisBenefitDB
@@ -65,8 +76,8 @@ Public Class DeMinimisBenefitDB
             xSQL.AppendLine("    id, ")
             xSQL.AppendLine("    dmb_code, ")
             xSQL.AppendLine("    dmb_desc, ")
-            xSQL.AppendLine("    dmb_amount, ")
-            xSQL.AppendLine("    dmb_type ")
+            xSQL.AppendLine("    dmb_type, ")
+            xSQL.AppendLine("    dmb_amount ")
             xSQL.AppendLine("FROM de_minimis_benefits")
             xSQL.AppendLine("WHERE is_deleted = '1' ")
 
@@ -101,12 +112,14 @@ Public Class DeMinimisBenefitDB
                 xSQL.AppendLine("    dmb_code, ")
                 xSQL.AppendLine("    dmb_desc, ")
                 xSQL.AppendLine("    dmb_amount, ")
+                xSQL.AppendLine("    dmb_type, ")
                 xSQL.AppendLine("    is_deleted ")
                 xSQL.AppendLine(") ")
                 xSQL.AppendLine("VALUES( ")
                 xSQL.AppendLine("    @dmb_code, ")
                 xSQL.AppendLine("    @dmb_desc, ")
                 xSQL.AppendLine("    @dmb_amount, ")
+                xSQL.AppendLine("    @dmb_type, ")
                 xSQL.AppendLine("    @is_deleted ")
                 xSQL.AppendLine(")")
 
@@ -114,6 +127,7 @@ Public Class DeMinimisBenefitDB
                 commandDB1.Parameters.AddWithValue("@dmb_code", cItem.dmb_code)
                 commandDB1.Parameters.AddWithValue("@dmb_desc", cItem.dmb_desc)
                 commandDB1.Parameters.AddWithValue("@dmb_amount", cItem.dmb_amount)
+                commandDB1.Parameters.AddWithValue("@dmb_type", cItem.dmb_type)
                 commandDB1.Parameters.AddWithValue("@is_deleted", cItem.is_deleted)
                 commandDB1.ExecuteNonQuery()
 
@@ -137,6 +151,7 @@ Public Class DeMinimisBenefitDB
                 xSQL.AppendLine("    dmb_code = @dmb_code, ")
                 xSQL.AppendLine("    dmb_desc = @dmb_desc, ")
                 xSQL.AppendLine("    dmb_amount = @dmb_amount, ")
+                xSQL.AppendLine("    dmb_type= @dmb_type, ")
                 xSQL.AppendLine("    is_deleted =  @is_deleted ")
                 xSQL.AppendLine("WHERE id = @id")
 
@@ -144,6 +159,7 @@ Public Class DeMinimisBenefitDB
                 commandDB1.Parameters.AddWithValue("@dmb_code", pDMB.dmb_code)
                 commandDB1.Parameters.AddWithValue("@dmb_desc", pDMB.dmb_desc)
                 commandDB1.Parameters.AddWithValue("@dmb_amount", pDMB.dmb_amount)
+                commandDB1.Parameters.AddWithValue("@dmb_type", pDMB.dmb_type)
                 commandDB1.Parameters.AddWithValue("@is_deleted", pDMB.is_deleted)
                 commandDB1.Parameters.AddWithValue("@id", pDMB.id)
                 commandDB1.ExecuteNonQuery()

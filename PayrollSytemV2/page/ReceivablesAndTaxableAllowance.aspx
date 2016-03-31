@@ -55,6 +55,18 @@
                         </div>
                     </div>
                      <br />
+                     <div class="row">
+                          <div class="col-md-2">
+                            <h5>Type</h5>
+                        </div>
+                        <div class="col-md-4">
+                             <asp:DropDownList class="form-control select2"  ID="ddlType" runat="server" AutoPostBack="False" >
+                                <asp:ListItem Text="Half Month" Value="HalfMonth"></asp:ListItem>
+                                <asp:ListItem Text="Monthly" Value="Monthly"></asp:ListItem>
+                            </asp:DropDownList> 
+                        </div>
+                     </div>
+                     <br />
                     <div class="row">
                         <div class="col-md-12">
                             <asp:GridView ID="gvRTA" runat="server" class="table table-bordered table-striped dataTable" OnRowDataBound="gvRTA_RowDataBound" 
@@ -64,6 +76,7 @@
                                     <asp:BoundField DataField="rta_code" HeaderText="Code"  />
                                     <asp:BoundField DataField="rta_desc" HeaderText="Description"  />
                                     <asp:BoundField DataField="rta_amount" HeaderText="Amount"  />
+                                    <asp:BoundField DataField="rta_type" HeaderText="Type"  />
                                     <asp:BoundField DataField="rta_Taxable" HeaderText="Taxable (1 = YES / 0 = NO)"  />
                                 </Columns>
                             </asp:GridView>
