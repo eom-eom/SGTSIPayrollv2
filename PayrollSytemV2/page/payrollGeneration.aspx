@@ -27,7 +27,10 @@
                     </div>
                     <div class="col-md-10">
                         <asp:Label ID="lblPayrollCode" runat="server" Text="Payroll Code"></asp:Label>
+                         <asp:Label ID="lblGovDeSettings" runat="server" Text="GovDeSettings" Visible="false"></asp:Label>
+                        <asp:Label ID="lblTaxDeSettings" runat="server" Text="TaxDeSettings"  Visible="false">></asp:Label>
                     </div>
+                    
                 </div>
                 <br />
                 <div class="row">
