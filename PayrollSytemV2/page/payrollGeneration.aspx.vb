@@ -178,7 +178,7 @@ Public Class payroll
                 ' xSQL.AppendLine(" or dtrc_date >= @xFrom and dtrc_date <= @xTo ")
                 xSQL.AppendLine("GROUP BY dtrcompute.emp_code ")
 
-               
+
                 Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
                 SQLCommand.Parameters.AddWithValue("@xFrom", xFrom)
                 SQLCommand.Parameters.AddWithValue("@xTo", xTo)
@@ -780,7 +780,7 @@ Public Class payroll
 
 
                 For Each dr In ds.Tables(0).Rows
-                    
+
                     If dr("dmb_type") = "HalfMonth" Then
                         ComputeDeMinimisDeduction = ModC(ComputeDeMinimisDeduction) + ModC((ModC(dr("dmb_amount") / 2)))
 

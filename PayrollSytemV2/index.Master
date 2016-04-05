@@ -30,7 +30,11 @@
          });
          $('#myModal').on('shown.bs.modal', function () {
              $('#myInput').focus()
+
          })
+         function Closepopup() {
+             $('#myModal').modal('hide')
+         }
         </script>
     <style type="text/css">
         .messagealert {
@@ -194,7 +198,7 @@
                       </a>
                       <ul class="treeview-menu">
                         <li><a href="payrollGeneration.aspx"><i class="fa fa-circle-o"></i> Payroll Generation</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Adjustment</a></li>
+                        <li><a href="payrollAdjustments.aspx"><i class="fa fa-circle-o"></i> Payroll Adjustment</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Report</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Maintenance</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Master File</a></li>

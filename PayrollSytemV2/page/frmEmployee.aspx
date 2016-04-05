@@ -167,7 +167,7 @@
                                             </div>
                                         
                                             <div class='col-sm-12 col-md-9'>
-                                                    <asp:TextBox ID="txtEmail" runat="server"  type="text" CssClass='form-control'  ClientIDMode="Static" />
+                                                    <asp:TextBox ID="txtEmail" runat="server"  type="text" CssClass='form-control' TextMode="Email"  ClientIDMode="Static" />
                                             </div>  
                                         </div>
                                      </div>
@@ -674,6 +674,7 @@
                                                                                 <asp:BoundField DataField="rta_code" HeaderText="Code" />
                                                                                 <asp:BoundField DataField="rta_desc" HeaderText="Description"  />
                                                                                 <asp:BoundField DataField="rta_amount" HeaderText="Amount"  />
+                                                                                <asp:BoundField DataField="rta_type" HeaderText="Deduction type"  />
                                                                             </Columns>
                                                                         </asp:GridView>
                                                                         
@@ -713,6 +714,7 @@
                                                                                 <asp:BoundField DataField="rta_code" HeaderText="Code" />
                                                                                 <asp:BoundField DataField="rta_desc" HeaderText="Description"  />
                                                                                 <asp:BoundField DataField="rta_amount" HeaderText="Amount"  />
+                                                                                <asp:BoundField DataField="rta_type" HeaderText="Deduction type"  />
                                                                             </Columns>
                                                                         </asp:GridView>
                                                                     </div>
@@ -827,7 +829,6 @@
                                                                 <asp:Linkbutton ID="LEditComde" runat="server"   class="btn btn-warning " > <span class='fa fa-pencil-square-o'></span> Edit</asp:Linkbutton>   
                                                                 <asp:Linkbutton ID="LDeleteComde" runat="server" class="btn btn-danger   "> <span class='fa  fa-times'></span> Delete</asp:Linkbutton>  
                                                             </div>
-        
                                                         </div>
        <!-- this is bootstrp modal popup -->  
          <div id="myModal" class="modal fade ">  
@@ -1029,6 +1030,7 @@
                                                                                 <asp:BoundField DataField="dmb_code" HeaderText="Code"  />
                                                                                 <asp:BoundField DataField="dmb_desc" HeaderText="Description"  />
                                                                                 <asp:BoundField DataField="dmb_amount" HeaderText="Amount"  />
+                                                                                <asp:BoundField DataField="dmb_type" HeaderText="Deduction type"  />
                                                                             </Columns>
                                                                         </asp:GridView>
                                                                     </div>
@@ -1051,8 +1053,8 @@
     <div class ="row">
         <div class='col-sm-offset-8 col-sm-4  col-md-offset-10 col-md-2 '> 
             <asp:Linkbutton ID="LcancelEmployee" runat="server"  class="btn btn-default  "> Cancel</asp:Linkbutton>          
-       
-            <asp:Linkbutton ID="LSaveEmployee" runat="server" class="btn btn-success   "> <span class='fa fa-check'></span> Save </asp:Linkbutton>  
+                
+            <asp:Linkbutton ID="LSaveEmployee" runat="server" class="btn btn-success   "> <span class='fa fa-check'></span> Save </asp:Linkbutton> 
         </div>
         
     </div>

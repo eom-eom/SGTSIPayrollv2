@@ -74,7 +74,7 @@ Public Class ReceivablesAndTaxable
             _is_deleted = Value
         End Set
     End Property
- 
+
 
 #End Region
 End Class

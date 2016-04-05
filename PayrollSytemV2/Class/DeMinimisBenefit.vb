@@ -64,7 +64,7 @@ Public Class DeMinimisBenefit
             _is_deleted = Value
         End Set
     End Property
-    
+
 #End Region
 End Class
 Public Class DeMinimisBenefitDB
