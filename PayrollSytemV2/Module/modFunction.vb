@@ -1,4 +1,6 @@
-﻿Module modFunction
+﻿Imports System.Security.Cryptography
+
+Module modFunction
     Public company_name As String
     Public company_address As String
     Public company_telephone As String
@@ -47,4 +49,14 @@
     Public Sub ShowMessage_mod(Message As String, Types As MessageType, p As Page)
         ScriptManager.RegisterStartupScript(p, p.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage_mod('" + Message + "','" & Types & "');", True)
     End Sub
+    Function makeMD5Hash(ByVal strToHash As String) As String
+        Dim md5Obj As New MD5CryptoServiceProvider()
+        Dim bytesToHash() As Byte = System.Text.Encoding.ASCII.GetBytes(strToHash)
+        bytesToHash = md5Obj.ComputeHash(bytesToHash)
+        Dim strResult As String = ""
+        For Each b As Byte In bytesToHash
+            strResult += b.ToString("x2")
+        Next
+        Return strResult
+    End Function
 End Module

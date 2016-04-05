@@ -6,7 +6,287 @@ PayrollSytemV2
 </name>
 </assembly>
 <members>
-<member name="F:PayrollSytemV2.frmEmployee.btnPInfo">
+<member name="P:PayrollSytemV2.HoliTable.id">
+	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_name">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_date">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_day">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_category">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.holiday_percentage">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.HoliTable.is_deleted">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="F:PayrollSytemV2.DTRUpload.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.UploadDTR">
+	<summary>
+UploadDTR control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.btnUpload">
+	<summary>
+btnUpload control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.gvDTR">
+	<summary>
+gvDTR control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblORate">
+	<summary>
+lblORate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblORegSH">
+	<summary>
+lblORegSH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblOExSH">
+	<summary>
+lblOExSH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblOSHandO">
+	<summary>
+lblOSHandO control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblORegLH">
+	<summary>
+lblORegLH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblOExLH">
+	<summary>
+lblOExLH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblOLHandOT">
+	<summary>
+lblOLHandOT control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblORegSun">
+	<summary>
+lblORegSun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblOExSun">
+	<summary>
+lblOExSun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblORegLHSun">
+	<summary>
+lblORegLHSun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblOExLHSun">
+	<summary>
+lblOExLHSun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DTRUpload.lblONightDiff">
+	<summary>
+lblONightDiff control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtORate">
+	<summary>
+txtORate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtOLHandOT">
+	<summary>
+txtOLHandOT control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtORegSH">
+	<summary>
+txtORegSH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtORegSun">
+	<summary>
+txtORegSun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtOExSH">
+	<summary>
+txtOExSH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtOExSun">
+	<summary>
+txtOExSun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtOSHandO">
+	<summary>
+txtOSHandO control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtORegLHSun">
+	<summary>
+txtORegLHSun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtORegLH">
+	<summary>
+txtORegLH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtOExLHSun">
+	<summary>
+txtOExLHSun control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtOExLH">
+	<summary>
+txtOExLH control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.txtONightDiff">
+	<summary>
+txtONightDiff control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.OvertimeSettings.btnEdit">
+	<summary>
+btnEdit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:PayrollSytemV2.Departments.id">
+	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
+</member><member name="P:PayrollSytemV2.Departments.name">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Departments.description">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Departments.is_deleted">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Departments.parent_id">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="T:PayrollSytemV2.DSREPORT.payroll_detailsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:PayrollSytemV2.DSREPORT.payroll_detailsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:PayrollSytemV2.DSREPORT.payroll_detailsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:PayrollSytemV2.DSREPORT">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="F:PayrollSytemV2.frmEmployee.btnPInfo">
 	<summary>
 btnPInfo control.
 </summary>
@@ -454,6 +734,22 @@ txtHrRate control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.lblNightDiff">
+	<summary>
+lblNightDiff control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.txtNightDiff">
+	<summary>
+txtNightDiff control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:PayrollSytemV2.frmEmployee.lblshift">
 	<summary>
 lblshift control.
@@ -686,9 +982,17 @@ chkHDMF control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PayrollSytemV2.frmEmployee.gvCompanyDeduction">
+</member><member name="F:PayrollSytemV2.frmEmployee.UPGvEmpComde">
 	<summary>
-gvCompanyDeduction control.
+UPGvEmpComde control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.gvEmpCompanyDeduction">
+	<summary>
+gvEmpCompanyDeduction control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -702,9 +1006,121 @@ LAddComde control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.LEditComde">
+	<summary>
+LEditComde control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:PayrollSytemV2.frmEmployee.LDeleteComde">
 	<summary>
 LDeleteComde control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.UPmodal">
+	<summary>
+UPmodal control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.lblTheChosenOne">
+	<summary>
+lblTheChosenOne control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.lblSelect">
+	<summary>
+lblSelect control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.ddComde">
+	<summary>
+ddComde control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.lblComdeAmt">
+	<summary>
+lblComdeAmt control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.txtComdeAmt">
+	<summary>
+txtComdeAmt control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.dtStart">
+	<summary>
+dtStart control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.txtComdeStart">
+	<summary>
+txtComdeStart control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.dtEnd">
+	<summary>
+dtEnd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.txtComdeEnd">
+	<summary>
+txtComdeEnd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.lblDedtype">
+	<summary>
+lblDedtype control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.ddDeductType">
+	<summary>
+ddDeductType control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.frmEmployee.selectedComde">
+	<summary>
+selectedComde control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -734,41 +1150,9 @@ gvLeaves control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PayrollSytemV2.frmEmployee.LAddLeaves">
-	<summary>
-LAddLeaves control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.frmEmployee.LDeleteLeaves">
-	<summary>
-LDeleteLeaves control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member><member name="F:PayrollSytemV2.frmEmployee.gvDeminimis">
 	<summary>
 gvDeminimis control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.frmEmployee.LAddDmns">
-	<summary>
-LAddDmns control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.frmEmployee.LDeleteDmns">
-	<summary>
-LDeleteDmns control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -790,126 +1174,6 @@ LSaveEmployee control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="P:PayrollSytemV2.HoliTable.id">
-	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
-</member><member name="P:PayrollSytemV2.HoliTable.holiday_name">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.HoliTable.holiday_date">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.HoliTable.holiday_day">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.HoliTable.holiday_category">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.HoliTable.holiday_percentage">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.HoliTable.is_deleted">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="F:PayrollSytemV2.DTRUpload.UpdatePanel1">
-	<summary>
-UpdatePanel1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.DTRUpload.UploadDTR">
-	<summary>
-UploadDTR control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.DTRUpload.btnUpload">
-	<summary>
-btnUpload control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.DTRUpload.gvDTR">
-	<summary>
-gvDTR control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.OvertimeSettings.UpdatePanel1">
-	<summary>
-UpdatePanel1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.OvertimeSettings.txtOName">
-	<summary>
-txtOName control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.OvertimeSettings.txtORate">
-	<summary>
-txtORate control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.OvertimeSettings.gvOT">
-	<summary>
-gvOT control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.OvertimeSettings.btnNew">
-	<summary>
-btnNew control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.OvertimeSettings.btnSave">
-	<summary>
-btnSave control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.OvertimeSettings.btnEdit">
-	<summary>
-btnEdit control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PayrollSytemV2.OvertimeSettings.btnDelete">
-	<summary>
-btnDelete control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="P:PayrollSytemV2.Departments.id">
-	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
-</member><member name="P:PayrollSytemV2.Departments.name">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.Departments.description">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.Departments.is_deleted">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.Departments.parent_id">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="F:PayrollSytemV2.LeaveType.UpdatePanel1">
 	<summary>
 UpdatePanel1 control.
@@ -990,6 +1254,78 @@ btnDelete control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:PayrollSytemV2.payroll.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payroll.lblPayrollCode">
+	<summary>
+lblPayrollCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payroll.lblGovDeSettings">
+	<summary>
+lblGovDeSettings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payroll.lblTaxDeSettings">
+	<summary>
+lblTaxDeSettings control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payroll.txtFrom">
+	<summary>
+txtFrom control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payroll.TxtTo">
+	<summary>
+TxtTo control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payroll.btnGenerate">
+	<summary>
+btnGenerate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payroll.gvGenerate">
+	<summary>
+gvGenerate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payroll.gvGenerateTotal">
+	<summary>
+gvGenerateTotal control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="P:PayrollSytemV2.ReceivablesAndTaxable.id">
 	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
 </member><member name="P:PayrollSytemV2.ReceivablesAndTaxable.rta_code">
@@ -999,6 +1335,8 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="P:PayrollSytemV2.ReceivablesAndTaxable.rta_amount">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.ReceivablesAndTaxable.rta_taxable">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.ReceivablesAndTaxable.rta_type">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.ReceivablesAndTaxable.is_deleted">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
@@ -1183,6 +1521,8 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="P:PayrollSytemV2.DeMinimisBenefit.dmb_desc">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.DeMinimisBenefit.dmb_amount">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.DeMinimisBenefit.dmb_type">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.DeMinimisBenefit.is_deleted">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
@@ -1426,6 +1766,38 @@ To modify move field declaration from designer file to code-behind file.
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.PhilhealthTables.is_deleted">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="F:PayrollSytemV2.Reports.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.ddlPayrollCode">
+	<summary>
+ddlPayrollCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.crvReports">
+	<summary>
+crvReports control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:PayrollSytemV2.DeMinimisBenefits.UpdatePanel1">
 	<summary>
 UpdatePanel1 control.
@@ -1453,6 +1825,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:PayrollSytemV2.DeMinimisBenefits.txtDescription">
 	<summary>
 txtDescription control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.DeMinimisBenefits.ddlType">
+	<summary>
+ddlType control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1616,6 +1996,70 @@ btnDelete control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:PayrollSytemV2.payrollMaintenance.UpdatePanel1">
+	<summary>
+UpdatePanel1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payrollMaintenance.txtPayrollCode">
+	<summary>
+txtPayrollCode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payrollMaintenance.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payrollMaintenance.gvPayrollMain">
+	<summary>
+gvPayrollMain control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payrollMaintenance.btnDelete">
+	<summary>
+btnDelete control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payrollMaintenance.UPmodal">
+	<summary>
+UPmodal control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payrollMaintenance.txtPassword">
+	<summary>
+txtPassword control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.payrollMaintenance.btnOK">
+	<summary>
+btnOK control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:PayrollSytemV2.SSSTable.UpdatePanel1">
 	<summary>
 UpdatePanel1 control.
@@ -1714,11 +2158,29 @@ To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member><member name="P:PayrollSytemV2.Overtime.id">
 	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
-</member><member name="P:PayrollSytemV2.Overtime.overtime_name">
-	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.Overtime.overtime_rate">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="P:PayrollSytemV2.Overtime.is_deleted">
+</member><member name="P:PayrollSytemV2.Overtime.overtime_regular_sh">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_excess_sh">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_sh_and_ot">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_regular_lh">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_excess_lh">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_lh_and_ot">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_regular_sun">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_excess_sun">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_regular_lh_sun">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_excess_lh_sun">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.Overtime.overtime_nightdiff">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.SystemSettings.id">
 	<summary> Object Property: Type=System.Int32, ColumnSize=4 </summary>
@@ -2054,14 +2516,6 @@ btnNew control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PayrollSytemV2.HolidayTables.LinkButton1">
-	<summary>
-LinkButton1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member><member name="F:PayrollSytemV2.HolidayTables.btnSave">
 	<summary>
 btnSave control.
@@ -2189,6 +2643,10 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="P:PayrollSytemV2.HDMFTables.hdmf_er">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.HDMFTables.is_deleted">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.PayrollMain.payroll_code">
+	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
+</member><member name="P:PayrollSytemV2.PayrollMain.is_deleted">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="F:PayrollSytemV2.SystemSetting.UpdatePanel1">
 	<summary>
@@ -2356,6 +2814,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.cbTaxable">
 	<summary>
 cbTaxable control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.ReceivablesAndTaxableAllowance.ddlType">
+	<summary>
+ddlType control.
 </summary>
 	<remarks>
 Auto-generated field.

@@ -89,6 +89,7 @@ Public Class payroll
             End If
 
             Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
+            SQLCommand.Transaction = PayrollTransaction
             SQLCommand.Parameters.AddWithValue("@xBasicPay", xBasicPay)
             Dim da As New MySqlDataAdapter(SQLCommand)
             Dim ds As New DataSet
@@ -142,8 +143,8 @@ Public Class payroll
                 SQLConnect.Open()
                 Dim xSQL As String
                 xSQL = " select * from Payroll " & _
-                    " where date_to between @xFrom and @xTo or date_from between @xFrom and @xTo " & _
-                    "  or date_from >= @xFrom and date_to <= @xTo or date_from <= @xFrom and date_to >= @xTo "
+                    " where is_deleted = '1' and date_to between @xFrom and @xTo and date_from between @xFrom and @xTo " & _
+                    "  and date_from >= @xFrom and date_to <= @xTo and date_from <= @xFrom and date_to >= @xTo "
                 Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
                 SQLCommand.Parameters.AddWithValue("@xFrom", xFrom)
                 SQLCommand.Parameters.AddWithValue("@xTo", xTo)
@@ -282,6 +283,7 @@ Public Class payroll
         dt.Columns.Add(New DataColumn("De Minimis Benefits", System.Type.GetType("System.String")))
         dt.Columns.Add(New DataColumn("Receivable Allowance", System.Type.GetType("System.String")))
         dt.Columns.Add(New DataColumn("Taxable Allowance", System.Type.GetType("System.String")))
+        dt.Columns.Add(New DataColumn("Payroll Adjustment", System.Type.GetType("System.String")))
         dt.Columns.Add(New DataColumn("Net Pay", System.Type.GetType("System.String")))
 
         Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
@@ -306,6 +308,7 @@ Public Class payroll
             xSQL.AppendLine("    emp_comdeduc, ")
             xSQL.AppendLine("    emp_totaldeduction, ")
             xSQL.AppendLine("    emp_netpay, ")
+            xSQL.AppendLine("    emp_payrolladjustment, ")
             xSQL.AppendLine("    emp_payroll_year, ")
             xSQL.AppendLine("    is_deleted ")
             xSQL.AppendLine(") ")
@@ -328,6 +331,7 @@ Public Class payroll
             xSQL.AppendLine("    @emp_comdeduc, ")
             xSQL.AppendLine("    @emp_totaldeduction, ")
             xSQL.AppendLine("    @emp_netpay, ")
+            xSQL.AppendLine("    @emp_payrolladjustment, ")
             xSQL.AppendLine("    @emp_payroll_year, ")
             xSQL.AppendLine("    @is_deleted ")
             xSQL.AppendLine(") ")
@@ -355,6 +359,7 @@ Public Class payroll
             commandDB1.Parameters.Add("@emp_govdeduc", MySqlDbType.VarChar)
             commandDB1.Parameters.Add("@emp_comdeduc", MySqlDbType.VarChar)
             commandDB1.Parameters.Add("@emp_totaldeduction", MySqlDbType.VarChar)
+            commandDB1.Parameters.Add("@emp_payrolladjustment", MySqlDbType.VarChar)
             commandDB1.Parameters.Add("@emp_netpay", MySqlDbType.VarChar)
             commandDB1.Parameters.Add("@emp_payroll_year", MySqlDbType.VarChar)
             commandDB1.Parameters.Add("@is_deleted", MySqlDbType.VarChar)
@@ -415,9 +420,11 @@ Public Class payroll
                 'End If
 
                 Dim empCompDeduc As Double = ComputeCompanyDeduction(empCode)
+                Session("empCompDeduc") = empCompDeduc
                 Dim empDMBDeduc As Double = ComputeDeMinimisDeduction(empCode)
                 Dim empReceivables As Double = ReceivablesDeduction(empCode)
                 Dim empTaxable As Double = TaxableDeduction(empCode)
+                Dim empPayrollAdjustment As Double = ComputeAdjustment(empCode, txtFrom.Text, TxtTo.Text)
 
                 Dim empGovDeduc As Double = emp_GD_SSS_Amt + emp_GD_HDMF_Amt + emp_GD_PhilHealth_Amt
 
@@ -431,7 +438,7 @@ Public Class payroll
 
                 empBasicPay = basicsalary
 
-                empTaxEarning = ModC(ModC(empBasicPay) + ModC(empOvertime) + ModC(empTaxable)) - ModC(ModC(Late) + ModC(Undertime) + ModC(empGovDeduc) + ModC(empAbsent) + ModC(empCompDeduc) + ModC(empReceivables))
+                empTaxEarning = ModC(ModC(empBasicPay) + ModC(empOvertime) + ModC(empTaxable)) - ModC(ModC(Late) + ModC(Undertime) + ModC(empGovDeduc) + ModC(empAbsent) + ModC(empCompDeduc) + ModC(empReceivables)) + ModC(empPayrollAdjustment)
 
 
                 Dim TaxTemp As String = ComputeTax(empTaxEarning, tax_comp, empCode)
@@ -451,7 +458,7 @@ Public Class payroll
                 End If
 
                 Dim TotalDeduction As Double = ModC(empGovDeduc) + ModC(empTax) + ModC(empCompDeduc)
-                Dim NetPay As Double = ModC(ModC(empTaxEarning) - ModC(TotalDeduction) - ModC(empTaxable)) + ModC(empDMBDeduc) + ModC(empReceivables)
+                Dim NetPay As Double = ModC(ModC(empTaxEarning) - ModC(TotalDeduction)) - ModC(ModC(empTaxable) + ModC(empDMBDeduc) + ModC(empReceivables)) + ModC(empPayrollAdjustment)
 
 
                 dr = dt.NewRow()
@@ -473,7 +480,8 @@ Public Class payroll
                 dr(15) = ShowComma(empDMBDeduc)
                 dr(16) = ShowComma(empReceivables)
                 dr(17) = ShowComma(empTaxable)
-                dr(18) = ShowComma(NetPay)
+                dr(18) = ShowComma(empPayrollAdjustment)
+                dr(19) = ShowComma(NetPay)
                 dt.Rows.Add(dr)
 
                 commandDB1.Parameters("@payroll_code").Value = lblPayrollCode.Text
@@ -484,7 +492,7 @@ Public Class payroll
                 commandDB1.Parameters("@emp_late").Value = Late
                 commandDB1.Parameters("@emp_absent").Value = empAbsent
                 commandDB1.Parameters("@emp_ut").Value = Undertime
-                commandDB1.Parameters("@emp_ot").Value = Overtime
+                commandDB1.Parameters("@emp_ot").Value = empOvertime
                 commandDB1.Parameters("@emp_taxallowance").Value = empTaxable
                 commandDB1.Parameters("@emp_receivable").Value = empReceivables
                 commandDB1.Parameters("@emp_deminimis").Value = empDMBDeduc
@@ -494,6 +502,7 @@ Public Class payroll
                 commandDB1.Parameters("@emp_govdeduc").Value = empGovDeduc
                 commandDB1.Parameters("@emp_comdeduc").Value = empCompDeduc
                 commandDB1.Parameters("@emp_totaldeduction").Value = TotalDeduction
+                commandDB1.Parameters("@emp_payrolladjustment").Value = empPayrollAdjustment
                 commandDB1.Parameters("@emp_netpay").Value = NetPay
                 commandDB1.Parameters("@emp_payroll_year").Value = Format(CDate(txtFrom.Text), "yyyy").ToString
                 commandDB1.Parameters("@is_deleted").Value = "1"
@@ -504,6 +513,7 @@ Public Class payroll
             gvGenerate.DataSource = dt
             gvGenerate.DataBind()
 
+            'Payroll
             Dim xSQL1 As New StringBuilder
             xSQL1.AppendLine("INSERT INTO Payroll(")
             xSQL1.AppendLine("    payroll_code, ")
@@ -520,18 +530,6 @@ Public Class payroll
             xSQL1.AppendLine("    '1' ")
             xSQL1.AppendLine(") ")
 
-            Dim xSQL2 As New StringBuilder
-            xSQL2.AppendLine("INSERT INTO payroll_comde(")
-            xSQL2.AppendLine("    payroll_code, ")
-            xSQL2.AppendLine("    emp_code, ")
-            xSQL2.AppendLine("    comde_code ")
-            xSQL2.AppendLine(") ")
-            xSQL2.AppendLine("VALUES( ")
-            xSQL2.AppendLine("    @payroll_code, ")
-            xSQL2.AppendLine("    @emp_code, ")
-            xSQL2.AppendLine("    @comde_code ")
-            xSQL2.AppendLine(") ")
-
             Dim commandDB As New MySqlCommand(xSQL1.ToString, SQLConnect)
             commandDB.Transaction = PayrollTransaction
             commandDB.Parameters.AddWithValue("@payroll_code", lblPayrollCode.Text)
@@ -540,6 +538,27 @@ Public Class payroll
             commandDB.Parameters.AddWithValue("@date_to", TxtTo.Text)
             commandDB.ExecuteNonQuery()
 
+            'ComDe
+            If Session("empCompDeduc") <> 0 Then
+                Dim xSQL2 As New StringBuilder
+                xSQL2.AppendLine("INSERT INTO payroll_comde(")
+                xSQL2.AppendLine("    payroll_code, ")
+                xSQL2.AppendLine("    emp_code, ")
+                xSQL2.AppendLine("    comde_code ")
+                xSQL2.AppendLine(") ")
+                xSQL2.AppendLine("VALUES( ")
+                xSQL2.AppendLine("    @payroll_code, ")
+                xSQL2.AppendLine("    @emp_code, ")
+                xSQL2.AppendLine("    @comde_code ")
+                xSQL2.AppendLine(") ")
+
+                Dim cmdComDeduc As New MySqlCommand(xSQL2.ToString, SQLConnect)
+                cmdComDeduc.Transaction = PayrollTransaction
+                cmdComDeduc.Parameters.AddWithValue("@payroll_code", lblPayrollCode.Text)
+                cmdComDeduc.Parameters.AddWithValue("@emp_code", Session("empCode"))
+                cmdComDeduc.Parameters.AddWithValue("@comde_code", Session("comde_code"))
+                cmdComDeduc.ExecuteNonQuery()
+            End If
             'DTR
             Dim xSQLDTR As New StringBuilder
             xSQLDTR.AppendLine("UPDATE dtrcompute SET")
@@ -555,20 +574,25 @@ Public Class payroll
             cmdDTR.Parameters.AddWithValue("@xTo", TxtTo.Text)
             cmdDTR.ExecuteNonQuery()
 
-            'ComDe
-            Dim cmdComDeduc As New MySqlCommand(xSQL2.ToString, SQLConnect)
-            cmdComDeduc.Transaction = PayrollTransaction
-            cmdComDeduc.Parameters.AddWithValue("@payroll_code", lblPayrollCode.Text)
-            cmdComDeduc.Parameters.AddWithValue("@emp_code", Session("empCode"))
-            cmdComDeduc.Parameters.AddWithValue("@comde_code", Session("comde_code"))
-            cmdComDeduc.ExecuteNonQuery()
+            'Payroll Adjustment
+            Dim xSQLPayAdj As New StringBuilder
+            xSQLPayAdj.AppendLine("UPDATE payroll_adjustments SET")
+            xSQLPayAdj.AppendLine("    paid = '1', ")
+            xSQLPayAdj.AppendLine("    payroll_code = @payroll_code ")
+            xSQLPayAdj.AppendLine("WHERE date_created >= @xFrom ")
+            xSQLPayAdj.AppendLine("  AND date_created <= @xTo ")
+
+            Dim cmdPayAdj As New MySqlCommand(xSQLPayAdj.ToString, SQLConnect)
+            cmdPayAdj.Transaction = PayrollTransaction
+            cmdPayAdj.Parameters.AddWithValue("@payroll_code", lblPayrollCode.Text)
+            cmdPayAdj.Parameters.AddWithValue("@xFrom", txtFrom.Text)
+            cmdPayAdj.Parameters.AddWithValue("@xTo", TxtTo.Text)
+            cmdPayAdj.ExecuteNonQuery()
 
             If MsgBox("Save?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                 PayrollTransaction.Commit()
-
             Else
                 PayrollTransaction.Rollback()
-
             End If
         End Using
 
@@ -745,7 +769,7 @@ Public Class payroll
                 xSQL.AppendLine("    de_minimis_benefits.dmb_type ")
                 xSQL.AppendLine("FROM employee_de_minimis_benefits ")
                 xSQL.AppendLine("    INNER JOIN employee ON employee_de_minimis_benefits.emp_code = employee.`code` ")
-                xSQL.AppendLine("    INNER JOIN de_minimis_benefits ON employee_de_minimis_benefits.dmb_id = de_minimis_benefits.id ")
+                xSQL.AppendLine("    INNER JOIN de_minimis_benefits ON employee_de_minimis_benefits.dmb_code = de_minimis_benefits.dmb_code ")
                 xSQL.AppendLine("WHERE  employee.`code` = @Emp_Code ")
 
                 Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
@@ -790,7 +814,7 @@ Public Class payroll
                 xSQL.AppendLine("    receivable_and_taxable_allowances.rta_type ")
                 xSQL.AppendLine("FROM employee ")
                 xSQL.AppendLine("    INNER JOIN employee_receivable_and_taxable_allowances ON employee_receivable_and_taxable_allowances.emp_code = employee.`code` ")
-                xSQL.AppendLine("    INNER JOIN receivable_and_taxable_allowances ON employee_receivable_and_taxable_allowances.rta_id = receivable_and_taxable_allowances.id ")
+                xSQL.AppendLine("    INNER JOIN receivable_and_taxable_allowances ON employee_receivable_and_taxable_allowances.rta_code = receivable_and_taxable_allowances.rta_code ")
                 xSQL.AppendLine("WHERE receivable_and_taxable_allowances.rta_taxable = '0' and employee.`code` = @Emp_Code ")
 
                 Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
@@ -834,7 +858,7 @@ Public Class payroll
                 xSQL.AppendLine("    receivable_and_taxable_allowances.rta_type ")
                 xSQL.AppendLine("FROM employee ")
                 xSQL.AppendLine("    INNER JOIN employee_receivable_and_taxable_allowances ON employee_receivable_and_taxable_allowances.emp_code = employee.`code` ")
-                xSQL.AppendLine("    INNER JOIN receivable_and_taxable_allowances ON employee_receivable_and_taxable_allowances.rta_id = receivable_and_taxable_allowances.id ")
+                xSQL.AppendLine("    INNER JOIN receivable_and_taxable_allowances ON employee_receivable_and_taxable_allowances.rta_code = receivable_and_taxable_allowances.rta_code ")
                 xSQL.AppendLine("WHERE receivable_and_taxable_allowances.rta_taxable = '1' and employee.`code` = @Emp_Code ")
 
                 Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
@@ -861,5 +885,33 @@ Public Class payroll
             Throw ex
         End Try
         Return TaxableDeduction
+    End Function
+    Friend Function ComputeAdjustment(ByVal xEmpCode As String, ByVal xFrom As String, ByVal xTo As String) As String
+        ComputeAdjustment = 0
+        Try
+            Using SQLConnect As New MySqlConnection(My.Settings.DBConn)
+                SQLConnect.Open()
+                'leave without pay
+                Dim xSQL As New StringBuilder
+                xSQL.AppendLine("select * from payroll_adjustments ")
+                xSQL.AppendLine("WHERE ")
+                xSQL.AppendLine("  emp_code = @emp_code  ")
+                xSQL.AppendLine("  and paid = '0'  ")
+                xSQL.AppendLine("  and date_created Between @xFrom and @xTo ")
+
+                Dim SQLCommand As New MySqlCommand(xSQL.ToString, SQLConnect)
+                SQLCommand.Parameters.AddWithValue("@emp_code", xEmpCode)
+                SQLCommand.Parameters.AddWithValue("@xFrom", xFrom)
+                SQLCommand.Parameters.AddWithValue("@xTo", xTo)
+                Dim da As New MySqlDataAdapter(SQLCommand)
+                Dim ds As New DataSet
+                da.Fill(ds)
+                For Each dr In ds.Tables(0).Rows
+                    ComputeAdjustment = ModC(ComputeAdjustment) + ModC(dr("amount"))
+                Next
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 End Class
