@@ -30,7 +30,11 @@
          });
          $('#myModal').on('shown.bs.modal', function () {
              $('#myInput').focus()
+
          })
+         function Closepopup() {
+             $('#myModal').modal('hide')
+         }
         </script>
     <style type="text/css">
         .messagealert {
