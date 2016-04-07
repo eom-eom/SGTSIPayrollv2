@@ -32,9 +32,16 @@
              $('#myInput').focus()
 
          })
+        
          function Closepopup() {
              $('#myModal').modal('hide')
+            
          }
+         function Closepopup() {
+             $('#myModal2').modal('hide')
+
+         }
+        
         </script>
     <style type="text/css">
         .messagealert {
@@ -72,32 +79,7 @@
            
         }
     </script>
-    <script type="text/javascript">
-        function ShowMessage_mod(message, messagetype) {
-            var cssclass;
-            switch (messagetype) {
-                case 'Success':
-                    cssclass = 'alert-success alert-dismissible fade out'
-                    break;
-                case 'Errors':
-                    cssclass = 'alert-danger alert-dismissible fade out'
-                    break;
-                case 'Warning':
-                    cssclass = 'alert-warning alert-dismissible fade out'
-                    break;
-                default:
-                    cssclass = 'alert-warning alert-dismissible fade out'
-            }
-           
-            $('#alert_container_mod').append('<div id="alert_div" style="margin: 0 0.5%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
-            setTimeout(function () {
-                $("#alert_div").fadeTo(2000, 500).slideUp(500, function () {
-                    $("#alert_div").remove();
-                });
-            }, 1500);
-
-        }
-    </script>
+    
     
    
 </head>
