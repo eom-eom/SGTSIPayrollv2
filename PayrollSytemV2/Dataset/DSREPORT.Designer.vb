@@ -287,6 +287,8 @@ Partial Public Class DSREPORT
 
         Private columnpayroll_code As Global.System.Data.DataColumn
 
+        Private columnemp_code As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
@@ -339,6 +341,14 @@ Partial Public Class DSREPORT
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property emp_codeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnemp_code
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Browsable(False)> _
         Public ReadOnly Property Count() As Integer
@@ -375,12 +385,18 @@ Partial Public Class DSREPORT
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Overloads Function Addpayroll_detailsRow(ByVal id As String, ByVal payroll_code As String) As payroll_detailsRow
+        Public Overloads Function Addpayroll_detailsRow(ByVal id As String, ByVal payroll_code As String, ByVal emp_code As String) As payroll_detailsRow
             Dim rowpayroll_detailsRow As payroll_detailsRow = CType(Me.NewRow, payroll_detailsRow)
-            Dim columnValuesArray() As Object = New Object() {id, payroll_code}
+            Dim columnValuesArray() As Object = New Object() {id, payroll_code, emp_code}
             rowpayroll_detailsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowpayroll_detailsRow)
             Return rowpayroll_detailsRow
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function FindByid(ByVal id As String) As payroll_detailsRow
+            Return CType(Me.Rows.Find(New Object() {id}), payroll_detailsRow)
         End Function
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -402,6 +418,7 @@ Partial Public Class DSREPORT
         Friend Sub InitVars()
             Me.columnid = MyBase.Columns("id")
             Me.columnpayroll_code = MyBase.Columns("payroll_code")
+            Me.columnemp_code = MyBase.Columns("emp_code")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -411,6 +428,11 @@ Partial Public Class DSREPORT
             MyBase.Columns.Add(Me.columnid)
             Me.columnpayroll_code = New Global.System.Data.DataColumn("payroll_code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnpayroll_code)
+            Me.columnemp_code = New Global.System.Data.DataColumn("emp_code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnemp_code)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnid}, True))
+            Me.columnid.AllowDBNull = False
+            Me.columnid.Unique = True
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -559,11 +581,7 @@ Partial Public Class DSREPORT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property id() As String
             Get
-                Try
-                    Return CType(Me(Me.tablepayroll_details.idColumn), String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'id' in table 'payroll_details' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablepayroll_details.idColumn), String)
             End Get
             Set(value As String)
                 Me(Me.tablepayroll_details.idColumn) = value
@@ -587,15 +605,18 @@ Partial Public Class DSREPORT
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsidNull() As Boolean
-            Return Me.IsNull(Me.tablepayroll_details.idColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetidNull()
-            Me(Me.tablepayroll_details.idColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property emp_code() As String
+            Get
+                Try
+                    Return CType(Me(Me.tablepayroll_details.emp_codeColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'emp_code' in table 'payroll_details' is DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tablepayroll_details.emp_codeColumn) = value
+            End Set
+        End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
@@ -607,6 +628,18 @@ Partial Public Class DSREPORT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setpayroll_codeNull()
             Me(Me.tablepayroll_details.payroll_codeColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function Isemp_codeNull() As Boolean
+            Return Me.IsNull(Me.tablepayroll_details.emp_codeColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub Setemp_codeNull()
+            Me(Me.tablepayroll_details.emp_codeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
 

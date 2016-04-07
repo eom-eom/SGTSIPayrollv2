@@ -12,15 +12,20 @@
   <xs:element name="DSREPORT" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSREPORT" msprop:Generator_UserDSName="DSREPORT">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="payroll_details" msprop:Generator_TableClassName="payroll_detailsDataTable" msprop:Generator_TableVarName="tablepayroll_details" msprop:Generator_TablePropName="payroll_details" msprop:Generator_RowDeletingName="payroll_detailsRowDeleting" msprop:Generator_RowChangingName="payroll_detailsRowChanging" msprop:Generator_RowEvHandlerName="payroll_detailsRowChangeEventHandler" msprop:Generator_RowDeletedName="payroll_detailsRowDeleted" msprop:Generator_UserTableName="payroll_details" msprop:Generator_RowChangedName="payroll_detailsRowChanged" msprop:Generator_RowEvArgName="payroll_detailsRowChangeEvent" msprop:Generator_RowClassName="payroll_detailsRow">
+        <xs:element name="payroll_details" msprop:Generator_TableClassName="payroll_detailsDataTable" msprop:Generator_TableVarName="tablepayroll_details" msprop:Generator_RowChangedName="payroll_detailsRowChanged" msprop:Generator_TablePropName="payroll_details" msprop:Generator_RowDeletingName="payroll_detailsRowDeleting" msprop:Generator_RowChangingName="payroll_detailsRowChanging" msprop:Generator_RowEvHandlerName="payroll_detailsRowChangeEventHandler" msprop:Generator_RowDeletedName="payroll_detailsRowDeleted" msprop:Generator_RowClassName="payroll_detailsRow" msprop:Generator_UserTableName="payroll_details" msprop:Generator_RowEvArgName="payroll_detailsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" minOccurs="0" />
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" />
               <xs:element name="payroll_code" msprop:Generator_ColumnVarNameInTable="columnpayroll_code" msprop:Generator_ColumnPropNameInRow="payroll_code" msprop:Generator_ColumnPropNameInTable="payroll_codeColumn" msprop:Generator_UserColumnName="payroll_code" type="xs:string" minOccurs="0" />
+              <xs:element name="emp_code" msprop:Generator_ColumnVarNameInTable="columnemp_code" msprop:Generator_ColumnPropNameInRow="emp_code" msprop:Generator_ColumnPropNameInTable="emp_codeColumn" msprop:Generator_UserColumnName="emp_code" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:payroll_details" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
   </xs:element>
 </xs:schema>
