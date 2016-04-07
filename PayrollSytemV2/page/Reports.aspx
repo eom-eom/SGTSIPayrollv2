@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/index.Master" CodeBehind="Reports.aspx.vb" Inherits="PayrollSytemV2.Reports" %>
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="contentHeader" runat="server">
     Reports
 </asp:Content>
@@ -36,11 +37,11 @@
                         <div class="col-md-2">
                             <asp:Button ID="btnSearch" runat="server" Text="Search" class="btn btn-block btn-primary btn-md" />
                         </div>
-                    </div>
-                    
+                    </div>   
                  </div>
                  <div class="row">
-                     <CR:CrystalReportViewer ID="crvReports" runat="server" AutoDataBind="true" Visible="true" />
+                     <CR:CrystalReportViewer ID="crvReports" runat="server" AutoDataBind="true" Visible="true" DisplayPage="true"  />
+                     
                  </div>
              </div>
              </div>

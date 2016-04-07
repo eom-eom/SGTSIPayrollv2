@@ -76,17 +76,17 @@ Public Class Reports
 
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         PayrollJournal()
-
-        Dim dsPayrollJournal As New DataSet
-        dsPayrollJournal = New DSREPORT()
-        Dim dsPayrollJournalTemp As New DataSet
-        dsPayrollJournal = New DataSet()
-        dsPayrollJournal.Tables.Add("PayrollJournal")
-        rptPayrollJournal = New payrolljournal
-        rptPayrollJournal.SetDataSource(dsPayrollJournal.Tables(0))
-        dsPayrollJournalTemp.ReadXml(HttpRuntime.AppDomainAppPath & "\XML\PayrollJournal.xml")
-        dsPayrollJournal.Merge(dsPayrollJournalTemp.Tables(0))
-        crvReports.ReportSource = rptPayrollJournal
-
+        If IsPostBack Then
+            Dim dsPayrollJournal As New DataSet
+            dsPayrollJournal = New DSREPORT()
+            Dim dsPayrollJournalTemp As New DataSet
+            dsPayrollJournal = New DataSet()
+            dsPayrollJournalTemp.ReadXml(HttpRuntime.AppDomainAppPath() & "\XML\PayrollJournal.xml")
+            dsPayrollJournal.Merge(dsPayrollJournalTemp.Tables(0))
+            rptPayrollJournal = New payrolljournal
+            rptPayrollJournal.SetDataSource(dsPayrollJournal.Tables(0))
+            crvReports.ReportSource = rptPayrollJournal
+            crvReports.DataBind()
+        End If
     End Sub
 End Class
