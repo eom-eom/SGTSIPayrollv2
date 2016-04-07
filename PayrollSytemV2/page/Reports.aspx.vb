@@ -1,14 +1,25 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports CrystalDecisions.CrystalReports.Engine
 
 Public Class Reports
     Inherits System.Web.UI.Page
     Dim rptPayrollJournal As New payrolljournal
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        mvReports.SetActiveView(PanelPayrollJournal)
+
+        Dim c As New CReports
+        c.GetSystemSetting()
+
+        lblCompanyName.Text = company_name
+        lblAddress.Text = company_address
+        lblTelNo.Text = company_telephone
+
         If Not IsPostBack Then
-            FillPCodeDDL
+            FillPCodeDDL()
         End If
     End Sub
+
     Public Sub FillPCodeDDL()
         Dim cdb As New CReports
         Dim dt As DataTable = cdb.ShiftsListDDL
@@ -27,6 +38,7 @@ Public Class Reports
                 xSQL.AppendLine("SELECT payroll_details.id, ")
                 xSQL.AppendLine("    payroll_details.payroll_code, ")
                 xSQL.AppendLine("    payroll_details.emp_code, ")
+                xSQL.AppendLine("    Concat(employee.first_name,' ',employee.middle_name,' ',employee.last_name) as 'emp_name', ")
                 xSQL.AppendLine("    payroll_details.emp_tax_comp, ")
                 xSQL.AppendLine("    payroll_details.emp_basicpay, ")
                 xSQL.AppendLine("    payroll_details.emp_late, ")
@@ -53,6 +65,7 @@ Public Class Reports
                 xSQL.AppendLine("    LEFT OUTER JOIN payroll_govde as SSS ON payroll_details.payroll_code = SSS.payroll_code and payroll_details.emp_code = SSS.emp_code and SSS.gov_desc = 'SSS' ")
                 xSQL.AppendLine("    LEFT OUTER JOIN payroll_govde as PhilHealth ON payroll_details.payroll_code = PhilHealth.payroll_code and payroll_details.emp_code = PhilHealth.emp_code and PhilHealth.gov_desc = 'PhilHealth' ")
                 xSQL.AppendLine("    LEFT OUTER JOIN payroll_govde as HDMF ON payroll_details.payroll_code = HDMF.payroll_code and payroll_details.emp_code = HDMF.emp_code and HDMF.gov_desc = 'HDMF' ")
+                xSQL.AppendLine("    INNER JOIN employee ON payroll_details.emp_code = employee.`code` ")
                 xSQL.AppendLine("WHERE payroll_details.payroll_code = '" & Trim(ddlPayrollCode.SelectedValue) & "' ")
 
 
@@ -76,7 +89,10 @@ Public Class Reports
 
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         PayrollJournal()
+
         If IsPostBack Then
+
+            'Payroll Journal
             Dim dsPayrollJournal As New DataSet
             dsPayrollJournal = New DSREPORT()
             Dim dsPayrollJournalTemp As New DataSet
@@ -85,8 +101,20 @@ Public Class Reports
             dsPayrollJournal.Merge(dsPayrollJournalTemp.Tables(0))
             rptPayrollJournal = New payrolljournal
             rptPayrollJournal.SetDataSource(dsPayrollJournal.Tables(0))
-            crvReports.ReportSource = rptPayrollJournal
-            crvReports.DataBind()
+            'rptPayrollJournal.SetParameterValue("company_name", company_name)
+            'rptPayrollJournal.SetParameterValue("company_address", company_address)
+            'rptPayrollJournal.SetParameterValue("company_telephone", company_telephone)
+            crvPayrollJournal.ReportSource = rptPayrollJournal
+
+
         End If
+    End Sub
+
+    Protected Sub btnPayrollJournal_Click(sender As Object, e As EventArgs) Handles btnPayrollJournal.Click
+        mvReports.SetActiveView(PanelPayrollJournal)
+    End Sub
+
+    Protected Sub btnPaySlip_Click(sender As Object, e As EventArgs) Handles btnPaySlip.Click
+        mvReports.SetActiveView(PanelPaySlip)
     End Sub
 End Class
