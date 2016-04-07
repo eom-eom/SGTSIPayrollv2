@@ -43,7 +43,7 @@ Public Class payrollMaintenance
     Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If gvPayrollMain.Rows.Count <> 0 Then
             If Not Session("PayrollCode") = "" Then
-                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal", "$('#myModal').modal()", True)
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal2", "$('#myModal2').modal()", True)
             Else
                 ShowMessage("Please Select before you delete", MessageType.Errors, Me)
             End If
@@ -61,12 +61,16 @@ Public Class payrollMaintenance
                 cPM.is_deleted = "0"
 
                 cPM = cdb.PayrollUpdateFile(cPM)
+                UPmodal.Update()
                 fillPayroll()
-                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal", "Closepopup();", True)
-                'UPmodal.Attributes("class") = "close"
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal2", "Closepopup();", True)
+
 
             Else
-                ShowMessage("Password didn't match", MessageType.Errors, Me)
+                'ShowMessage("Password didn't match", MessageType.Errors, Me)
+                MsgBox("Password didn't match")
+                UPmodal.Update()
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal2", "Closepopup();", True)
             End If
         Else
             ShowMessage("Password must not be blank", MessageType.Errors, Me)
