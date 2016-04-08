@@ -1,0 +1,99 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Table">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="id" type="xs:int" minOccurs="0" />
+                <xs:element name="payroll_code" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_code" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_name" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_tax_comp" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_basicpay" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_late" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_absent" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_ut" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_ot" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_taxallowance" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_receivable" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_deminimis" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_totaltaxearning" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_bonus" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_wtax" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_govdeduc" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_comdeduc" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_totaldeduction" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_netpay" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_payrolladjustment" type="xs:string" minOccurs="0" />
+                <xs:element name="emp_payroll_year" type="xs:string" minOccurs="0" />
+                <xs:element name="is_deleted" type="xs:string" minOccurs="0" />
+                <xs:element name="SSS" type="xs:string" minOccurs="0" />
+                <xs:element name="PhilHealth" type="xs:string" minOccurs="0" />
+                <xs:element name="HDMF" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Table>
+    <id>13</id>
+    <payroll_code>P2016030120160331</payroll_code>
+    <emp_code>EMP-0004</emp_code>
+    <emp_name>Juan Guevarra Dela Cruz</emp_name>
+    <emp_tax_comp>S</emp_tax_comp>
+    <emp_basicpay>20000</emp_basicpay>
+    <emp_late>57.47</emp_late>
+    <emp_absent>0</emp_absent>
+    <emp_ut>57.47</emp_ut>
+    <emp_ot>7070.31</emp_ot>
+    <emp_taxallowance>0</emp_taxallowance>
+    <emp_receivable>0</emp_receivable>
+    <emp_deminimis>0</emp_deminimis>
+    <emp_totaltaxearning>26024.07</emp_totaltaxearning>
+    <emp_bonus />
+    <emp_wtax>6202.59</emp_wtax>
+    <emp_govdeduc>931.3</emp_govdeduc>
+    <emp_comdeduc>0</emp_comdeduc>
+    <emp_totaldeduction>7133.89</emp_totaldeduction>
+    <emp_netpay>18890.18</emp_netpay>
+    <emp_payrolladjustment>0</emp_payrolladjustment>
+    <emp_payroll_year>2016</emp_payroll_year>
+    <is_deleted>1</is_deleted>
+    <SSS>581.30</SSS>
+    <PhilHealth>250</PhilHealth>
+    <HDMF>100</HDMF>
+  </Table>
+  <Table>
+    <id>14</id>
+    <payroll_code>P2016030120160331</payroll_code>
+    <emp_code>EMP-0001</emp_code>
+    <emp_name>Elbert Onaniana Molina</emp_name>
+    <emp_tax_comp>S</emp_tax_comp>
+    <emp_basicpay>25000</emp_basicpay>
+    <emp_late>71.84</emp_late>
+    <emp_absent>0</emp_absent>
+    <emp_ut>71.84</emp_ut>
+    <emp_ot>5028.76</emp_ot>
+    <emp_taxallowance>500</emp_taxallowance>
+    <emp_receivable>1000</emp_receivable>
+    <emp_deminimis>2000</emp_deminimis>
+    <emp_totaltaxearning>28391.28</emp_totaltaxearning>
+    <emp_bonus />
+    <emp_wtax>6960.1</emp_wtax>
+    <emp_govdeduc>993.8</emp_govdeduc>
+    <emp_comdeduc>0</emp_comdeduc>
+    <emp_totaldeduction>7953.9</emp_totaldeduction>
+    <emp_netpay>16937.38</emp_netpay>
+    <emp_payrolladjustment>0</emp_payrolladjustment>
+    <emp_payroll_year>2016</emp_payroll_year>
+    <is_deleted>1</is_deleted>
+    <SSS>581.30</SSS>
+    <PhilHealth>312.50</PhilHealth>
+    <HDMF>100</HDMF>
+  </Table>
+</NewDataSet>
