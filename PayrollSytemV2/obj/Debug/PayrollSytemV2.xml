@@ -1766,9 +1766,41 @@ To modify move field declaration from designer file to code-behind file.
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
 </member><member name="P:PayrollSytemV2.PhilhealthTables.is_deleted">
 	<summary> Object Property: Type=System.String, ColumnSize=50 </summary>
-</member><member name="F:PayrollSytemV2.Reports.UpdatePanel1">
+</member><member name="F:PayrollSytemV2.Reports.btnPayrollJournal">
 	<summary>
-UpdatePanel1 control.
+btnPayrollJournal control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.btnPaySlip">
+	<summary>
+btnPaySlip control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.lblCompanyName">
+	<summary>
+lblCompanyName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.lblAddress">
+	<summary>
+lblAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.lblTelNo">
+	<summary>
+lblTelNo control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -1790,9 +1822,41 @@ btnSearch control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PayrollSytemV2.Reports.crvReports">
+</member><member name="F:PayrollSytemV2.Reports.mvReports">
 	<summary>
-crvReports control.
+mvReports control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.PanelPayrollJournal">
+	<summary>
+PanelPayrollJournal control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.crvPayrollJournal">
+	<summary>
+crvPayrollJournal control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.PanelPaySlip">
+	<summary>
+PanelPaySlip control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PayrollSytemV2.Reports.crvPaySlip">
+	<summary>
+crvPaySlip control.
 </summary>
 	<remarks>
 Auto-generated field.

@@ -14,13 +14,49 @@ Option Explicit On
 Partial Public Class Reports
 
     '''<summary>
-    '''UpdatePanel1 control.
+    '''btnPayrollJournal control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents btnPayrollJournal As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnPaySlip control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnPaySlip As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblCompanyName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCompanyName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblAddress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAddress As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblTelNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTelNo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''ddlPayrollCode control.
@@ -41,11 +77,47 @@ Partial Public Class Reports
     Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''crvReports control.
+    '''mvReports control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents crvReports As Global.CrystalDecisions.Web.CrystalReportViewer
+    Protected WithEvents mvReports As Global.System.Web.UI.WebControls.MultiView
+
+    '''<summary>
+    '''PanelPayrollJournal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PanelPayrollJournal As Global.System.Web.UI.WebControls.View
+
+    '''<summary>
+    '''crvPayrollJournal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents crvPayrollJournal As Global.CrystalDecisions.Web.CrystalReportViewer
+
+    '''<summary>
+    '''PanelPaySlip control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PanelPaySlip As Global.System.Web.UI.WebControls.View
+
+    '''<summary>
+    '''crvPaySlip control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents crvPaySlip As Global.CrystalDecisions.Web.CrystalReportViewer
 End Class

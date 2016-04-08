@@ -48,6 +48,7 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 12.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -150,7 +151,6 @@
     <Content Include="Dataset\DSREPORT.xss">
       <DependentUpon>DSREPORT.xsd</DependentUpon>
     </Content>
-    <None Include="XML\Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="page\CompanyDeductions.aspx" />
     <Content Include="page\DeMinimisBenefits.aspx" />
     <Content Include="page\Department.aspx" />
@@ -164,6 +164,7 @@
     <Content Include="page\LeaveType.aspx" />
     <Content Include="page\Login.aspx" />
     <Content Include="page\OvertimeSettings.aspx" />
+    <Content Include="page\payrollAdjustment.aspx" />
     <Content Include="page\payrollGeneration.aspx" />
     <Content Include="page\payrollMaintenance.aspx" />
     <Content Include="page\PayrollSetting.aspx" />
@@ -176,15 +177,6 @@
     <Content Include="page\SSSTable.aspx" />
     <Content Include="page\SystemSetting.aspx" />
     <Content Include="page\TaxTable.aspx" />
-    <Content Include="XML\Scripts\app.js" />
-    <Content Include="XML\Scripts\app.min.js" />
-    <Content Include="XML\Scripts\bootstrap.js" />
-    <Content Include="XML\Scripts\bootstrap.min.js" />
-    <Content Include="XML\Scripts\jquery-1.9.1.js" />
-    <Content Include="XML\Scripts\jquery-1.9.1.min.js" />
-    <Content Include="XML\Scripts\jquery-jvectormap-1.2.2.min.js" />
-    <Content Include="XML\Scripts\jquery-jvectormap-world-mill-en.js" />
-    <Content Include="XML\Scripts\select2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +191,7 @@
     <Compile Include="Class\LateUndertime.vb" />
     <Compile Include="Class\LeaveTypes.vb" />
     <Compile Include="Class\Overtime.vb" />
+    <Compile Include="Class\PayrollAdj.vb" />
     <Compile Include="Class\PayrollGen.vb" />
     <Compile Include="Class\PayrollMain.vb" />
     <Compile Include="Class\PayrollSettings.vb" />
@@ -332,6 +325,13 @@
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="page\payrollAdjustment.aspx.designer.vb">
+      <DependentUpon>payrollAdjustment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\payrollAdjustment.aspx.vb">
+      <DependentUpon>payrollAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="page\payrollGeneration.aspx.designer.vb">
       <DependentUpon>payrollGeneration.aspx</DependentUpon>
     </Compile>
@@ -446,7 +446,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <Content Include="XML\Scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -457,7 +456,9 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="XML\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

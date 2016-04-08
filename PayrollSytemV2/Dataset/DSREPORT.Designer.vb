@@ -325,6 +325,12 @@ Partial Public Class DSREPORT
 
         Private columnemp_payrolladjustment As Global.System.Data.DataColumn
 
+        Private columnSSS As Global.System.Data.DataColumn
+
+        Private columnPhilhealth As Global.System.Data.DataColumn
+
+        Private columnHDMF As Global.System.Data.DataColumn
+
         Private columnemp_payroll_year As Global.System.Data.DataColumn
 
         Private columnis_deleted As Global.System.Data.DataColumn
@@ -534,6 +540,30 @@ Partial Public Class DSREPORT
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property SSSColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSSS
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property PhilhealthColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPhilhealth
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property HDMFColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnHDMF
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property emp_payroll_yearColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnemp_payroll_year
@@ -607,10 +637,13 @@ Partial Public Class DSREPORT
                     ByVal emp_totaldeduction As String, _
                     ByVal emp_netpay As String, _
                     ByVal emp_payrolladjustment As String, _
+                    ByVal SSS As String, _
+                    ByVal Philhealth As String, _
+                    ByVal HDMF As String, _
                     ByVal emp_payroll_year As String, _
                     ByVal is_deleted As String) As payroll_detailsRow
             Dim rowpayroll_detailsRow As payroll_detailsRow = CType(Me.NewRow, payroll_detailsRow)
-            Dim columnValuesArray() As Object = New Object() {id, payroll_code, emp_code, emp_name, emp_tax_comp, emp_basicpay, emp_late, emp_absent, emp_ut, emp_ot, emp_taxallowance, emp_receivable, emp_deminimis, emp_totaltaxearning, emp_bonus, emp_wtax, emp_govdeduc, emp_comdeduc, emp_totaldeduction, emp_netpay, emp_payrolladjustment, emp_payroll_year, is_deleted}
+            Dim columnValuesArray() As Object = New Object() {id, payroll_code, emp_code, emp_name, emp_tax_comp, emp_basicpay, emp_late, emp_absent, emp_ut, emp_ot, emp_taxallowance, emp_receivable, emp_deminimis, emp_totaltaxearning, emp_bonus, emp_wtax, emp_govdeduc, emp_comdeduc, emp_totaldeduction, emp_netpay, emp_payrolladjustment, SSS, Philhealth, HDMF, emp_payroll_year, is_deleted}
             rowpayroll_detailsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowpayroll_detailsRow)
             Return rowpayroll_detailsRow
@@ -660,6 +693,9 @@ Partial Public Class DSREPORT
             Me.columnemp_totaldeduction = MyBase.Columns("emp_totaldeduction")
             Me.columnemp_netpay = MyBase.Columns("emp_netpay")
             Me.columnemp_payrolladjustment = MyBase.Columns("emp_payrolladjustment")
+            Me.columnSSS = MyBase.Columns("SSS")
+            Me.columnPhilhealth = MyBase.Columns("Philhealth")
+            Me.columnHDMF = MyBase.Columns("HDMF")
             Me.columnemp_payroll_year = MyBase.Columns("emp_payroll_year")
             Me.columnis_deleted = MyBase.Columns("is_deleted")
         End Sub
@@ -709,6 +745,12 @@ Partial Public Class DSREPORT
             MyBase.Columns.Add(Me.columnemp_netpay)
             Me.columnemp_payrolladjustment = New Global.System.Data.DataColumn("emp_payrolladjustment", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnemp_payrolladjustment)
+            Me.columnSSS = New Global.System.Data.DataColumn("SSS", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSSS)
+            Me.columnPhilhealth = New Global.System.Data.DataColumn("Philhealth", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPhilhealth)
+            Me.columnHDMF = New Global.System.Data.DataColumn("HDMF", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHDMF)
             Me.columnemp_payroll_year = New Global.System.Data.DataColumn("emp_payroll_year", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnemp_payroll_year)
             Me.columnis_deleted = New Global.System.Data.DataColumn("is_deleted", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -1174,6 +1216,51 @@ Partial Public Class DSREPORT
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property SSS() As String
+            Get
+                Try
+                    Return CType(Me(Me.tablepayroll_details.SSSColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SSS' in table 'payroll_details' is DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tablepayroll_details.SSSColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property Philhealth() As String
+            Get
+                Try
+                    Return CType(Me(Me.tablepayroll_details.PhilhealthColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Philhealth' in table 'payroll_details' is DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tablepayroll_details.PhilhealthColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property HDMF() As String
+            Get
+                Try
+                    Return CType(Me(Me.tablepayroll_details.HDMFColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'HDMF' in table 'payroll_details' is DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tablepayroll_details.HDMFColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property emp_payroll_year() As String
             Get
                 Try
@@ -1440,6 +1527,42 @@ Partial Public Class DSREPORT
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub Setemp_payrolladjustmentNull()
             Me(Me.tablepayroll_details.emp_payrolladjustmentColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsSSSNull() As Boolean
+            Return Me.IsNull(Me.tablepayroll_details.SSSColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetSSSNull()
+            Me(Me.tablepayroll_details.SSSColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsPhilhealthNull() As Boolean
+            Return Me.IsNull(Me.tablepayroll_details.PhilhealthColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetPhilhealthNull()
+            Me(Me.tablepayroll_details.PhilhealthColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsHDMFNull() As Boolean
+            Return Me.IsNull(Me.tablepayroll_details.HDMFColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetHDMFNull()
+            Me(Me.tablepayroll_details.HDMFColumn) = Global.System.Convert.DBNull
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _

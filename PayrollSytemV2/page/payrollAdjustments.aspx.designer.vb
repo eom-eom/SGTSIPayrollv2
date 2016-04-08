@@ -32,22 +32,13 @@ Partial Public Class payrollAdjustments
     Protected WithEvents lblEmpcode As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''ddEmployeeName control.
+    '''ddEmployeeCode control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddEmployeeName As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''LBrowseEmployee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LBrowseEmployee As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents ddEmployeeCode As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''lblEmpname control.
@@ -147,4 +138,40 @@ Partial Public Class payrollAdjustments
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvEmpPayrollAdj As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''btnNew control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnNew As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''btnEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEdit As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''btnSave control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSave As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnDelete control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDelete As Global.System.Web.UI.WebControls.LinkButton
 End Class
