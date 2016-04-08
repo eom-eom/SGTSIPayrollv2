@@ -763,7 +763,7 @@ Public Class frmEmployee
             'updating modal and gridview
             UPmodal.Update()
             UPGvEmpComde.Update()
-
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "myModal", "Closepopup();", True)
             'How do I close the modal after my codings ????? :)))) 
         Else
             ShowMessage_mod("Invalid Amount", MessageType.Success, Me)
