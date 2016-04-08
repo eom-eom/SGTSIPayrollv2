@@ -24,9 +24,9 @@
                     </div>
                 </div>
                  <div class="row">
-                     <asp:Label ID="lblCompanyName" runat="server" Text="CompanyName"></asp:Label>
-                     <asp:Label ID="lblAddress" runat="server" Text="Address"></asp:Label>
-                     <asp:Label ID="lblTelNo" runat="server" Text="TelNO"></asp:Label>
+                     <asp:Label ID="lblCompanyName" runat="server" Text="CompanyName" Visible="false"></asp:Label>
+                     <asp:Label ID="lblAddress" runat="server" Text="Address" Visible="false"></asp:Label>
+                     <asp:Label ID="lblTelNo" runat="server" Text="TelNO" Visible="false"></asp:Label>
                  </div>
                  <div class="row">
                      <br />
