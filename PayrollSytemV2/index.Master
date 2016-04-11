@@ -165,7 +165,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class="active"><a href="DTRUpload.aspx"><i class="fa fa-circle-o"></i> DTR Upload</a></li>
-                        <li><a href="DTRHistory.aspx"><i class="fa fa-circle-o"></i> DTR History</a></li>
+                       <%-- <li><a href="DTRHistory.aspx"><i class="fa fa-circle-o"></i> DTR History</a></li>--%>
                         <li><a href="ShiftingSchedule.aspx"><i class="fa fa-circle-o"></i> Shifting Schedule</a></li>
                     </ul>
                     </li>
@@ -181,9 +181,9 @@
                       <ul class="treeview-menu">
                         <li><a href="payrollGeneration.aspx"><i class="fa fa-circle-o"></i> Payroll Generation</a></li>
                         <li><a href="payrollAdjustments.aspx"><i class="fa fa-circle-o"></i> Payroll Adjustment</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Report</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Maintenance</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Payroll Master File</a></li>
+                        <li><a href="Reports.aspx"><i class="fa fa-circle-o"></i> Payroll Report</a></li>
+                        <li><a href="payrollMaintenance.aspx"><i class="fa fa-circle-o"></i> Payroll Maintenance</a></li>
+                        <%--<li><a href="#"><i class="fa fa-circle-o"></i> Payroll Master File</a></li>--%>
                       </ul>
                     </li>
                     <li class="treeview">

@@ -107,9 +107,9 @@ Public Class Reports
             dsPayrollJournal.Merge(dsPayrollJournalTemp.Tables(0))
             rptPayrollJournal = New payrolljournal
             rptPayrollJournal.SetDataSource(dsPayrollJournal.Tables(0))
-            'rptPayrollJournal.SetParameterValue("company_name", company_name)
-            'rptPayrollJournal.SetParameterValue("company_address", company_address)
-            'rptPayrollJournal.SetParameterValue("company_telephone", company_telephone)
+            rptPayrollJournal.SetParameterValue("Company_Name", company_name)
+            rptPayrollJournal.SetParameterValue("Company_Address", company_address)
+            rptPayrollJournal.SetParameterValue("Company_Telephone", company_telephone)
             crvPayrollJournal.ReportSource = rptPayrollJournal
 
 
