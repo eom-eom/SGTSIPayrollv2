@@ -39,15 +39,15 @@
                             </asp:DropDownList> 
                         </div>
                         <div class="col-md-2">
-                            <asp:Button ID="btnSearch" runat="server" Text="Search" class="btn btn-block btn-primary btn-md" />
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" class="btn btn-block btn-primary btn-md"  />
                         </div>
                     </div>   
                  </div>
                 <br />
                  <div class="row">
                      <div class="col-md-12">
-                         <asp:MultiView ID="mvReports" runat="server">
-                             <asp:View ID="PanelPayrollJournal" runat="server">
+                         <asp:MultiView ID="mvReports" runat="server" >
+                             <asp:View ID="PanelPayrollJournal" runat="server" >
                                  <CR:CrystalReportViewer ID="crvPayrollJournal" runat="server" AutoDataBind="true" ToolPanelView="None" />
                              </asp:View>
                              <asp:View ID="PanelPaySlip" runat="server">

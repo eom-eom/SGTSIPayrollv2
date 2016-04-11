@@ -4,7 +4,7 @@ Imports CrystalDecisions.CrystalReports.Engine
 Public Class Reports
     Inherits System.Web.UI.Page
     Dim rptPayrollJournal As New payrolljournal
-
+    Dim rptPayslip As New payslip
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         mvReports.SetActiveView(PanelPayrollJournal)
 
@@ -54,9 +54,13 @@ Public Class Reports
                 xSQL.AppendLine("    payroll_details.emp_govdeduc, ")
                 xSQL.AppendLine("    payroll_details.emp_comdeduc, ")
                 xSQL.AppendLine("    payroll_details.emp_totaldeduction, ")
-                xSQL.AppendLine("    payroll_details.emp_netpay, ")
+                xSQL.AppendLine("    payroll_details.emp_netpay , ")
                 xSQL.AppendLine("    payroll_details.emp_payrolladjustment, ")
                 xSQL.AppendLine("    payroll_details.emp_payroll_year, ")
+                xSQL.AppendLine("    employee.tin_no, ")
+                xSQL.AppendLine("    employee.philhealth_no, ")
+                xSQL.AppendLine("    employee.pagibig_no, ")
+                xSQL.AppendLine("    employee.sss_no, ")
                 xSQL.AppendLine("    payroll_details.is_deleted, ")
                 xSQL.AppendLine("    SSS.govde_eeshare as 'SSS', ")
                 xSQL.AppendLine("    PhilHealth.govde_eeshare as 'PhilHealth', ")
@@ -81,6 +85,8 @@ Public Class Reports
                     ds.WriteXml(HttpRuntime.AppDomainAppPath & "\XML\PayrollJournal.xml", XmlWriteMode.WriteSchema)
                 End If
 
+
+
             End Using
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -91,7 +97,7 @@ Public Class Reports
         PayrollJournal()
 
         If IsPostBack Then
-
+            'mvReports.SetActiveView(PanelPayrollJournal)
             'Payroll Journal
             Dim dsPayrollJournal As New DataSet
             dsPayrollJournal = New DSREPORT()
@@ -106,6 +112,19 @@ Public Class Reports
             'rptPayrollJournal.SetParameterValue("company_telephone", company_telephone)
             crvPayrollJournal.ReportSource = rptPayrollJournal
 
+
+            ' payslip 
+            'Dim dsPayslip As New DataSet
+            'dsPayslip = New DSREPORT()
+            'Dim dsPayslipTemp As New DataSet
+            'dsPayslip = New DataSet()
+            'dsPayslipTemp.ReadXml(HttpRuntime.AppDomainAppPath() & "\XML\PayrollJournal.xml")
+            'dsPayslip.Merge(dsPayslipTemp.Tables(0))
+            'rptPayslip = New payslip
+            'rptPayslip.SetDataSource(dsPayslip.Tables(0))
+            'crvPaySlip.ReportSource = rptPayslip
+            'Schedule of net pay
+            '     crvNetPay.ReportSource = rptNetPay
 
         End If
     End Sub
