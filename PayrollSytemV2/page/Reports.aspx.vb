@@ -57,10 +57,10 @@ Public Class Reports
                 xSQL.AppendLine("    payroll_details.emp_netpay , ")
                 xSQL.AppendLine("    payroll_details.emp_payrolladjustment, ")
                 xSQL.AppendLine("    payroll_details.emp_payroll_year, ")
-                xSQL.AppendLine("    employee.tin_no, ")
-                xSQL.AppendLine("    employee.philhealth_no, ")
-                xSQL.AppendLine("    employee.pagibig_no, ")
-                xSQL.AppendLine("    employee.sss_no, ")
+                'xSQL.AppendLine("    employee.tin_no, ")
+                'xSQL.AppendLine("    employee.philhealth_no, ")
+                'xSQL.AppendLine("    employee.pagibig_no, ")
+                'xSQL.AppendLine("    employee.sss_no, ")
                 xSQL.AppendLine("    payroll_details.is_deleted, ")
                 xSQL.AppendLine("    SSS.govde_eeshare as 'SSS', ")
                 xSQL.AppendLine("    PhilHealth.govde_eeshare as 'PhilHealth', ")
@@ -107,9 +107,9 @@ Public Class Reports
             dsPayrollJournal.Merge(dsPayrollJournalTemp.Tables(0))
             rptPayrollJournal = New payrolljournal
             rptPayrollJournal.SetDataSource(dsPayrollJournal.Tables(0))
-            rptPayrollJournal.SetParameterValue("Company_Name", company_name)
-            rptPayrollJournal.SetParameterValue("Company_Address", company_address)
-            rptPayrollJournal.SetParameterValue("Company_Telephone", company_telephone)
+            'rptPayrollJournal.SetParameterValue("Company_Name", company_name)
+            'rptPayrollJournal.SetParameterValue("Company_Address", company_address)
+            'rptPayrollJournal.SetParameterValue("Company_Telephone", company_telephone)
             crvPayrollJournal.ReportSource = rptPayrollJournal
 
 
