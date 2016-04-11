@@ -3261,12 +3261,7 @@ function getLayer(id)
 // Get a layer from its ID
 // id [String] the id
 {
-   var doc = null;
-   if(typeof id == 'object')
-        doc = _curDoc.getElementById(id.id);
-   else
-        doc = _curDoc.getElementById(id);	
-   return doc;
+	return _curDoc.getElementById(id)
 }
 
 // ================================================================================

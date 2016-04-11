@@ -29,6 +29,10 @@
                 <xs:element name="emp_netpay" type="xs:string" minOccurs="0" />
                 <xs:element name="emp_payrolladjustment" type="xs:string" minOccurs="0" />
                 <xs:element name="emp_payroll_year" type="xs:string" minOccurs="0" />
+                <xs:element name="tin_no" type="xs:string" minOccurs="0" />
+                <xs:element name="philhealth_no" type="xs:string" minOccurs="0" />
+                <xs:element name="pagibig_no" type="xs:string" minOccurs="0" />
+                <xs:element name="sss_no" type="xs:string" minOccurs="0" />
                 <xs:element name="is_deleted" type="xs:string" minOccurs="0" />
                 <xs:element name="SSS" type="xs:string" minOccurs="0" />
                 <xs:element name="PhilHealth" type="xs:string" minOccurs="0" />
@@ -63,6 +67,10 @@
     <emp_netpay>18890.18</emp_netpay>
     <emp_payrolladjustment>0</emp_payrolladjustment>
     <emp_payroll_year>2016</emp_payroll_year>
+    <tin_no />
+    <philhealth_no />
+    <pagibig_no />
+    <sss_no />
     <is_deleted>1</is_deleted>
     <SSS>581.30</SSS>
     <PhilHealth>250</PhilHealth>
@@ -72,7 +80,7 @@
     <id>14</id>
     <payroll_code>P2016030120160331</payroll_code>
     <emp_code>EMP-0001</emp_code>
-    <emp_name>Elbert Onaniana Molina</emp_name>
+    <emp_name>Elbert Obaniana Molina</emp_name>
     <emp_tax_comp>S</emp_tax_comp>
     <emp_basicpay>25000</emp_basicpay>
     <emp_late>71.84</emp_late>
@@ -91,6 +99,10 @@
     <emp_netpay>16937.38</emp_netpay>
     <emp_payrolladjustment>0</emp_payrolladjustment>
     <emp_payroll_year>2016</emp_payroll_year>
+    <tin_no>0283129384</tin_no>
+    <philhealth_no>7321929</philhealth_no>
+    <pagibig_no>8723712</pagibig_no>
+    <sss_no>73712837</sss_no>
     <is_deleted>1</is_deleted>
     <SSS>581.30</SSS>
     <PhilHealth>312.50</PhilHealth>

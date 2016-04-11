@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class NetPay
+Public Class payslip
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class NetPay
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "NetPay.rpt"
+            Return "payslip.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class NetPay
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "PayrollSytemV2.NetPay.rpt"
+            Return "PayrollSytemV2.payslip.rpt"
         End Get
         Set
             'Do nothing
@@ -91,10 +91,42 @@ Public Class NetPay
             Return Me.ReportDefinition.Sections(4)
         End Get
     End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Company_Name() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(0)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Company_Address() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(1)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Company_Telephone() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(2)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_Payroll_Period() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(3)
+        End Get
+    End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedNetPay
+Public Class Cachedpayslip
     Inherits Component
     Implements ICachedReport
     
@@ -136,7 +168,7 @@ Public Class CachedNetPay
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As NetPay = New NetPay()
+        Dim rpt As payslip = New payslip()
         rpt.Site = Me.Site
         Return rpt
     End Function
